@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">MISDesign</string>
+    <string name="main_heading_login">Log into Your Account</string>
+    <string name="main_heading_register">Register</string>
+    <string name="student_email_address_heading">Student Email Address</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="password_heading">Password</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="login_button">Login</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="registerhere"> Register here</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="loginhere"> Login here</string>
+    <string name="registerbtn"> Register</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="OR">OR</string>
+    <string name="enter_student_name">Enter student name</string>
+    <string name="enter_student_email">Enter student email</string>
+    <string name="enter_phone">Enter phone no.</string>
+    <string name="Branch">Branch</string>
+    <string name="select_current_year">Select current year</string>
+    <string name="select_graduation_year">Select graduation year</string>
+    <string name="welcome">Welcome</string>
+    <string name="nameofstudent">Name of student</string>
+    <string name="studentid">Student ID</string>
+    <string name="typeofproject">Type of project</string>
+    <string name="addteam">Add teammates</string>
+    <string name="addlink">Add links/documents</string>
+    <string name="addprojtit">Add project title</string>
+    <string name="addprojddesc">Add project description</string>
+    <string name="prjctstat">Project process status</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first_fragment_label">home\n</string>
+    <string name="second_fragment_label">login\n</string>
+    <string name="action_settings">settings\n</string>
+    <string name="third_fragment_label">register</string>
+
+</resources>
