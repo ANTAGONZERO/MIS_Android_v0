@@ -148,6 +148,18 @@
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerBtn" />
+    <TextView
+        android:id="@+id/registerHereText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/loginhere"
+        android:textColor="@color/blue1"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/registerBtn" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
