@@ -68,4 +68,8 @@
     <string name="action_projects">projects\n</string>
     <string name="records">records</string>
     <string name="projects">projects</string>
+    <string name="lbl_drone">Drone\n</string>
+    <string name="msg_type_club_proj">Type: Club project</string>
+    <string name="msg_we_are_making_a">We are making an ai based drone, include   </string>
+
 </resources>
