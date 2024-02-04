@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/linearRowdrone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:id="@+id/linearColumnellipse448"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_8pxv"
+            android:layout_marginEnd="@dimen/_7pxh"
+            android:layout_marginBottom="@dimen/_8pxv"
+            android:layout_weight="0.34"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageEllipse448"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_140pxh"
+                android:layout_gravity="start"
+                android:src="@drawable/img_laserbroad"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/txtnameofequipment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_5pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="name of equipment"
+                tools:text="@string/lbl_name_of_equipment" />
+
+            <!-- Availability and Issuable Section -->
+            <LinearLayout
+                android:id="@+id/linearRowAvailabilityIssuable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_5pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtavialability"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/msg_availability_1"
+                    tools:text="@string/msg_availability_1" />
+
+                <TextView
+                    android:id="@+id/txtCompleted"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_marginEnd="@dimen/_20pxh"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_issuable" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

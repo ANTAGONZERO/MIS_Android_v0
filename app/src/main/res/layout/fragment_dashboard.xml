@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#E6E6E6"
+    tools:context=".ui.theme.DashboardFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageVector"
+            android:layout_width="24dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/green_200"
+            android:src="@drawable/drawer_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.041"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchMaterialUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_weight="0.27"
+            app:layout_constraintBottom_toBottomOf="@+id/imageVector"
+            app:layout_constraintStart_toEndOf="@+id/imageVector"
+            app:layout_constraintTop_toTopOf="@+id/imageVector" />
+
+        <ImageButton
+            android:id="@+id/btnRewind"
+            android:layout_width="@dimen/_33pxh"
+            android:layout_height="@dimen/_33pxh"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/rectangle_bg_bluegray_902_radius_16_5"
+            android:paddingHorizontal="@dimen/_9pxh"
+            android:paddingVertical="@dimen/_9pxv"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_rewind_white_a700"
+            app:layout_constraintBottom_toBottomOf="@+id/switchMaterialUser"
+            app:layout_constraintStart_toEndOf="@+id/switchMaterialUser"
+            app:layout_constraintTop_toTopOf="@+id/switchMaterialUser"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btnBellpin"
+            android:layout_width="@dimen/_33pxh"
+            android:layout_height="@dimen/_33pxh"
+            android:layout_marginStart="17dp"
+            android:background="@drawable/rectangle_bg_bluegray_902_radius_16_5"
+            android:paddingHorizontal="@dimen/_6pxh"
+            android:paddingVertical="@dimen/_6pxv"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_bellpin"
+            app:layout_constraintBottom_toBottomOf="@+id/btnRewind"
+            app:layout_constraintStart_toEndOf="@+id/btnRewind"
+            app:layout_constraintTop_toTopOf="@+id/btnRewind"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/imageEllipseSixtySix"
+
+            android:layout_width="@dimen/_33pxh"
+            android:layout_height="@dimen/_33pxh"
+            android:layout_marginEnd="14dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/btnBellpin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnBellpin"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_ellipse66" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switchMaterialUser">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <ImageView
+
+                    android:layout_width="@dimen/_52pxh"
+                    android:layout_height="@dimen/_55pxh"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_marginTop="@dimen/_265pxv"
+                    android:layout_marginEnd="@dimen/_20pxh"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_file_bluegray_601"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_file_bluegray_601" />
+
+                <TextView
+                    android:id="@+id/txtNodatafound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_marginTop="@dimen/_24pxv"
+                    android:layout_marginEnd="@dimen/_20pxh"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="No data found"
+                    tools:text="@string/lbl_no_data_found" />
+
+                <TextView
+                    android:id="@+id/txtGetstartbyEx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_marginTop="@dimen/_14pxv"
+                    android:layout_marginEnd="@dimen/_20pxh"
+                    android:text="Get start by Explore TL
+                       or by reserving machine."
+                    android:textAlignment="center"
+                    tools:text="@string/msg_get_start_by_ex" />
+
+                <EditText
+                    android:id="@+id/etBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_20pxh"
+                    android:layout_marginTop="@dimen/_13pxv"
+                    android:layout_marginEnd="@dimen/_20pxh"
+                    android:layout_marginBottom="@dimen/_20pxv"
+                    android:background="@drawable/rectangle_border_indigo_800_radius_5_83"
+                    android:drawableStart="@drawable/img_add"
+                    android:drawablePadding="@dimen/_10pxh"
+                    android:ellipsize="end"
+                    android:hint="@string/newproject"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/_14pxh"
+                    android:paddingTop="@dimen/_10pxv"
+                    android:paddingEnd="@dimen/_12pxh"
+                    android:paddingBottom="@dimen/_7pxv"
+                    android:singleLine="true"
+                    android:text="New project"
+                    android:textColorHint="@color/indigo_800"
+                    tools:ignore="Autofill,TextSizeCheck" />
+            </LinearLayout>
+
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

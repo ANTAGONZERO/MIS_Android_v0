@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         // Load the FirstFragment initially
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, FirstFragment())
+                .replace(R.id.fragment_container, HomeFragment())
                 .commit()
         }
     }

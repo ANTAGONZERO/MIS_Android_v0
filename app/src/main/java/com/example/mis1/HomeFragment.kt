@@ -6,17 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class FirstFragment : Fragment() {
+class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_first, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
         view.findViewById<View>(R.id.loginBtn).setOnClickListener { v: View? ->
             // Navigate to the SecondFragment
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, SecondFragment())
+                .replace(R.id.fragment_container, loginFragment())
                 .addToBackStack(null)
                 .commit()
         }
@@ -24,7 +24,7 @@ class FirstFragment : Fragment() {
         view.findViewById<View>(R.id.registerBtn).setOnClickListener { v: View? ->
             // Navigate to the ThirdFragment
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, ThirdFragment())
+                .replace(R.id.fragment_container, registerFragment())
                 .addToBackStack(null)
                 .commit()
         }

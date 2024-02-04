@@ -37,5 +37,32 @@
     <string name="second_fragment_label">login\n</string>
     <string name="action_settings">settings\n</string>
     <string name="third_fragment_label">register</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="addproject">Add Project\n</string>
 
+    <string name="main_heading_addproject">Add Project</string>
+    <string name="enter_student_name1">Name of student\n</string>
+    <string name="student_id">Student ID</string>
+    <string name="projectprogress_status">Project progress status</string>
+    <string name="Addteammates">Add teammates</string>
+    <string name="addlinks">Add links/documents\n</string>
+    <string name="addprojecttitle">Add project title</string>
+    <string name="addprojectdescription">Add project description</string>
+    <string name="add">Add</string>
+    <string name="Cancel">Cancel</string>
+    <string name="lbl_no_data_found">No data found!</string>
+    <string name="msg_get_start_by_ex">Get start by Explore TL</string>
+    <string name="newproject">New Project</string>
+    <string name="lbl_name_of_equipment">Name of Equipment</string>
+    <string name="msg_availability_1">Availability: 12/15</string>
+
+    <string name="lbl_issuable">Issuable</string>
+    <string name="action_projects">projects\n</string>
 </resources>
