@@ -62,7 +62,10 @@
     <string name="newproject">New Project</string>
     <string name="lbl_name_of_equipment">Name of Equipment</string>
     <string name="msg_availability_1">Availability: 12/15</string>
-
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
     <string name="lbl_issuable">Issuable</string>
     <string name="action_projects">projects\n</string>
+    <string name="records">records</string>
+    <string name="projects">projects</string>
 </resources>

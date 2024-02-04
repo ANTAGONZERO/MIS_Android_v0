@@ -2,17 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
 
-    tools:context=".ui.SettingsFragment">
-
+    tools:context=".ui.RecordsFragment">
     <TextView
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="2dp"
-        android:text="@string/action_settings"
+        android:text="@string/records"
         android:textColor="@color/darkgreen"
         android:textSize="42dp"
         android:textStyle="bold" />
+
 
 </layout>

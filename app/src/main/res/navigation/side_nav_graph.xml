@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/dashboardFragment">
+    <fragment
+        android:id="@+id/sidenav"
+        android:name="com.example.mis1.sidenavFragment"
+        android:label="fragment_side_nav"
+        tools:layout="@layout/fragment_side_nav" >
+        <action
+            android:id="@+id/action_side_nav_graph_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_side_nav_graph_to_projectFragment"
+            app:destination="@id/projectFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_side_nav_graph_to_recordsFragment"
+            app:destination="@id/recordsFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_side_nav_graph_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.mis1.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_side_nav_graph_to_dashboardFragment"
+            app:destination="@id/sidenav" />
+    </fragment>
+    <fragment
+        android:id="@+id/projectFragment"
+        android:name="com.example.mis1.ProjectsFragment"
+        android:label="fragment_project"
+        tools:layout="@layout/fragment_projects" >
+        <action
+            android:id="@+id/action_side_nav_graph_to_projectFragment"
+            app:destination="@id/sidenav" />
+    </fragment>
+    <fragment
+        android:id="@+id/recordsFragment"
+        android:name="com.example.mis1.RecordsFragment"
+        android:label="fragment_records"
+        tools:layout="@layout/fragment_records" >
+        <action
+            android:id="@+id/action_side_nav_graph_to_recordsFragment"
+            app:destination="@id/sidenav" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.mis1.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_side_nav_graph_to_settingsFragment"
+            app:destination="@id/sidenav" />
+    </fragment>
+    <include app:graph="@navigation/side_nav_graph" />
+    <action
+        android:id="@+id/action_global_dashboardFragment"
+        app:destination="@id/dashboardFragment"
+        app:popUpToInclusive="true" />
+</navigation>
