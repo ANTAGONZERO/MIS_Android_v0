@@ -17,9 +17,11 @@ val InputFieldBorderColor: Color = Color(0xFFADADAD)
 
 val White = Color(0xFFFFFFFF)
 val Primary01 = Color(0xFF212121)
+val Primary03 = Color(0xFF5C5C5C)
 val Primary04 = Color(0xFF7A7A7A)
 val Primary09 = Color(0xFFD3D3D3)
 val Primary10 = Color(0xFFE9E9E9)
+val Primary11 = Color(0xFFF4F4F4)
 
 
 val SPrimarySource = Color(0xFF273F77)

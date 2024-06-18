@@ -21,7 +21,7 @@ import com.example.mis1.ui.composables.Filters
 import com.example.mis1.ui.composables.InventoryItem
 import com.example.mis1.ui.composables.MachineItem
 import com.example.mis1.ui.composables.SearchBar
-import com.example.mis1.ui.composables.TabTitleRoundedActive
+import com.example.mis1.ui.composables.TabTitle
 import com.example.mis1.ui.routes.InventoryTabs
 import com.example.mis1.ui.theme.White
 import com.example.mis1.viewmodels.InventoryScreenViewmodel
@@ -41,17 +41,17 @@ fun InventoryScreen(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            TabTitleRoundedActive(
+            TabTitle(
                 text = "Machine",
                 isActive = viewModel.visibleTab.value == InventoryTabs.Machine,
                 onClick = viewModel::showMachineTab
             )
-            TabTitleRoundedActive(
+            TabTitle(
                 text = "Equipments",
                 isActive = viewModel.visibleTab.value == InventoryTabs.Equipment,
                 onClick = viewModel::showEquipmentTab
             )
-            TabTitleRoundedActive(
+            TabTitle(
                 text = "Inventory",
                 isActive = viewModel.visibleTab.value == InventoryTabs.Inventory,
                 onClick = viewModel::showInventoryTab

@@ -8,12 +8,10 @@ import com.example.mis1.data.TokenManager
 import com.example.mis1.data.remote.user.dto.UserCredentials
 import com.example.mis1.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
-class LoginScreenViewModel @Inject constructor(
+class LoginScreenViewmodel @Inject constructor(
     private val userRepository : UserRepository,
     private val tokenManager : TokenManager
 ) : ViewModel() {

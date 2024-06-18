@@ -1,7 +1,7 @@
 package com.example.mis1.ui.routes
 
 enum class RecordTabs {
-    Reservations,
+    Reservation,
     Issuable,
-    Purchases
+    Purchase
 }
