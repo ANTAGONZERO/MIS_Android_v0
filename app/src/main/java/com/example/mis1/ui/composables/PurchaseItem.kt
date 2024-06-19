@@ -3,7 +3,7 @@ package com.example.mis1.ui.composables
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.R
-import com.example.mis1.data.remote.machine.dto.ResolvedReservation
+import com.example.mis1.data.remote.inventory.dto.ResolvedInventoryPurchase
 import com.example.mis1.ui.theme.M
 import com.example.mis1.ui.theme.Primary01
 import com.example.mis1.ui.theme.Primary09
@@ -39,24 +39,26 @@ import com.example.mis1.ui.theme.Size80
 import com.example.mis1.ui.theme.SizeNone
 import com.example.mis1.ui.theme.White
 
-
-val sampleReservation = ResolvedReservation(
-    approved = "Pending",
-    approvedBy = null,
-    approvedStatus = "0",
-    createdAt = "2024-06-12T12:21:38.963514+05:30",
-    endTime = "2024-06-12T12:21:25+05:30",
+val sampleInventoryPurchase = ResolvedInventoryPurchase(
+    createdAt = "2024-06-18T18:06:56.733157+05:30",
     id = 1,
-    lastUpdatedAt = "2024-06-12T12:21:38.963526+05:30",
-    machine = sampleMachine,
-    reservedBy = 6,
-    reservedDate = "2024-06-12",
-    startTime = "2024-06-12T12:21:25+05:30"
+    inventory = sampleInventory,
+    lastUpdatedAt = "2024-06-18T18:06:56.733173+05:30",
+    paymentMethod = null,
+    pickup = "Yes",
+    purchaseAmount = "599.98",
+    purchaseDatetime = null,
+    purchasedBy = 6,
+    quantity = 2,
+    returnDescription = null,
+    returnReason = null,
+    returned = false,
+    returnedOn = null
 )
 
 @Preview(widthDp = 312)
 @Composable
-fun ReservationItem(resolvedReservation: ResolvedReservation = sampleReservation) {
+fun PurchaseItem(inventoryPurchase: ResolvedInventoryPurchase = sampleInventoryPurchase) {
     Column(
         modifier = Modifier
             .background(color = White, shape = RoundedRectangleM)
@@ -67,7 +69,7 @@ fun ReservationItem(resolvedReservation: ResolvedReservation = sampleReservation
     ) {
         Column(
             modifier = Modifier.padding(start = Size80, top = Size40, end = Size80, bottom = Size40)
-        ){
+        ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -75,7 +77,7 @@ fun ReservationItem(resolvedReservation: ResolvedReservation = sampleReservation
                     modifier = Modifier
                         .weight(1f)
                         .defaultMinSize(minHeight = 27.dp),
-                    text = resolvedReservation.machine.name,
+                    text = inventoryPurchase.inventory.name,
                     fontSize = 20.sp,
                     fontWeight = FontWeight(500),
                     color = Primary01,
@@ -92,7 +94,16 @@ fun ReservationItem(resolvedReservation: ResolvedReservation = sampleReservation
             }
             Spacer(modifier = Modifier.height(6.dp))
             Text(
-                text = "Description: " + sampleReservation.machine.description,
+                text = "Description: " + inventoryPurchase.inventory.description,
+                fontSize = 14.sp,
+                fontWeight = FontWeight(400),
+                color = Primary01,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = "Price: " + inventoryPurchase.purchaseAmount,
                 fontSize = 14.sp,
                 fontWeight = FontWeight(400),
                 color = Primary01,
@@ -104,26 +115,24 @@ fun ReservationItem(resolvedReservation: ResolvedReservation = sampleReservation
         Spacer(modifier = Modifier.height(10.dp))
         HorizontalDivider()
 
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(IntrinsicSize.Max)
                 .background(
                     color = Primary11,
                     shape = RoundedCornerShape(bottomStart = M, bottomEnd = M)
-                )
-        ){
-            Box(modifier=Modifier.weight(1f)){
-                Property(name = "Category",value =resolvedReservation.machine.category)
-            }
+                ),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Property(name = "Category", value = inventoryPurchase.inventory.category)
             VerticalDivider()
-            Property(name = "Date",value =resolvedReservation.reservedDate)
+            Property(name = "Date", value = inventoryPurchase.lastUpdatedAt.substring(0, 10))
             VerticalDivider()
-            val startTime = resolvedReservation.startTime.substring(11, 16)
-            val endTime = resolvedReservation.endTime.substring(11,16)
+
             Property(
-                name = "Time Range",
-                value = "$startTime to $endTime"
+                name = "Quantity",
+                value = inventoryPurchase.quantity.toString()
             )
         }
     }

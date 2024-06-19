@@ -59,7 +59,7 @@ fun InventoryScreen(
         }
         Spacer(modifier = Modifier.height(8.dp))
         Row {
-            SearchBar(modifier = Modifier.weight(1f))
+            SearchBar(value = viewModel.searchText, onSearchTextChanged = viewModel::setSearchText, modifier = Modifier.weight(1f))
             Spacer(modifier = Modifier.width(8.dp))
             Filters()
         }
@@ -67,7 +67,7 @@ fun InventoryScreen(
         when (viewModel.visibleTab.value) {
             InventoryTabs.Machine -> {
                 LazyColumn {
-                    items(viewModel.machineList) { machine ->
+                    items(viewModel.filteredMachineList) { machine ->
                         MachineItem(machine = machine)
                         Spacer(modifier = Modifier.height(8.dp))
                     }
@@ -75,7 +75,7 @@ fun InventoryScreen(
             }
             InventoryTabs.Inventory -> {
                 LazyColumn {
-                    items(viewModel.inventoryList) { inventory ->
+                    items(viewModel.filteredInventoryList) { inventory ->
                         InventoryItem(inventory = inventory)
                         Spacer(modifier = Modifier.height(8.dp))
                     }
@@ -83,7 +83,7 @@ fun InventoryScreen(
             }
             InventoryTabs.Equipment -> {
                 LazyColumn {
-                    items(viewModel.equipmentList) { equipment ->
+                    items(viewModel.filteredEquipmentList) { equipment ->
                         EquipmentItem(equipment = equipment)
                         Spacer(modifier = Modifier.height(8.dp))
                     }

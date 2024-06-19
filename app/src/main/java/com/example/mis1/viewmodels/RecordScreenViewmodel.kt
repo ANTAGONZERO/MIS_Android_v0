@@ -5,7 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mis1.common.Resource
-import com.example.mis1.data.remote.machine.dto.ReservationResolved
+import com.example.mis1.common.searchInProperties
+import com.example.mis1.data.remote.inventory.dto.ResolvedInventoryPurchase
+import com.example.mis1.data.remote.inventory.dto.ResolvedIssuedInventory
+import com.example.mis1.data.remote.machine.dto.ResolvedReservation
+import com.example.mis1.repository.InventoryRepository
 import com.example.mis1.repository.MachineRepository
 import com.example.mis1.ui.routes.RecordTabs
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,12 +18,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecordScreenViewmodel @Inject constructor(
-    private val machineRepository: MachineRepository
+    private val machineRepository: MachineRepository,
+    private val inventoryRepository: InventoryRepository
 ) : ViewModel() {
 
-    val reservationList = mutableStateListOf<ReservationResolved>()
-    val issuableList = mutableStateListOf<ReservationResolved>()
-    val purchasesList = mutableStateListOf<ReservationResolved>()
+    private val reservationList = mutableStateListOf<ResolvedReservation>()
+    private val issuableList = mutableStateListOf<ResolvedIssuedInventory>()
+    private val purchasesList = mutableStateListOf<ResolvedInventoryPurchase>()
+
+    val filteredReservationList = mutableStateListOf<ResolvedReservation>()
+    val filteredIssuableList = mutableStateListOf<ResolvedIssuedInventory>()
+    val filteredPurchasesList = mutableStateListOf<ResolvedInventoryPurchase>()
+
+    val searchText = mutableStateOf("")
 
     val loadingReservationList = mutableStateOf(false)
     val loadingIssuableList = mutableStateOf(false)
@@ -42,13 +53,32 @@ class RecordScreenViewmodel @Inject constructor(
     fun showPurchaseTab(){
         visibleTab.value = RecordTabs.Purchase
     }
+    private fun populateReservations(list: List<ResolvedReservation>) {
+        reservationList.clear()
+        reservationList.addAll(list)
+        filteredReservationList.clear()
+        filteredReservationList.addAll(list)
+    }
+
+    private fun populateIssuable(list: List<ResolvedIssuedInventory>) {
+        issuableList.clear()
+        issuableList.addAll(list)
+        filteredIssuableList.clear()
+        filteredIssuableList.addAll(list)
+    }
+
+    private fun populatePurchases(list: List<ResolvedInventoryPurchase>) {
+        purchasesList.clear()
+        purchasesList.addAll(list)
+        filteredPurchasesList.clear()
+        filteredPurchasesList.addAll(list)
+    }
     private fun loadReservationList() {
         viewModelScope.launch {
             machineRepository.reservationList().collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                        reservationList.clear()
-                        reservationList.addAll(resource.data ?: emptyList())
+                        populateReservations(resource.data ?: emptyList())
                         loadingReservationList.value = false
                     }
                     is Resource.Error -> {
@@ -64,11 +94,10 @@ class RecordScreenViewmodel @Inject constructor(
 
     private fun loadIssuableList() {
         viewModelScope.launch {
-            machineRepository.reservationList().collect { resource ->
+            inventoryRepository.issuedInventoryList().collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                        issuableList.clear()
-                        issuableList.addAll(resource.data ?: emptyList())
+                        populateIssuable(resource.data ?: emptyList())
                         loadingIssuableList.value = false
                     }
                     is Resource.Error -> {
@@ -84,11 +113,10 @@ class RecordScreenViewmodel @Inject constructor(
 
     private fun loadPurchasesList() {
         viewModelScope.launch {
-            machineRepository.reservationList().collect { resource ->
+            inventoryRepository.purchasedInventoryList().collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                        purchasesList.clear()
-                        purchasesList.addAll(resource.data ?: emptyList())
+                        populatePurchases(resource.data ?: emptyList())
                         loadingPurchaseList.value = false
                     }
                     is Resource.Error -> {
@@ -100,5 +128,28 @@ class RecordScreenViewmodel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun setSearchText(text: String){
+        searchText.value = text
+        filterLists()
+    }
+
+    private fun filterLists() {
+        val search = searchText.value.lowercase()
+
+        filteredReservationList.clear()
+        filteredIssuableList.clear()
+        filteredPurchasesList.clear()
+
+        filteredReservationList.addAll(reservationList.filter { reservation ->
+            reservation.searchInProperties(search) || reservation.machine.searchInProperties(search)
+        })
+        filteredIssuableList.addAll(issuableList.filter { issuable ->
+            issuable.searchInProperties(search) || issuable.inventory.searchInProperties(search)
+        })
+        filteredPurchasesList.addAll(purchasesList.filter { purchase ->
+            purchase.searchInProperties(search) || purchase.inventory.searchInProperties(search)
+        })
     }
 }

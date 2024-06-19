@@ -1,7 +1,7 @@
 package com.example.mis1.data.remote.machine.dto
 
 
-data class ReservationResolved (
+data class ResolvedReservation (
     val approved: String,
     val approvedBy: String?,
     val approvedStatus: String,

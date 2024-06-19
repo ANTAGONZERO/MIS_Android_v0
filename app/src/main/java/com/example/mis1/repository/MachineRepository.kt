@@ -6,7 +6,7 @@ import com.example.mis1.common.asMap
 import com.example.mis1.data.remote.machine.MachineApi
 import com.example.mis1.data.remote.machine.dto.Machine
 import com.example.mis1.data.remote.machine.dto.Reservation
-import com.example.mis1.data.remote.machine.dto.ReservationResolved
+import com.example.mis1.data.remote.machine.dto.ResolvedReservation
 import kotlinx.coroutines.flow.flow
 
 class MachineRepository (
@@ -45,11 +45,11 @@ class MachineRepository (
         }
     }
 
-    fun reservationList() = flow<Resource<List<ReservationResolved>>> {
+    fun reservationList() = flow<Resource<List<ResolvedReservation>>> {
         try {
             emit(Resource.Loading(null))
             val response = api.reservationList()
-            val resolvedReservationList: List<ReservationResolved> =
+            val resolvedReservationList: List<ResolvedReservation> =
                 response.map { resolveReservation(it) }
             emit(Resource.Success(resolvedReservationList))
         } catch (e: Exception) {
@@ -69,9 +69,9 @@ class MachineRepository (
         }
     }
 
-    private suspend fun resolveReservation(reservation: Reservation): ReservationResolved {
+    private suspend fun resolveReservation(reservation: Reservation): ResolvedReservation {
         val machine: Machine = api.machineDetail(reservation.machine)
-        return ReservationResolved(
+        return ResolvedReservation(
             id = reservation.id,
             approved = reservation.approved,
             reservedBy = reservation.reservedBy,

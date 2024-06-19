@@ -3,12 +3,15 @@ package com.example.mis1.repository
 import com.example.mis1.common.Resource
 import com.example.mis1.data.remote.inventory.InventoryApi
 import com.example.mis1.data.remote.inventory.dto.AddInventoryRequest
+import com.example.mis1.data.remote.inventory.dto.Inventory
 import com.example.mis1.data.remote.inventory.dto.InventoryCategory
 import com.example.mis1.data.remote.inventory.dto.InventoryGroup
-import com.example.mis1.data.remote.inventory.dto.Inventory
 import com.example.mis1.data.remote.inventory.dto.InventoryLocation
+import com.example.mis1.data.remote.inventory.dto.InventoryPurchase
+import com.example.mis1.data.remote.inventory.dto.IssuedInventory
+import com.example.mis1.data.remote.inventory.dto.ResolvedInventoryPurchase
+import com.example.mis1.data.remote.inventory.dto.ResolvedIssuedInventory
 import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
 
 class InventoryRepository (
     private val api: InventoryApi
@@ -102,5 +105,66 @@ class InventoryRepository (
         } catch (_: Exception) {
             emit(Resource.Error(message = "Failed to fetch category detail"))
         }
+    }
+
+    fun issuedInventoryList() = flow<Resource<List<ResolvedIssuedInventory>>>{
+        try {
+            emit(Resource.Loading(null))
+            val response =  api.issuedInventoryList()
+            val result = response.map { resolveIssuedInventory(it) }
+            emit(Resource.Success(result))
+        }catch (_:Exception){
+            emit(Resource.Error(message = "Failed to fetch issued inventory list"))
+        }
+    }
+
+    fun purchasedInventoryList() = flow<Resource<List<ResolvedInventoryPurchase>>>{
+        try {
+            emit(Resource.Loading(null))
+            val response =  api.purchasedInventoryList()
+            val result = response.map { resolveInventoryPurchase(it) }
+            emit(Resource.Success(result))
+        }catch (_:Exception){
+            emit(Resource.Error(message = "Failed to fetch issued inventory list"))
+        }
+    }
+
+    private suspend fun resolveIssuedInventory(issuedInventory: IssuedInventory) : ResolvedIssuedInventory{
+        val inventory = api.inventoryDetail(id = issuedInventory.inventory)
+        return ResolvedIssuedInventory(
+            createdAt = issuedInventory.createdAt,
+            id = issuedInventory.id,
+            inventory = inventory,
+            issuedBy = issuedInventory.issuedBy,
+            issuedFrom = issuedInventory.issuedFrom,
+            issuedTill = issuedInventory.issuedTill,
+            lastUpdatedAt = issuedInventory.lastUpdatedAt,
+            pickup = issuedInventory.pickup,
+            pickupOn = issuedInventory.pickupOn,
+            quantity = issuedInventory.quantity,
+            returnDescription = issuedInventory.returnDescription,
+            returned = issuedInventory.returned,
+            returnedOn = issuedInventory.returnedOn
+        )
+    }
+
+    private suspend fun resolveInventoryPurchase(inventoryPurchase: InventoryPurchase) : ResolvedInventoryPurchase {
+        val inventory = api.inventoryDetail(id = inventoryPurchase.inventory)
+        return ResolvedInventoryPurchase(
+            createdAt = inventoryPurchase.createdAt,
+            id = inventoryPurchase.id,
+            inventory = inventory,
+            lastUpdatedAt = inventoryPurchase.lastUpdatedAt,
+            paymentMethod = inventoryPurchase.paymentMethod,
+            pickup = inventoryPurchase.pickup,
+            purchaseAmount = inventoryPurchase.purchaseAmount,
+            purchaseDatetime = inventoryPurchase.purchaseDatetime,
+            purchasedBy = inventoryPurchase.purchasedBy,
+            quantity = inventoryPurchase.quantity,
+            returnDescription = inventoryPurchase.returnDescription,
+            returnReason = inventoryPurchase.returnReason,
+            returned = inventoryPurchase.returned,
+            returnedOn = inventoryPurchase.returnedOn
+        )
     }
 }

@@ -5,6 +5,8 @@ import com.example.mis1.data.remote.inventory.dto.InventoryCategory
 import com.example.mis1.data.remote.inventory.dto.InventoryGroup
 import com.example.mis1.data.remote.inventory.dto.Inventory
 import com.example.mis1.data.remote.inventory.dto.InventoryLocation
+import com.example.mis1.data.remote.inventory.dto.InventoryPurchase
+import com.example.mis1.data.remote.inventory.dto.IssuedInventory
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -38,4 +40,9 @@ interface InventoryApi {
     @GET("admin_category_detail/{id}")
     suspend fun categoryDetail(@Path("id") id: Int):InventoryCategory
 
+    @GET("inventory_issue_list/")
+    suspend fun issuedInventoryList():List<IssuedInventory>
+
+    @GET("inventory_purchase_list/")
+    suspend fun purchasedInventoryList():List<InventoryPurchase>
 }

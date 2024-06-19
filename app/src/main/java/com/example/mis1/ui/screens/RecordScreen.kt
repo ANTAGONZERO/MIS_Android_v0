@@ -17,6 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mis1.ui.composables.Filters
+import com.example.mis1.ui.composables.IssuableItem
+import com.example.mis1.ui.composables.PurchaseItem
 import com.example.mis1.ui.composables.ReservationItem
 import com.example.mis1.ui.composables.SearchBar
 import com.example.mis1.ui.composables.TabTitle
@@ -51,7 +53,7 @@ fun RecordScreen(
             Box(modifier = Modifier.weight(1f)) {
                 TabTitle(
                     type = "BottomActive",
-                    text = "Equipment",
+                    text = "Issuable",
                     isActive = viewModel.visibleTab.value == RecordTabs.Issuable,
                     onClick = viewModel::showIssuableTab
                 )
@@ -59,7 +61,7 @@ fun RecordScreen(
             Box(modifier = Modifier.weight(1f)) {
                 TabTitle(
                     type = "BottomActive",
-                    text = "Inventory",
+                    text = "Purchase",
                     isActive = viewModel.visibleTab.value == RecordTabs.Purchase,
                     onClick = viewModel::showPurchaseTab
                 )
@@ -68,7 +70,7 @@ fun RecordScreen(
         }
         Spacer(modifier = Modifier.height(M))
         Row {
-            SearchBar(modifier = Modifier.weight(1f))
+            SearchBar(value = viewModel.searchText, onSearchTextChanged = viewModel::setSearchText,modifier = Modifier.weight(1f))
             Spacer(modifier = Modifier.width(8.dp))
             Filters()
         }
@@ -76,7 +78,7 @@ fun RecordScreen(
         when (viewModel.visibleTab.value) {
             RecordTabs.Reservation -> {
                 LazyColumn {
-                    items(viewModel.reservationList) {
+                    items(viewModel.filteredReservationList) {
                         ReservationItem(resolvedReservation = it)
                         Spacer(modifier = Modifier.height(8.dp))
                     }
@@ -85,8 +87,8 @@ fun RecordScreen(
 
             RecordTabs.Issuable -> {
                 LazyColumn {
-                    items(viewModel.issuableList) {
-                        ReservationItem(resolvedReservation = it)
+                    items(viewModel.filteredIssuableList) {
+                        IssuableItem(issuedInventory = it)
                         Spacer(modifier = Modifier.height(8.dp))
                     }
                 }
@@ -94,8 +96,8 @@ fun RecordScreen(
 
             RecordTabs.Purchase -> {
                 LazyColumn {
-                    items(viewModel.purchasesList) {
-                        ReservationItem(resolvedReservation = it)
+                    items(viewModel.filteredPurchasesList) {
+                        PurchaseItem(inventoryPurchase = it)
                         Spacer(modifier = Modifier.height(8.dp))
                     }
                 }

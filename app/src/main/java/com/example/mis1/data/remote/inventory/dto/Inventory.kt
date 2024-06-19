@@ -15,7 +15,7 @@ data class Inventory(
     val isHidden: Boolean,
     @SerializedName("last_updated_at")
     val lastUpdatedAt: String,
-    val location: String,
+    val location: String?,
     val manufacturer: String?,
     val name: String,
     @SerializedName("purchase_cost")
@@ -38,5 +38,5 @@ data class Inventory(
     val tag4: String?,
     val upc: String,
     @SerializedName("warranty_expiration")
-    val warrantyExpiration: Any
+    val warrantyExpiration: String?
 )

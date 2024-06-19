@@ -11,7 +11,7 @@ data class Machine(
     val id: Int,
     val image: String?,
     val instances: Int,
-    val location: String,
+    val location: String?,
     val manufacturer: String,
     val name: String,
     @SerializedName("purchase_cost")
@@ -21,4 +21,3 @@ data class Machine(
     val supervised: Boolean,
     val upc: String
 )
-
