@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -21,7 +20,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mis1.R
 import com.example.mis1.ui.composables.MenuItem
 import com.example.mis1.ui.routes.Screens
-import com.example.mis1.ui.theme.Accent00
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.ui.theme.White
 

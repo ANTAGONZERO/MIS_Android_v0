@@ -22,6 +22,7 @@ import com.example.mis1.ui.composables.PurchaseItem
 import com.example.mis1.ui.composables.ReservationItem
 import com.example.mis1.ui.composables.SearchBar
 import com.example.mis1.ui.composables.TabTitle
+import com.example.mis1.ui.composables.enums.TabTitleType
 import com.example.mis1.ui.routes.RecordTabs
 import com.example.mis1.ui.theme.L
 import com.example.mis1.ui.theme.M
@@ -44,7 +45,7 @@ fun RecordScreen(
         ) {
             Box(modifier = Modifier.weight(1f)) {
                 TabTitle(
-                    type = "BottomActive",
+                    type = TabTitleType.BottomActive,
                     text = "Reservation",
                     isActive = viewModel.visibleTab.value == RecordTabs.Reservation,
                     onClick = viewModel::showReservationTab
@@ -52,7 +53,7 @@ fun RecordScreen(
             }
             Box(modifier = Modifier.weight(1f)) {
                 TabTitle(
-                    type = "BottomActive",
+                    type = TabTitleType.BottomActive,
                     text = "Issuable",
                     isActive = viewModel.visibleTab.value == RecordTabs.Issuable,
                     onClick = viewModel::showIssuableTab
@@ -60,7 +61,7 @@ fun RecordScreen(
             }
             Box(modifier = Modifier.weight(1f)) {
                 TabTitle(
-                    type = "BottomActive",
+                    type = TabTitleType.BottomActive,
                     text = "Purchase",
                     isActive = viewModel.visibleTab.value == RecordTabs.Purchase,
                     onClick = viewModel::showPurchaseTab

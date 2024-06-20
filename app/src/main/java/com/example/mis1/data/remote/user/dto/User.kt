@@ -6,12 +6,12 @@ import com.google.gson.annotations.SerializedName
 data class User(
     val created: String,
     @SerializedName("current_year")
-    val currentYear: Any,
-    val degree: Any,
-    val department: Any,
+    val currentYear: String?,
+    val degree: String?,
+    val department: String?,
     val email: String,
     @SerializedName("graduation_year")
-    val graduationYear: Any,
+    val graduationYear: String?,
     @SerializedName("hostel_address")
     val hostelAddress: String,
     val id: Int,
@@ -23,13 +23,13 @@ data class User(
     val isStudent: Boolean,
     @SerializedName("last_login")
     val lastLogin: String,
-    val name: Any,
+    val name: String?,
     @SerializedName("other_position")
-    val otherPosition: Any,
+    val otherPosition: String?,
     @SerializedName("phone_number")
-    val phoneNumber: Any,
-    val position: Any,
+    val phoneNumber: String?,
+    val position: String?,
     @SerializedName("student_id")
-    val studentId: Any,
+    val studentId: String?,
     val username: String
 )

@@ -18,10 +18,10 @@ data class User2(
     val isStudent: Boolean,
     val name: String,
     @SerializedName("other_position")
-    val otherPosition: String,
+    val otherPosition: String?,
     @SerializedName("phone_number")
     val phoneNumber: String,
-    val position: Int,
+    val position: String?,
     @SerializedName("student_id")
     val studentId: String?
 )
