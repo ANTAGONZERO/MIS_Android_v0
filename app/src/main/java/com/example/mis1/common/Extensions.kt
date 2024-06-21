@@ -12,14 +12,22 @@ fun <T> T.asMap(): Map<String, Any> {
 }
 
 fun Any.searchInProperties(search: String): Boolean {
-    val lowerSearch = search.lowercase()
+    var found = false
     this::class.memberProperties.forEach { property ->
         val value = property.getter.call(this)
-        if (value != null && value.isPrimitiveType()) {
-            return value.toString().contains(lowerSearch, true)
+        val foundInProperty = if (value == null) {
+            false
+        } else if (value is String) {
+            value.contains(search, true)
+        } else if(value.isPrimitiveType()){
+            value.toString().contains(search, true)
+        } else {
+            false
         }
+        if (foundInProperty)
+            found = true
     }
-    return false
+    return found
 }
 
 private fun Any.isPrimitiveType(): Boolean {

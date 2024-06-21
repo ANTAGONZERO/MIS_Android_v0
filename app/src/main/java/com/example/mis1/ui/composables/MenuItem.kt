@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,7 +29,8 @@ fun MenuItem(text: String, painter: Painter, onClick:()->Unit = {}) {
         modifier = Modifier
             .fillMaxWidth()
             .height(94.dp)
-            .background(color = PageBgColor, shape = RoundedRectangleL)
+            .clip(RoundedRectangleL)
+            .background(color = PageBgColor)
             .border(width = 1.dp, color = Primary10, shape = RoundedRectangleL)
             .clickable(onClick =onClick)
             .padding(16.dp),
