@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mis1.ui.composables.enums.TagType
 import com.example.mis1.ui.theme.CircularEdge
 import com.example.mis1.ui.theme.SPrimary50
 import com.example.mis1.ui.theme.SPrimarySource
@@ -20,12 +21,13 @@ import com.example.mis1.ui.theme.Size20
 
 @Preview(backgroundColor = 0xFFFFFFFF)
 @Composable
-fun Tag(text:String = "Cutting", color:Color = SPrimarySource, backgroundColor:Color =  SPrimary50){
-    Row (modifier = Modifier
-        .height(22.dp)
-        .background(color = backgroundColor, shape = CircularEdge)
-        .padding(start = 8.dp, top = Size20, end = 8.dp, bottom = Size20),
-        verticalAlignment = Alignment.CenterVertically){
+fun Tag(type:TagType = TagType.Small, text:String = "Cutting", color:Color = SPrimarySource, backgroundColor:Color =  SPrimary50){
+    when(type){
+        TagType.Small -> Row (modifier = Modifier
+            .height(22.dp)
+            .background(color = backgroundColor, shape = CircularEdge)
+            .padding(start = 8.dp, top = Size20, end = 8.dp, bottom = Size20),
+            verticalAlignment = Alignment.CenterVertically){
             Text(
                 text = text,
                 color = color,
@@ -33,5 +35,20 @@ fun Tag(text:String = "Cutting", color:Color = SPrimarySource, backgroundColor:C
                 lineHeight = 18.sp,
                 fontWeight = FontWeight(400),
             )
+        }
+        TagType.Medium -> Row (modifier = Modifier
+            .height(28.dp)
+            .background(color = backgroundColor, shape = CircularEdge)
+            .padding(start = 16.dp, top = Size20, end = 16.dp, bottom = Size20),
+            verticalAlignment = Alignment.CenterVertically){
+            Text(
+                text = text,
+                color = color,
+                fontSize = 16.sp,
+                lineHeight = 20.sp,
+                fontWeight = FontWeight(400),
+            )
+        }
     }
+
 }

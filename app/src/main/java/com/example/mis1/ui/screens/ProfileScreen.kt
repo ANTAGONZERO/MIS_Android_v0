@@ -116,25 +116,25 @@ fun ProfileScreen() {
             Property(
                 name = "First Name",
                 value = "Ron",
-                type = PropertyType.Medium
+                type = PropertyType.VerticalMedium
             )
             Spacer(modifier = Modifier.height(8.dp))
             Property(
                 name = "Last Name",
                 value = "Wisely",
-                type = PropertyType.Medium
+                type = PropertyType.VerticalMedium
             )
             Spacer(modifier = Modifier.height(8.dp))
             Property(
                 name = "Email Address",
                 value = "ron.wisely@iit.gmail.com",
-                type = PropertyType.Medium
+                type = PropertyType.VerticalMedium
             )
             Spacer(modifier = Modifier.height(8.dp))
             Property(
                 name = "Phone no.",
                 value = "02548617500",
-                type = PropertyType.Medium
+                type = PropertyType.VerticalMedium
             )
             Spacer(modifier = Modifier.height(8.dp))
             Row(
@@ -145,7 +145,7 @@ fun ProfileScreen() {
                 Property(
                     name = "Password",
                     value = "*********",
-                    type = PropertyType.Medium
+                    type = PropertyType.VerticalMedium
                 )
                 TextButton(onClick = { }) {
                     Text(
@@ -179,31 +179,31 @@ fun ProfileScreen() {
             Property(
                 name = "Branch",
                 value = "Mechanical",
-                type = PropertyType.Medium
+                type = PropertyType.VerticalMedium
             )
             Spacer(modifier = Modifier.height(8.dp))
             Property(
                 name = "Graduation Year",
                 value = "2021-2024",
-                type = PropertyType.Medium
+                type = PropertyType.VerticalMedium
             )
             Spacer(modifier = Modifier.height(8.dp))
             Property(
                 name = "Graduation Year",
                 value = "2021-2024",
-                type = PropertyType.Medium
+                type = PropertyType.VerticalMedium
             )
             Spacer(modifier = Modifier.height(8.dp))
             Property(
                 name = "Graduation Year",
                 value = "2021-2024",
-                type = PropertyType.Medium
+                type = PropertyType.VerticalMedium
             )
             Spacer(modifier = Modifier.height(8.dp))
             Property(
                 name = "Graduation Year",
                 value = "2021-2024",
-                type = PropertyType.Medium
+                type = PropertyType.VerticalMedium
             )
         }
     }

@@ -20,6 +20,8 @@ val Primary01 = Color(0xFF212121)
 val Primary02 = Color(0xFF3F3F3F)
 val Primary03 = Color(0xFF5C5C5C)
 val Primary04 = Color(0xFF7A7A7A)
+val Primary05 = Color(0xFF898989)
+val Primary07 = Color(0xFFA6A6A6)
 val Primary08 = Color(0xFFB5B5B5)
 val Primary09 = Color(0xFFD3D3D3)
 val Primary10 = Color(0xFFE9E9E9)
@@ -27,6 +29,9 @@ val Primary11 = Color(0xFFF4F4F4)
 
 
 val SPrimarySource = Color(0xFF273F77)
+val SPrimary600 = Color(0xFF5C6DAA)
+val SPrimary200 = Color(0xFFBEC4EC)
+val SPrimary100 = Color(0xFFD8DBF5)
 val SPrimary50 = Color(0xFFF2F3FC)
 
 val SAccentSource =  Color(0xFFE79A2B)
@@ -38,6 +43,6 @@ val Accent08 = Color(0xFFE6F2FF)
 val ActionSuccess = Color(0xFF057D35)
 val ActionLightSuccess = Color(0xFFE5FFF1)
 
-
+val HighlightingBrandText02 = Color(0xFF003044)
 
 

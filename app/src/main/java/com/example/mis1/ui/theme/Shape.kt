@@ -3,6 +3,8 @@ package com.example.mis1.ui.theme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.unit.dp
 
+val RoundedRectangleXL = RoundedCornerShape(size = 32.dp)
+
 val RoundedRectangleL = RoundedCornerShape(L)
 
 val RoundedRectangleS = RoundedCornerShape(S)
