@@ -45,7 +45,7 @@ fun RecordScreen(
         ) {
             Box(modifier = Modifier.weight(1f)) {
                 TabTitle(
-                    type = TabTitleType.BottomActive,
+                    type = TabTitleType.Record,
                     text = "Reservation",
                     isActive = viewModel.visibleTab.value == RecordTabs.Reservation,
                     onClick = viewModel::showReservationTab
@@ -53,7 +53,7 @@ fun RecordScreen(
             }
             Box(modifier = Modifier.weight(1f)) {
                 TabTitle(
-                    type = TabTitleType.BottomActive,
+                    type = TabTitleType.Record,
                     text = "Issuable",
                     isActive = viewModel.visibleTab.value == RecordTabs.Issuable,
                     onClick = viewModel::showIssuableTab
@@ -61,7 +61,7 @@ fun RecordScreen(
             }
             Box(modifier = Modifier.weight(1f)) {
                 TabTitle(
-                    type = TabTitleType.BottomActive,
+                    type = TabTitleType.Record,
                     text = "Purchase",
                     isActive = viewModel.visibleTab.value == RecordTabs.Purchase,
                     onClick = viewModel::showPurchaseTab

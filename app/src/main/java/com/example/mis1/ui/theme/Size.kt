@@ -10,6 +10,7 @@ val S: Dp = 8.dp
 val SizeNone: Dp = 1.dp
 val Size480: Dp = 48.dp
 val Size400: Dp = 40.dp
+val Size240: Dp = 24.dp
 val Size200: Dp = 20.dp
 val Size180: Dp = 18.dp
 val Size140: Dp = 14.dp

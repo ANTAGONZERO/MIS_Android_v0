@@ -36,12 +36,14 @@ val SPrimary50 = Color(0xFFF2F3FC)
 
 val SAccentSource =  Color(0xFFE79A2B)
 val SAccent50 = Color(0xFFFFF1E4)
+val SAccent500 = Color(0xFFBC7700)
 
 val Accent00 = Color(0xFF007BFF)
 val Accent08 = Color(0xFFE6F2FF)
 
 val ActionSuccess = Color(0xFF057D35)
 val ActionLightSuccess = Color(0xFFE5FFF1)
+val ActionError = Color(0xFFC90505)
 
 val HighlightingBrandText02 = Color(0xFF003044)
 
