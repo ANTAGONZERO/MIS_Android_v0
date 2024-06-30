@@ -1,4 +1,4 @@
-package com.example.mis1.ui.composables
+package com.example.mis1.ui.composables.list_item
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

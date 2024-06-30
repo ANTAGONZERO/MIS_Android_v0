@@ -1,7 +1,5 @@
 package com.example.mis1.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,14 +9,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.mis1.ui.composables.ActionBar
-import com.example.mis1.ui.composables.NavigationBar
+import com.example.mis1.ui.composables.bar.ActionBar
+import com.example.mis1.ui.composables.bar.NavigationBar
 import com.example.mis1.ui.routes.Screens
+import com.example.mis1.ui.screens.BookMachineScreen
 import com.example.mis1.ui.screens.ChatScreen
 import com.example.mis1.ui.screens.HomeScreen
 import com.example.mis1.ui.screens.InventoryScreen
@@ -68,7 +66,7 @@ fun App(navController: NavHostController = rememberNavController()) {
                         ProfileScreen()
                     }
                     composable(Screens.Inventory.path) {
-                        InventoryScreen()
+                        InventoryScreen(navController = navController)
                     }
                     composable(Screens.Training.path) {
                         TrainingScreen()
@@ -78,6 +76,9 @@ fun App(navController: NavHostController = rememberNavController()) {
                     }
                     composable(Screens.Record.path) {
                         RecordScreen()
+                    }
+                    composable(Screens.BookMachine.path) {
+                        BookMachineScreen()
                     }
                 }
             }

@@ -1,4 +1,4 @@
-package com.example.mis1.ui.composables
+package com.example.mis1.ui.composables.modal
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -20,7 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.R
 import com.example.mis1.data.remote.equipment.dto.Equipment
+import com.example.mis1.ui.composables.Property
 import com.example.mis1.ui.composables.enums.PropertyType
+import com.example.mis1.ui.composables.list_item.sampleEquipment
 import com.example.mis1.ui.theme.PageBgColor
 import com.example.mis1.ui.theme.RoundedRectangleXL
 import com.example.mis1.ui.theme.SPrimary200

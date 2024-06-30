@@ -1,8 +1,9 @@
-package com.example.mis1.ui.composables
+package com.example.mis1.ui.composables.list_item
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -56,7 +57,8 @@ val sampleMachine = Machine(
 @Preview(widthDp = 312)
 @Composable
 fun MachineItem(
-    machine: Machine = sampleMachine
+    machine: Machine = sampleMachine,
+    onClickBookMachine: () -> Unit = { }
 ) {
     val separation = S
     Column(
@@ -119,6 +121,7 @@ fun MachineItem(
             Spacer(modifier = Modifier.width(S))
             Column(
                 modifier = Modifier
+                    .clickable(onClick = onClickBookMachine)
                     .border(width = SizeNone, color = SPrimarySource, shape = RoundedRectangleS)
                     .defaultMinSize(minHeight = 35.dp)
                     .padding(start = Size120, top = Size80, end = Size120, bottom = Size80),

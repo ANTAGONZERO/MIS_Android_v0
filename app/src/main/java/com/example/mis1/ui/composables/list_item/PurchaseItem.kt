@@ -1,4 +1,4 @@
-package com.example.mis1.ui.composables
+package com.example.mis1.ui.composables.list_item
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,7 +28,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.R
-import com.example.mis1.data.remote.inventory.dto.ResolvedIssuedInventory
+import com.example.mis1.data.remote.inventory.dto.ResolvedInventoryPurchase
+import com.example.mis1.ui.composables.Property
 import com.example.mis1.ui.theme.M
 import com.example.mis1.ui.theme.Primary01
 import com.example.mis1.ui.theme.Primary09
@@ -39,25 +40,26 @@ import com.example.mis1.ui.theme.Size80
 import com.example.mis1.ui.theme.SizeNone
 import com.example.mis1.ui.theme.White
 
-val sampleIssuedInventory = ResolvedIssuedInventory(
-    createdAt = "2024-06-19T11:22:43.319137+05:30",
+val sampleInventoryPurchase = ResolvedInventoryPurchase(
+    createdAt = "2024-06-18T18:06:56.733157+05:30",
     id = 1,
     inventory = sampleInventory,
-    issuedBy = 1,
-    issuedFrom = "2024-04-27",
-    issuedTill = "2024-04-29",
-    lastUpdatedAt = "2024-06-19T11:22:43.319173+05:30",
+    lastUpdatedAt = "2024-06-18T18:06:56.733173+05:30",
+    paymentMethod = null,
     pickup = "Yes",
-    pickupOn = null,
-    quantity = 3,
+    purchaseAmount = "599.98",
+    purchaseDatetime = null,
+    purchasedBy = 6,
+    quantity = 2,
     returnDescription = null,
-    returned = "No",
+    returnReason = null,
+    returned = false,
     returnedOn = null
 )
 
 @Preview(widthDp = 312)
 @Composable
-fun IssuableItem(issuedInventory: ResolvedIssuedInventory = sampleIssuedInventory) {
+fun PurchaseItem(inventoryPurchase: ResolvedInventoryPurchase = sampleInventoryPurchase) {
     Column(
         modifier = Modifier
             .background(color = White, shape = RoundedRectangleM)
@@ -76,7 +78,7 @@ fun IssuableItem(issuedInventory: ResolvedIssuedInventory = sampleIssuedInventor
                     modifier = Modifier
                         .weight(1f)
                         .defaultMinSize(minHeight = 27.dp),
-                    text = issuedInventory.inventory.name,
+                    text = inventoryPurchase.inventory.name,
                     fontSize = 20.sp,
                     fontWeight = FontWeight(500),
                     color = Primary01,
@@ -93,7 +95,16 @@ fun IssuableItem(issuedInventory: ResolvedIssuedInventory = sampleIssuedInventor
             }
             Spacer(modifier = Modifier.height(6.dp))
             Text(
-                text = "Description: " + issuedInventory.inventory.description,
+                text = "Description: " + inventoryPurchase.inventory.description,
+                fontSize = 14.sp,
+                fontWeight = FontWeight(400),
+                color = Primary01,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            Spacer(modifier = Modifier.height(6.dp))
+            Text(
+                text = "Price: " + inventoryPurchase.purchaseAmount,
                 fontSize = 14.sp,
                 fontWeight = FontWeight(400),
                 color = Primary01,
@@ -115,14 +126,14 @@ fun IssuableItem(issuedInventory: ResolvedIssuedInventory = sampleIssuedInventor
                 ),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            Property(name = "Category", value = issuedInventory.inventory.category)
+            Property(name = "Category", value = inventoryPurchase.inventory.category)
             VerticalDivider()
-            Property(name = "Date", value = issuedInventory.lastUpdatedAt.substring(0, 10))
+            Property(name = "Date", value = inventoryPurchase.lastUpdatedAt.substring(0, 10))
             VerticalDivider()
 
             Property(
                 name = "Quantity",
-                value = issuedInventory.quantity.toString()
+                value = inventoryPurchase.quantity.toString()
             )
         }
     }

@@ -1,4 +1,4 @@
-package com.example.mis1.ui.composables
+package com.example.mis1.ui.composables.bar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

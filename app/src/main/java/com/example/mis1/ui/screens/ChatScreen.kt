@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mis1.ui.composables.Filters
-import com.example.mis1.ui.composables.MessageItem
-import com.example.mis1.ui.composables.SearchBar
+import com.example.mis1.ui.composables.list_item.MessageItem
+import com.example.mis1.ui.composables.bar.SearchBar
 
 @Preview(widthDp = 312, showBackground = true, backgroundColor = 0xFFFFFF)
 @Composable

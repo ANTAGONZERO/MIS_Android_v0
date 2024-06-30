@@ -16,20 +16,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.mis1.ui.composables.EquipmentItem
+import androidx.navigation.NavController
+import com.example.mis1.ui.composables.list_item.EquipmentItem
 import com.example.mis1.ui.composables.Filters
-import com.example.mis1.ui.composables.InventoryItem
-import com.example.mis1.ui.composables.MachineItem
-import com.example.mis1.ui.composables.SearchBar
+import com.example.mis1.ui.composables.list_item.InventoryItem
+import com.example.mis1.ui.composables.list_item.MachineItem
+import com.example.mis1.ui.composables.bar.SearchBar
 import com.example.mis1.ui.composables.TabTitle
 import com.example.mis1.ui.routes.InventoryTabs
+import com.example.mis1.ui.routes.Screens
 import com.example.mis1.ui.theme.White
 import com.example.mis1.viewmodels.InventoryScreenViewmodel
 
 
 @Composable
 fun InventoryScreen(
-    viewModel: InventoryScreenViewmodel = hiltViewModel()
+    viewModel: InventoryScreenViewmodel = hiltViewModel(),
+    navController:NavController
 ) {
     Column(
         modifier = Modifier
@@ -68,7 +71,9 @@ fun InventoryScreen(
             InventoryTabs.Machine -> {
                 LazyColumn {
                     items(viewModel.filteredMachineList) { machine ->
-                        MachineItem(machine = machine)
+                        MachineItem(machine = machine, onClickBookMachine = {
+                            navController.navigate(Screens.BookMachine.path)
+                        })
                         Spacer(modifier = Modifier.height(8.dp))
                     }
                 }

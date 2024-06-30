@@ -1,4 +1,4 @@
-package com.example.mis1.ui.composables
+package com.example.mis1.ui.composables.list_item
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.R
+import com.example.mis1.ui.composables.Tag
 import com.example.mis1.ui.theme.ActionLightSuccess
 import com.example.mis1.ui.theme.ActionSuccess
 import com.example.mis1.ui.theme.Primary01

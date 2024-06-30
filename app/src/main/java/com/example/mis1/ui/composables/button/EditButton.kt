@@ -1,4 +1,4 @@
-package com.example.mis1.ui.composables
+package com.example.mis1.ui.composables.button
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

@@ -17,10 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mis1.ui.composables.Filters
-import com.example.mis1.ui.composables.IssuableItem
-import com.example.mis1.ui.composables.PurchaseItem
-import com.example.mis1.ui.composables.ReservationItem
-import com.example.mis1.ui.composables.SearchBar
+import com.example.mis1.ui.composables.list_item.IssuableItem
+import com.example.mis1.ui.composables.list_item.PurchaseItem
+import com.example.mis1.ui.composables.list_item.ReservationItem
+import com.example.mis1.ui.composables.bar.SearchBar
 import com.example.mis1.ui.composables.TabTitle
 import com.example.mis1.ui.composables.enums.TabTitleType
 import com.example.mis1.ui.routes.RecordTabs

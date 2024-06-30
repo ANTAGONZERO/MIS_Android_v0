@@ -19,7 +19,7 @@ fun Any.searchInProperties(search: String): Boolean {
             false
         } else if (value is String) {
             value.contains(search, true)
-        } else if(value.isPrimitiveType()){
+        } else if (value.isPrimitiveType()) {
             value.toString().contains(search, true)
         } else {
             false
@@ -37,3 +37,12 @@ private fun Any.isPrimitiveType(): Boolean {
         else -> false
     }
 }
+
+fun Int.toTwoDigitString(): String =
+    if (this < 0)
+        "00"
+    else if (this > 9) {
+        "$this"
+    } else {
+        "0$this"
+    }

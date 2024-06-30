@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.mis1.R
-import com.example.mis1.ui.composables.MenuItem
+import com.example.mis1.ui.composables.list_item.MenuItem
 import com.example.mis1.ui.routes.Screens
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.ui.theme.White

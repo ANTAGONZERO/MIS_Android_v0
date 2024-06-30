@@ -24,7 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mis1.ui.composables.EditButton
+import com.example.mis1.ui.composables.button.EditButton
 import com.example.mis1.ui.composables.Property
 import com.example.mis1.ui.composables.enums.PropertyType
 import com.example.mis1.ui.theme.Accent00

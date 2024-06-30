@@ -1,4 +1,4 @@
-package com.example.mis1.ui.composables
+package com.example.mis1.ui.composables.list_item
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.R
 import com.example.mis1.data.remote.inventory.dto.Inventory
+import com.example.mis1.ui.composables.Tag
 import com.example.mis1.ui.theme.Accent00
 import com.example.mis1.ui.theme.Accent08
 import com.example.mis1.ui.theme.ActionLightSuccess
