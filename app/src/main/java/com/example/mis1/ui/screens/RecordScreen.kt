@@ -21,7 +21,7 @@ import com.example.mis1.ui.composables.list_item.IssuableItem
 import com.example.mis1.ui.composables.list_item.PurchaseItem
 import com.example.mis1.ui.composables.list_item.ReservationItem
 import com.example.mis1.ui.composables.bar.SearchBar
-import com.example.mis1.ui.composables.TabTitle
+import com.example.mis1.ui.composables.button.TabTitle
 import com.example.mis1.ui.composables.enums.TabTitleType
 import com.example.mis1.ui.routes.RecordTabs
 import com.example.mis1.ui.theme.L

@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.mis1.ui.composables.Filters
 import com.example.mis1.ui.composables.list_item.ProjectItem
 import com.example.mis1.ui.composables.bar.SearchBar
-import com.example.mis1.ui.composables.TabTitle
+import com.example.mis1.ui.composables.button.TabTitle
 import com.example.mis1.ui.theme.M
 
 @Preview(showBackground = true, backgroundColor = 0xFFFFFF, widthDp = 312)

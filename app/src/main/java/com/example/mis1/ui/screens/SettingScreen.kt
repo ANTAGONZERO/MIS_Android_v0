@@ -19,7 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mis1.R
 import com.example.mis1.ui.composables.NotificationSetting
 import com.example.mis1.ui.composables.PrivacySetting
-import com.example.mis1.ui.composables.TabTitle
+import com.example.mis1.ui.composables.button.TabTitle
 import com.example.mis1.ui.composables.enums.TabTitleType
 import com.example.mis1.ui.routes.SettingTabs
 import com.example.mis1.viewmodels.SettingsScreenViewmodel

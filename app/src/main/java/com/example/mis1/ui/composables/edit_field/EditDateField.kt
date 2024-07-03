@@ -22,14 +22,15 @@ import com.example.mis1.ui.theme.White
 import java.util.Calendar
 
 @Composable
-fun EditDateField(date:String,onDateChange: (it:String) -> Unit = { }){
-    val selectedDate  = date.ifEmpty { "dd/mm/yyyy" }
+fun EditDateField(date: String, onDateChange: (it: String) -> Unit = { }) {
+    val selectedDate = date.ifEmpty { "dd/mm/yy" }
     val calendar = Calendar.getInstance()
 
     val datePickerDialog = DatePickerDialog(
         LocalContext.current,
         { _, year, month, dayOfMonth ->
-            onDateChange("${dayOfMonth.toTwoDigitString()}/${(month + 1).toTwoDigitString()}/$year")
+            val twoDigitYear = (year % 100).toTwoDigitString()
+            onDateChange("${dayOfMonth.toTwoDigitString()}/${(month + 1).toTwoDigitString()}/$twoDigitYear")
         },
         calendar.get(Calendar.YEAR),
         calendar.get(Calendar.MONTH),

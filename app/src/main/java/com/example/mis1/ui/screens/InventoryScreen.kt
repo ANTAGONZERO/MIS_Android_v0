@@ -22,7 +22,7 @@ import com.example.mis1.ui.composables.Filters
 import com.example.mis1.ui.composables.list_item.InventoryItem
 import com.example.mis1.ui.composables.list_item.MachineItem
 import com.example.mis1.ui.composables.bar.SearchBar
-import com.example.mis1.ui.composables.TabTitle
+import com.example.mis1.ui.composables.button.TabTitle
 import com.example.mis1.ui.routes.InventoryTabs
 import com.example.mis1.ui.routes.Screens
 import com.example.mis1.ui.theme.White
