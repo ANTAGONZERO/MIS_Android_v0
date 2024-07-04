@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mis1.common.Resource
 import com.example.mis1.data.TokenManager
+import com.example.mis1.data.remote.user.dto.LoginUserResponse
 import com.example.mis1.data.remote.user.dto.UserCredentials
 import com.example.mis1.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,21 +16,20 @@ class LoginScreenViewmodel @Inject constructor(
     private val userRepository : UserRepository,
     private val tokenManager : TokenManager
 ) : ViewModel() {
-    private val _email = mutableStateOf("")
-    private val _password = mutableStateOf("")
-    private val _loading = mutableStateOf(false)
+    val email = mutableStateOf("")
+    val password = mutableStateOf("")
+    val loginState  = mutableStateOf<Resource<LoginUserResponse>>(Resource.Error(message = null))
     fun login() {
 
-        if(_loading.value)
+        if(loginState.value is Resource.Loading)
             return
 
         viewModelScope.launch {
-            userRepository.login(UserCredentials(email = _email.value, password = _password.value))
+            userRepository.login(UserCredentials(email = email.value, password = password.value))
                 .collect {
-                    when (it) {
-                        is Resource.Error -> _loading.value = false
-                        is Resource.Loading -> _loading.value = true
-                        is Resource.Success -> _loading.value = false
+                    loginState.value = it
+                    if (it.data!=null){
+                        tokenManager.token = it.data.access
                     }
                 }
         }

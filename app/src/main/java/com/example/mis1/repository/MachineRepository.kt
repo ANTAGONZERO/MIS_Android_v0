@@ -2,8 +2,8 @@ package com.example.mis1.repository
 
 import android.util.Log
 import com.example.mis1.common.Resource
-import com.example.mis1.common.asMap
 import com.example.mis1.data.remote.machine.MachineApi
+import com.example.mis1.data.remote.machine.dto.AddMachineRequest
 import com.example.mis1.data.remote.machine.dto.Machine
 import com.example.mis1.data.remote.machine.dto.Reservation
 import com.example.mis1.data.remote.machine.dto.ResolvedReservation
@@ -24,10 +24,10 @@ class MachineRepository (
         }
     }
 
-    fun addMachine(machine: Machine) = flow<Resource<Machine>> {
+    fun addMachine(request: AddMachineRequest) = flow<Resource<Machine>> {
         try {
             emit(Resource.Loading(null))
-            val response = api.addMachine(machine.asMap())
+            val response = api.addMachine(request)
             emit(Resource.Success(response))
         } catch (e: Exception) {
             emit(Resource.Error(message = "Failed to add machine"))

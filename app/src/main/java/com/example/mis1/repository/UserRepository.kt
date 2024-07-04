@@ -1,7 +1,6 @@
 package com.example.mis1.repository
 
 import com.example.mis1.common.Resource
-import com.example.mis1.common.asMap
 import com.example.mis1.data.remote.user.UserApi
 import com.example.mis1.data.remote.user.dto.*
 import kotlinx.coroutines.flow.flow
@@ -13,7 +12,7 @@ class UserRepository (
     fun login(credentials: UserCredentials) = flow<Resource<LoginUserResponse>> {
         try {
             emit(Resource.Loading(null))
-            val response = api.login(credentials.asMap())
+            val response = api.login(credentials)
             emit(Resource.Success(response))
         } catch (e: Exception) {
             emit(Resource.Error(message = "Failed to login"))
@@ -43,7 +42,7 @@ class UserRepository (
     fun addUserGroup(request: AddUserGroupRequest) = flow<Resource<UserGroup>> {
         try {
             emit(Resource.Loading(null))
-            val response = api.addUserGroup(request.asMap())
+            val response = api.addUserGroup(request)
             emit(Resource.Success(response))
         } catch (e: Exception) {
             emit(Resource.Error(message = "Failed to add user group"))

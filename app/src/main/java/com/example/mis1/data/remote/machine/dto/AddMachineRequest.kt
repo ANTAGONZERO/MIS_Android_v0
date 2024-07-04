@@ -3,22 +3,20 @@ package com.example.mis1.data.remote.machine.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class Machine(
-    val availability: String,
-    val availability1: String,
-    val category: String?,
-    val college: Int?,
+data class AddMachineRequest(
+    val availability: Int,
+    val availability1: Int,
+    val category: String,
     val description: String,
-    val id: Int,
-    val image: String?,
+    val image: Any,
     val instances: Int,
-    val location: String?,
-    val manufacturer: String?,
+    val location: String,
+    val manufacturer: String,
     val name: String,
     @SerializedName("purchase_cost")
     val purchaseCost: Float?,
-    val status: String,
-    val status1: String,
+    val status: Int,
+    val status1: Int,
     val supervised: Boolean,
     val upc: String
 )

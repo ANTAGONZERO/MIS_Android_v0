@@ -51,7 +51,8 @@ val sampleMachine = Machine(
     status = "Under Maintenance",
     status1 = "1",
     supervised = true,
-    upc = "987654321098"
+    upc = "987654321098",
+    college = null
 )
 
 @Preview(widthDp = 312)

@@ -71,6 +71,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation (libs.androidx.navigation.compose)
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation(libs.logging.interceptor)
 
     implementation (libs.hilt.android)
     kapt (libs.hilt.android.compiler)

@@ -115,7 +115,7 @@ fun ReservationItem(resolvedReservation: ResolvedReservation = sampleReservation
                 )
         ){
             Box(modifier=Modifier.weight(1f)){
-                Property(name = "Category",value =resolvedReservation.machine.category)
+                Property(name = "Category",value =resolvedReservation.machine.category ?:"Unknown")
             }
             VerticalDivider()
             Property(name = "Date",value =resolvedReservation.reservedDate)

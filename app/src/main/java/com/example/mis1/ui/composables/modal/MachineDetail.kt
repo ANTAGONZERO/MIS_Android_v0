@@ -47,10 +47,10 @@ fun MachineDetail(machine:Machine = sampleMachine){
                 fontWeight = FontWeight(700),
                 color = SPrimary600,
             )
-            Property(type=PropertyType.HorizontalMedium,name = "Category",value = machine.category)
+            Property(type=PropertyType.HorizontalMedium,name = "Category",value = machine.category?:"Unknown")
             Property(type=PropertyType.HorizontalMedium,name = "Location",value = machine.location?:"Unknown")
             Property(type=PropertyType.HorizontalMedium,name = "UPC",value = machine.upc)
-            Property(type=PropertyType.HorizontalMedium,name = "Manufacturer name",value = machine.manufacturer)
+            Property(type=PropertyType.HorizontalMedium,name = "Manufacturer name",value = machine.manufacturer?:"Unknown")
             Property(type=PropertyType.HorizontalMedium,name = "Instances",value = machine.instances.toString())
             Property(type=PropertyType.HorizontalMedium,name = "Description",value = machine.description)
             Property(type=PropertyType.HorizontalMedium,name = "Availability",value = machine.availability)

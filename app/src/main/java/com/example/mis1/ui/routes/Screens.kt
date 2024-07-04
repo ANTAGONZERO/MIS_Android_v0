@@ -11,4 +11,7 @@ sealed class Screens(val path: String) {
     data object Project : Screens("project")
     data object Record : Screens("record")
     data object BookMachine : Screens("book_machine")
+    data object  LoginScreen : Screens("login")
+    data object SplashScreen : Screens("splash_screen")
+    data object ProtectScreen : Screens("protected_screen")
 }
