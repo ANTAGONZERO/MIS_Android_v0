@@ -3,6 +3,7 @@ package com.example.mis1.ui.composables.modal
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,7 +34,7 @@ import com.example.mis1.ui.theme.Accent08
 import com.example.mis1.ui.theme.ActionLightSuccess
 import com.example.mis1.ui.theme.ActionSuccess
 import com.example.mis1.ui.theme.PageBgColor
-import com.example.mis1.ui.theme.RoundedRectangleXL
+import com.example.mis1.ui.theme.RoundedTopRectangleXL
 import com.example.mis1.ui.theme.SAccent50
 import com.example.mis1.ui.theme.SAccentSource
 import com.example.mis1.ui.theme.SPrimary200
@@ -46,12 +47,12 @@ import com.example.mis1.ui.theme.SizeNone
 @OptIn(ExperimentalLayoutApi::class)
 @Preview
 @Composable
-fun InventoryDetail(inventory:Inventory = sampleInventory){
+fun InventoryDetail(inventory:Inventory = sampleInventory , onHide : ()->Unit = {}){
     Box(modifier = Modifier){
         Column (modifier = Modifier
-            .border(color = SPrimary200, width = SizeNone, shape = RoundedRectangleXL)
+            .border(color = SPrimary200, width = SizeNone, shape = RoundedTopRectangleXL)
             .width(360.dp)
-            .background(color = PageBgColor, shape = RoundedRectangleXL)
+            .background(color = PageBgColor, shape = RoundedTopRectangleXL)
             .padding(start = 24.dp, top = 16.dp, end = 24.dp, bottom = 16.dp),
             verticalArrangement = Arrangement.SpaceBetween){
             Text(
@@ -129,6 +130,7 @@ fun InventoryDetail(inventory:Inventory = sampleInventory){
             Property(type= PropertyType.HorizontalMedium,name = "Group",value = inventory.group?:"Unknown")
             Spacer(modifier = Modifier.height(Size80))
             Property(type= PropertyType.HorizontalMedium,name = "Warranty Expiration",value = inventory.warrantyExpiration?:"Unknown")
+            Spacer(modifier = Modifier.height(48.dp))
         }
         Column(modifier = Modifier
             .width(60.dp)
@@ -139,7 +141,8 @@ fun InventoryDetail(inventory:Inventory = sampleInventory){
             Image(
                 modifier = Modifier
                     .height(44.dp)
-                    .width(44.dp),
+                    .width(44.dp)
+                    .clickable(onClick = onHide),
                 painter = painterResource(id = R.drawable.close),
                 contentDescription = "close")
         }

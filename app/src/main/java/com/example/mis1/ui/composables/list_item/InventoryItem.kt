@@ -3,6 +3,7 @@ package com.example.mis1.ui.composables.list_item
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -76,7 +77,7 @@ val sampleInventory = Inventory(
 @OptIn(ExperimentalLayoutApi::class)
 @Preview(widthDp = 312)
 @Composable
-fun InventoryItem(inventory: Inventory = sampleInventory) {
+fun InventoryItem(inventory: Inventory = sampleInventory,onShow :()->Unit ={}) {
 
     Column(
         modifier = Modifier
@@ -210,7 +211,8 @@ fun InventoryItem(inventory: Inventory = sampleInventory) {
                     Image(
                         modifier = Modifier
                             .height(24.dp)
-                            .width(24.dp),
+                            .width(24.dp)
+                            .clickable(onClick = onShow),
                         painter = painterResource(id = R.drawable.eye),
                         contentDescription = "eye"
                     )

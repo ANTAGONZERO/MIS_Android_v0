@@ -3,9 +3,11 @@ package com.example.mis1.ui.composables.modal
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -24,20 +26,20 @@ import com.example.mis1.ui.composables.Property
 import com.example.mis1.ui.composables.enums.PropertyType
 import com.example.mis1.ui.composables.list_item.sampleMachine
 import com.example.mis1.ui.theme.PageBgColor
-import com.example.mis1.ui.theme.RoundedRectangleXL
+import com.example.mis1.ui.theme.RoundedTopRectangleXL
 import com.example.mis1.ui.theme.SPrimary200
 import com.example.mis1.ui.theme.SPrimary600
 import com.example.mis1.ui.theme.SizeNone
 
 @Preview
 @Composable
-fun MachineDetail(machine:Machine = sampleMachine){
+fun MachineDetail(machine:Machine = sampleMachine,onHide : ()->Unit ={ }){
     Box(modifier = Modifier){
         Column (modifier = Modifier
-            .border(color = SPrimary200, width = SizeNone, shape = RoundedRectangleXL)
+            .border(color = SPrimary200, width = SizeNone, shape = RoundedTopRectangleXL)
             .width(360.dp)
             .height(298.dp)
-            .background(color = PageBgColor, shape = RoundedRectangleXL)
+            .background(color = PageBgColor, shape = RoundedTopRectangleXL)
             .padding(start = 24.dp, top = 16.dp, end = 24.dp, bottom = 16.dp),
             verticalArrangement = Arrangement.SpaceBetween){
             Text(
@@ -54,6 +56,7 @@ fun MachineDetail(machine:Machine = sampleMachine){
             Property(type=PropertyType.HorizontalMedium,name = "Instances",value = machine.instances.toString())
             Property(type=PropertyType.HorizontalMedium,name = "Description",value = machine.description)
             Property(type=PropertyType.HorizontalMedium,name = "Availability",value = machine.availability)
+            Spacer(modifier = Modifier.height(48.dp))
         }
         Column(modifier = Modifier
             .width(60.dp)
@@ -62,7 +65,11 @@ fun MachineDetail(machine:Machine = sampleMachine){
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally) {
             Image(
-                modifier = Modifier.height(44.dp).width(44.dp),
+                modifier = Modifier
+                    .height(44.dp)
+                    .width(44.dp)
+                    .clickable(onClick = onHide)
+                ,
                 painter = painterResource(id = R.drawable.close),
                 contentDescription = "close")
         }

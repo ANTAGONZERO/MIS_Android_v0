@@ -1,6 +1,7 @@
 package com.example.mis1.viewmodels
 
 import android.util.Log
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -41,7 +42,8 @@ class InventoryScreenViewmodel @Inject constructor(
     val loadingEquipmentList = mutableStateOf(false)
 
     val visibleTab = mutableStateOf(InventoryTabs.Machine)
-
+    val indexOfModalItem  = mutableIntStateOf(-1)
+    val modalVisible = mutableStateOf(false)
     init {
         fetchInventoryList()
         fetchMachineList()
@@ -63,6 +65,14 @@ class InventoryScreenViewmodel @Inject constructor(
     fun setSearchText(text:String){
         searchText.value = text
         filterLists()
+    }
+
+    fun hideDetail(){
+        modalVisible.value = false
+    }
+    fun showDetail(index:Int){
+        indexOfModalItem.intValue = index
+        modalVisible.value = true
     }
 
     private fun populateInventory(list: List<Inventory>) {

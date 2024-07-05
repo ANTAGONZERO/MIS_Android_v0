@@ -1,6 +1,5 @@
 package com.example.mis1.ui.composables.list_item
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -13,24 +12,27 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mis1.R
 import com.example.mis1.data.remote.machine.dto.Machine
 import com.example.mis1.ui.theme.Primary01
 import com.example.mis1.ui.theme.Primary09
 import com.example.mis1.ui.theme.RoundedRectangleM
 import com.example.mis1.ui.theme.RoundedRectangleS
 import com.example.mis1.ui.theme.S
+import com.example.mis1.ui.theme.SPrimary600
 import com.example.mis1.ui.theme.SPrimarySource
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.ui.theme.Size80
@@ -59,7 +61,8 @@ val sampleMachine = Machine(
 @Composable
 fun MachineItem(
     machine: Machine = sampleMachine,
-    onClickBookMachine: () -> Unit = { }
+    onClickBookMachine: () -> Unit = { },
+    onShow : ()->Unit = {}
 ) {
     val separation = S
     Column(
@@ -81,13 +84,14 @@ fun MachineItem(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
-            Image(
-                modifier = Modifier
-                    .width(20.dp)
-                    .height(20.dp),
-                painter = painterResource(id = R.drawable.more_vertical_circle),
-                contentDescription = "more"
-            )
+            ClickableText(text = AnnotatedString(
+                text = "View",
+                spanStyle = SpanStyle(
+                    fontSize = 14.sp,
+                    color = SPrimary600,
+                    textDecoration = TextDecoration.Underline
+                )),
+                onClick = {onShow()})
         }
         Spacer(modifier = Modifier.height(separation))
         Text(

@@ -3,6 +3,7 @@ package com.example.mis1.ui.composables.list_item
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -59,7 +60,7 @@ val sampleEquipment = Equipment(
 
 @Preview(widthDp = 312)
 @Composable
-fun EquipmentItem(equipment: Equipment = sampleEquipment) {
+fun EquipmentItem(equipment: Equipment = sampleEquipment,onShow:()->Unit ={}) {
     Column(
         modifier = Modifier
             .background(color = White, shape = RoundedRectangleL)
@@ -125,8 +126,8 @@ fun EquipmentItem(equipment: Equipment = sampleEquipment) {
                 modifier = Modifier
                     .background(color = PageBgColor, shape = RoundedRectangleS)
                     .border(width = SizeNone, color = SPrimarySource, shape = RoundedRectangleS)
-                    .height(38.dp)
                     .width(137.dp)
+                    .clickable { onShow() }
                     .padding(horizontal = Size120, vertical = Size80),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
