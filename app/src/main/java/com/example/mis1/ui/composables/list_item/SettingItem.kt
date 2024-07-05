@@ -20,9 +20,16 @@ import com.example.mis1.ui.theme.Primary04
 
 @Preview(showBackground = true)
 @Composable
-fun SettingItem(type:SettingItemType = SettingItemType.A,name:String = "Email" , description:String = "description"){
-    when(type){
-        SettingItemType.A -> Row (modifier = Modifier.fillMaxWidth(),
+fun SettingItem(
+    type: SettingItemType = SettingItemType.A,
+    name: String = "Email",
+    description: String = "description",
+    checked:Boolean = false,
+    onToggle: () -> Unit = {}
+) {
+    when (type) {
+        SettingItemType.A -> Row(
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -32,14 +39,17 @@ fun SettingItem(type:SettingItemType = SettingItemType.A,name:String = "Email" ,
                 fontWeight = FontWeight(400),
                 color = Primary02,
             )
-            Toggle(checked = false)
+            Toggle(checked = checked, onToggle = onToggle)
         }
-        SettingItemType.B -> Row (modifier = Modifier.fillMaxWidth()
-            .height(IntrinsicSize.Max),
+
+        SettingItemType.B -> Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(IntrinsicSize.Max),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Column(modifier = Modifier.weight(1f)){
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = name,
                     fontSize = 20.sp,
@@ -53,7 +63,7 @@ fun SettingItem(type:SettingItemType = SettingItemType.A,name:String = "Email" ,
                     color = Primary04
                 )
             }
-            Toggle(checked = false)
+            Toggle(checked = checked,onToggle = onToggle)
         }
     }
 

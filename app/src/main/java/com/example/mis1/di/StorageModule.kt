@@ -3,6 +3,7 @@ package com.example.mis1.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.mis1.common.Constants
+import com.example.mis1.data.SettingsManager
 import com.example.mis1.data.TokenManager
 import dagger.Module
 import dagger.Provides
@@ -23,5 +24,10 @@ class StorageModule {
     @Singleton
     fun provideTokenManager(sharedPreferences: SharedPreferences):TokenManager{
         return TokenManager(sharedPreferences)
+    }
+    @Provides
+    @Singleton
+    fun provideSettingsManager(sharedPreferences: SharedPreferences):SettingsManager{
+        return SettingsManager(sharedPreferences)
     }
 }

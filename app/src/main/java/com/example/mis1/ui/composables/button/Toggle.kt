@@ -1,6 +1,7 @@
 package com.example.mis1.ui.composables.button
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
@@ -12,12 +13,14 @@ import com.example.mis1.R
 
 @Preview
 @Composable
-fun Toggle(checked:Boolean = false) =
+fun Toggle(checked:Boolean = false,onToggle:()->Unit={}) =
     if (checked) {
         Image(
             modifier = Modifier
                 .width(32.dp)
-                .height(16.dp),
+                .height(16.dp)
+                .clickable { onToggle() }
+            ,
             painter = painterResource(id = R.drawable.setting_toggle_active),
             contentDescription = "on"
         )
@@ -27,7 +30,8 @@ fun Toggle(checked:Boolean = false) =
         Image(
             modifier = Modifier
                 .width(32.dp)
-                .height(16.dp),
+                .height(16.dp)
+                .clickable { onToggle() },
             painter = painterResource(id = R.drawable.setting_toggle_inactive),
             contentDescription = "on"
         )

@@ -29,6 +29,7 @@ fun SettingScreen(
     viewmodel: SettingsScreenViewmodel = hiltViewModel()
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Spacer(modifier = Modifier.height(8.dp))
         Row(
             modifier = Modifier
                 .height(IntrinsicSize.Max)
@@ -64,8 +65,8 @@ fun SettingScreen(
         }
         Spacer(modifier = Modifier.height(32.dp))
         if (viewmodel.visibleTab.value == SettingTabs.Notification)
-            NotificationSetting()
+            NotificationSetting(viewmodel)
         else
-            PrivacySetting()
+            PrivacySetting(viewmodel)
     }
 }
