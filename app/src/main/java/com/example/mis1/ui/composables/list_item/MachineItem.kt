@@ -95,7 +95,7 @@ fun MachineItem(
         }
         Spacer(modifier = Modifier.height(separation))
         Text(
-            text = "Category: " + machine.category,
+            text = "Category: ${machine.category?:"Unknown"}" ,
             fontSize = 14.sp,
             fontWeight = FontWeight(400),
             color = Primary01,
@@ -106,7 +106,7 @@ fun MachineItem(
         Row (verticalAlignment = Alignment.Bottom){
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "Location: " + machine.location,
+                    text = "Location: ${machine.location?:"Unknown"}",
                     fontSize = 14.sp,
                     fontWeight = FontWeight(400),
                     color = Primary01,
@@ -115,7 +115,7 @@ fun MachineItem(
                 )
                 Spacer(modifier = Modifier.height(separation))
                 Text(
-                    text = "Description: " + machine.description,
+                    text = "Description: ${machine.description?:""}",
                     fontSize = 14.sp,
                     fontWeight = FontWeight(400),
                     color = Primary01,

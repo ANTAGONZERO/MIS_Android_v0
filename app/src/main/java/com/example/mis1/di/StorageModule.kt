@@ -3,8 +3,8 @@ package com.example.mis1.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.mis1.common.Constants
-import com.example.mis1.data.SettingsManager
-import com.example.mis1.data.TokenManager
+import com.example.mis1.repository.SettingsRepository
+import com.example.mis1.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,12 +22,12 @@ class StorageModule {
     }
     @Provides
     @Singleton
-    fun provideTokenManager(sharedPreferences: SharedPreferences):TokenManager{
-        return TokenManager(sharedPreferences)
+    fun provideTokenRepository(sharedPreferences: SharedPreferences): TokenRepository {
+        return TokenRepository(sharedPreferences)
     }
     @Provides
     @Singleton
-    fun provideSettingsManager(sharedPreferences: SharedPreferences):SettingsManager{
-        return SettingsManager(sharedPreferences)
+    fun provideSettingsRepository(sharedPreferences: SharedPreferences): SettingsRepository {
+        return SettingsRepository(sharedPreferences)
     }
 }

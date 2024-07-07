@@ -3,7 +3,7 @@ package com.example.mis1.di
 import android.annotation.SuppressLint
 import com.example.mis1.common.AuthInterceptor
 import com.example.mis1.common.Constants
-import com.example.mis1.data.TokenManager
+import com.example.mis1.repository.TokenRepository
 import com.example.mis1.data.remote.equipment.EquipmentApi
 import com.example.mis1.data.remote.inventory.InventoryApi
 import com.example.mis1.data.remote.machine.MachineApi
@@ -21,7 +21,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
-import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -32,9 +31,9 @@ class NetworkModule{
     @Provides
     @Singleton
     fun provideAuthInterceptor(
-        tokenManager: TokenManager
+        tokenRepository: TokenRepository
     ):AuthInterceptor{
-        return AuthInterceptor(tokenManager)
+        return AuthInterceptor(tokenRepository)
     }
 
 //    @Provides

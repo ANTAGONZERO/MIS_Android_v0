@@ -3,7 +3,7 @@ package com.example.mis1.viewmodels
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.mis1.common.Settings
-import com.example.mis1.data.SettingsManager
+import com.example.mis1.repository.SettingsRepository
 import com.example.mis1.ui.routes.SettingTabs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,11 +13,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsScreenViewmodel @Inject constructor(
-    private val settingsManager: SettingsManager):ViewModel(
+    private val settingsRepository: SettingsRepository
+):ViewModel(
 ) {
     val visibleTab = mutableStateOf(SettingTabs.Notification)
 
-    private val _settings = MutableStateFlow(settingsManager.getSettings())
+    private val _settings = MutableStateFlow(settingsRepository.getSettings())
     val settings: StateFlow<Map<Settings, String>> = _settings
 
     fun toggleSetting(setting: Settings) {
@@ -32,7 +33,7 @@ class SettingsScreenViewmodel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        settingsManager.setSettings(_settings.value)
+        settingsRepository.setSettings(_settings.value)
     }
     fun showNotificationTab(){
         visibleTab.value = SettingTabs.Notification

@@ -9,6 +9,8 @@ enum class Settings(val key: String) {
     WORKSHOP_REMINDERS("Workshop Reminders"),
     UPCOMING_EVENTS("Upcoming events"),
     IN_APP_MESSAGES("In-app messages"),
+    Sound("Sound"),
+    Banner("Banner"),
     DISCOVERABILITY("Discoverability"),
     VISIBILITY("Visibility"),
     LOCATION("Location"),

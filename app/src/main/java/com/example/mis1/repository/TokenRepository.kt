@@ -1,9 +1,9 @@
-package com.example.mis1.data
+package com.example.mis1.repository
 
 import android.content.SharedPreferences
 
 
-class TokenManager(private val sharedPreferences: SharedPreferences) {
+class TokenRepository(private val sharedPreferences: SharedPreferences) {
     var token: String?
         get() = sharedPreferences.getString(TOKEN_KEY, null)
         set(token) {

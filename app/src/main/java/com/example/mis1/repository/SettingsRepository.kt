@@ -1,10 +1,10 @@
-package com.example.mis1.data
+package com.example.mis1.repository
 
 import android.content.SharedPreferences
 import com.example.mis1.common.Settings
 
 
-class SettingsManager(private val sharedPreferences: SharedPreferences) {
+class SettingsRepository(private val sharedPreferences: SharedPreferences) {
     fun getSettings(): Map<Settings, String> {
         val settingsMap = mutableMapOf<Settings, String>()
         Settings.entries.forEach { key ->

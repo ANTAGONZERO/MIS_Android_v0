@@ -4,14 +4,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mis1.common.Resource
-import com.example.mis1.data.TokenManager
+import com.example.mis1.repository.TokenRepository
 import com.example.mis1.repository.MachineRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val tokenManager: TokenManager,
+    private val tokenRepository: TokenRepository,
     private val machineRepository: MachineRepository
 ) : ViewModel() {
 
@@ -23,7 +23,7 @@ class AuthViewModel @Inject constructor(
     }
 
     private fun checkLoginStatus() {
-        if(tokenManager.token==null){
+        if(tokenRepository.token==null){
             authState.value = NOT_AUTHENTICATED
         }
         viewModelScope.launch {

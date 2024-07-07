@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mis1.common.Resource
-import com.example.mis1.data.TokenManager
+import com.example.mis1.repository.TokenRepository
 import com.example.mis1.data.remote.user.dto.LoginUserResponse
 import com.example.mis1.data.remote.user.dto.UserCredentials
 import com.example.mis1.repository.UserRepository
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginScreenViewmodel @Inject constructor(
     private val userRepository : UserRepository,
-    private val tokenManager : TokenManager
+    private val tokenRepository : TokenRepository
 ) : ViewModel() {
     val email = mutableStateOf("")
     val password = mutableStateOf("")
@@ -29,7 +29,7 @@ class LoginScreenViewmodel @Inject constructor(
                 .collect {
                     loginState.value = it
                     if (it.data!=null){
-                        tokenManager.token = it.data.access
+                        tokenRepository.token = it.data.access
                     }
                 }
         }

@@ -94,7 +94,7 @@ fun IssuableItem(issuedInventory: ResolvedIssuedInventory = sampleIssuedInventor
             }
             Spacer(modifier = Modifier.height(6.dp))
             Text(
-                text = "Description: " + issuedInventory.inventory.description,
+                text = "Description: ${issuedInventory.inventory.description?:""}",
                 fontSize = 14.sp,
                 fontWeight = FontWeight(400),
                 color = Primary01,

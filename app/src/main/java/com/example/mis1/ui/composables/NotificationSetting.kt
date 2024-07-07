@@ -86,7 +86,9 @@ fun NotificationSetting(viewModel:SettingsScreenViewmodel){
             color = Primary02,
             textDecoration = TextDecoration.Underline
         )
-        Toggle(checked = false)
+        Toggle(checked = settings[Settings.Sound]=="true"){
+            viewModel.toggleSetting(Settings.Sound)
+        }
     }
     Spacer(modifier = Modifier.height(16.dp))
     Row (modifier = Modifier.fillMaxWidth(),
@@ -100,6 +102,8 @@ fun NotificationSetting(viewModel:SettingsScreenViewmodel){
             color = Primary02,
             textDecoration = TextDecoration.Underline
         )
-        Toggle(checked = false)
+        Toggle(checked = settings[Settings.Banner] == "true"){
+            viewModel.toggleSetting(Settings.Banner)
+        }
     }
 }
