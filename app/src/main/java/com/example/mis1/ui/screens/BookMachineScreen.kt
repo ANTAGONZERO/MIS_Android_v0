@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,6 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -28,13 +32,13 @@ import com.example.mis1.ui.composables.button.AddButton
 import com.example.mis1.ui.composables.button.CancelButton
 import com.example.mis1.ui.composables.edit_field.EditDateField
 import com.example.mis1.ui.composables.edit_field.EditTimeField
-import com.example.mis1.ui.composables.edit_field.NumberInputField
 import com.example.mis1.ui.theme.Primary02
 import com.example.mis1.ui.theme.Primary03
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.viewmodels.BookMachineViewmodel
 
 
+@Preview
 @Composable
 fun BookMachineScreen(
     viewModel: BookMachineViewmodel = hiltViewModel()
@@ -70,10 +74,9 @@ fun BookMachineScreen(
                 Image1(id = R.drawable.time)
                 Spacer(modifier = Modifier.width(14.dp))
                 BorderBox {
-                    NumberInputField(
+                    HourInputField(
                         hours = viewModel.hours.value,
                         onValueChange = viewModel::updateHours,
-                        hint = "Enter the no. of hours"
                     )
                 }
             }
@@ -177,4 +180,39 @@ private fun Text1(text: String) {
         fontWeight = FontWeight(400),
         color = Primary03,
     )
+}
+
+
+@Composable
+private fun HourInputField(
+    hours: String,
+    onValueChange: (String) -> Unit,
+
+) {
+    val hint = "Enter the no. of hours"
+    Box(modifier = Modifier.width(IntrinsicSize.Max)) {
+        if (hours.isEmpty()) {
+            Text(
+                text = hint,
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    lineHeight = 20.sp,
+                    fontWeight = FontWeight(400),
+                    color = Primary03
+                )
+            )
+        }
+        BasicTextField(
+            value = hours,
+            onValueChange = onValueChange,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            textStyle = TextStyle(
+                fontSize = 16.sp,
+                lineHeight = 20.sp,
+                fontWeight = FontWeight(400),
+                color = Primary03
+            ),
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }

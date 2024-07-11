@@ -32,7 +32,7 @@ import com.example.mis1.ui.composables.modal.InventoryDetail
 import com.example.mis1.ui.composables.modal.MachineDetail
 import com.example.mis1.ui.routes.InventoryTabs
 import com.example.mis1.ui.routes.Screens
-import com.example.mis1.ui.theme.RoundedTopRectangleXL
+import com.example.mis1.ui.theme.RoundedTopRectangleXXL
 import com.example.mis1.ui.theme.White
 import com.example.mis1.viewmodels.InventoryScreenViewmodel
 import kotlinx.coroutines.launch
@@ -127,7 +127,7 @@ fun InventoryScreen(
             ModalBottomSheet(
                 onDismissRequest = viewModel::hideDetail,
                 dragHandle = { Box{} },
-                shape = RoundedTopRectangleXL,
+                shape = RoundedTopRectangleXXL,
                 sheetState = sheetState,
                 containerColor = White
             ) {

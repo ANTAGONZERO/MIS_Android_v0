@@ -2,6 +2,7 @@ package com.example.mis1.data.remote.machine
 
 import com.example.mis1.data.remote.machine.dto.AddMachineRequest
 import com.example.mis1.data.remote.machine.dto.Machine
+import com.example.mis1.data.remote.machine.dto.MachineReservationRequest
 import com.example.mis1.data.remote.machine.dto.Reservation
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -23,5 +24,8 @@ interface MachineApi {
 
     @GET("machine_reservation_detail/{id}")
     suspend fun reservationDetail(@Path("id") id : Int):Reservation
+
+    @POST("machine_reservation_list/")
+    suspend fun reserveMachine(@Body reservationRequest: MachineReservationRequest)
 
 }

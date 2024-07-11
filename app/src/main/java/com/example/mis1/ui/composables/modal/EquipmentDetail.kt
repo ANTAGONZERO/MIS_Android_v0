@@ -26,7 +26,7 @@ import com.example.mis1.ui.composables.Property
 import com.example.mis1.ui.composables.enums.PropertyType
 import com.example.mis1.ui.composables.list_item.sampleEquipment
 import com.example.mis1.ui.theme.PageBgColor
-import com.example.mis1.ui.theme.RoundedTopRectangleXL
+import com.example.mis1.ui.theme.RoundedTopRectangleXXL
 import com.example.mis1.ui.theme.SPrimary200
 import com.example.mis1.ui.theme.SPrimary600
 import com.example.mis1.ui.theme.SizeNone
@@ -36,10 +36,10 @@ import com.example.mis1.ui.theme.SizeNone
 fun EquipmentDetail(equipment: Equipment = sampleEquipment, onHide:()->Unit ={}){
     Box(modifier = Modifier){
         Column (modifier = Modifier
-            .border(color = SPrimary200, width = SizeNone, shape = RoundedTopRectangleXL)
+            .border(color = SPrimary200, width = SizeNone, shape = RoundedTopRectangleXXL)
             .width(360.dp)
             .height(298.dp)
-            .background(color = PageBgColor, shape = RoundedTopRectangleXL)
+            .background(color = PageBgColor, shape = RoundedTopRectangleXXL)
             .padding(start = 24.dp, top = 16.dp, end = 24.dp, bottom = 16.dp),
             verticalArrangement = Arrangement.SpaceBetween){
             Text(
