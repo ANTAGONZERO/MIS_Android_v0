@@ -1,8 +1,6 @@
 package com.example.mis1.data.remote.user.dto
 
 
-import com.google.gson.annotations.SerializedName
-
 data class RegisterUserRequest(
     val branch: String,
     val currentYear: String,
@@ -11,5 +9,6 @@ data class RegisterUserRequest(
     val graduationYear: String,
     val hostelAddress: String,
     val name: String,
-    val phoneNumber: String
+    val phoneNumber: String,
+    val college : String,
 )

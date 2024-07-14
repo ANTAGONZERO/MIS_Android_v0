@@ -3,6 +3,7 @@ package com.example.mis1.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.mis1.common.Constants
+import com.example.mis1.repository.OnboardingRepository
 import com.example.mis1.repository.SettingsRepository
 import com.example.mis1.repository.TokenRepository
 import dagger.Module
@@ -29,5 +30,10 @@ class StorageModule {
     @Singleton
     fun provideSettingsRepository(sharedPreferences: SharedPreferences): SettingsRepository {
         return SettingsRepository(sharedPreferences)
+    }
+    @Provides
+    @Singleton
+    fun providesOnboardingRepository(sharedPreferences: SharedPreferences):OnboardingRepository{
+        return OnboardingRepository(sharedPreferences)
     }
 }

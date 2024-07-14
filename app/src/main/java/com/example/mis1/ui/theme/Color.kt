@@ -30,6 +30,7 @@ val Primary11 = Color(0xFFF4F4F4)
 
 val SPrimarySource = Color(0xFF273F77)
 val SPrimary600 = Color(0xFF5C6DAA)
+val SPrimary500 = Color(0xFF7483C2)
 val SPrimary200 = Color(0xFFBEC4EC)
 val SPrimary100 = Color(0xFFD8DBF5)
 val SPrimary50 = Color(0xFFF2F3FC)

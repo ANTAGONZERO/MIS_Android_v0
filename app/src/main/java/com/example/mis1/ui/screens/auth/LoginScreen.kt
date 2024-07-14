@@ -120,7 +120,11 @@ fun LoginScreen(
                     append("Register")
                 }
             }) {
-
+                navController.navigate(Screens.RegisterScreen.path){
+                    popUpTo(Screens.WelcomeScreen.path){
+                        inclusive=true
+                    }
+                }
             }
         }
 
