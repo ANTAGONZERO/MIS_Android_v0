@@ -7,6 +7,7 @@ import com.example.mis1.common.Resource
 import com.example.mis1.repository.TokenRepository
 import com.example.mis1.data.remote.user.dto.LoginUserResponse
 import com.example.mis1.data.remote.user.dto.UserCredentials
+import com.example.mis1.repository.StorageRepository
 import com.example.mis1.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginScreenViewmodel @Inject constructor(
     private val userRepository : UserRepository,
-    private val tokenRepository : TokenRepository
+    private val tokenRepository : TokenRepository,
+    private val storageRepository: StorageRepository
 ) : ViewModel() {
     val email = mutableStateOf("")
     val password = mutableStateOf("")
@@ -30,6 +32,9 @@ class LoginScreenViewmodel @Inject constructor(
                     loginState.value = it
                     if (it.data!=null){
                         tokenRepository.token = it.data.access
+                    }
+                    if(it is Resource.Success){
+                        storageRepository.user = it.data?.user
                     }
                 }
         }

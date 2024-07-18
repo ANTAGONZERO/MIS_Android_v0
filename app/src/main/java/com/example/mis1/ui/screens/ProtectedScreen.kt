@@ -8,15 +8,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.mis1.ui.composables.bar.ActionBar
 import com.example.mis1.ui.composables.bar.NavigationBar
 import com.example.mis1.ui.routes.Screens
+import com.example.mis1.viewmodels.AppViewmodel
 
 @Composable
-fun ProtectedScreens(navController: NavHostController = rememberNavController()){
+fun ProtectedScreens(
+    navController: NavHostController = rememberNavController(),
+    appViewModel: AppViewmodel
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -58,8 +64,17 @@ fun ProtectedScreens(navController: NavHostController = rememberNavController())
                 composable(Screens.Record.path) {
                     RecordScreen()
                 }
-                composable(Screens.BookMachine.path) {
-                    BookMachineScreen()
+                composable(
+                    route = Screens.BookMachine.path + "/{machineId}",
+                    arguments = listOf(navArgument("machineId") { type = NavType.IntType })
+                ) {
+                    it.arguments?.getInt("machineId")?.let { machineId ->
+                        BookMachineScreen(
+                            machineId = machineId,
+                            navController = navController,
+                            appViewModel = appViewModel
+                        )
+                    }
                 }
             }
         }

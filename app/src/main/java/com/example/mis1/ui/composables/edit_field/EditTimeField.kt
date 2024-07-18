@@ -14,18 +14,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.common.toTwoDigitString
+import com.example.mis1.model.Time
 import com.example.mis1.ui.theme.Primary01
 import com.example.mis1.ui.theme.Primary03
 import com.example.mis1.ui.theme.RoundedRectangleS
 import com.example.mis1.ui.theme.White
 
 @Composable
-fun EditTimeField(time:String,onTimeChanged:(it:String)->Unit){
-    val textDisplayed = time.ifEmpty { "00:00" }
+fun EditTimeField(time:Time?,onTimeChanged:(it:Time)->Unit){
+    val textDisplayed = if(time == null) { "00:00" } else "${time.hour.toTwoDigitString()}:${time.minute.toTwoDigitString()}"
     val timePickerDialog = TimePickerDialog(
         LocalContext.current,
         {_, hour : Int, minute: Int ->
-            onTimeChanged("${hour.toTwoDigitString()}:${minute.toTwoDigitString()}")
+            onTimeChanged(Time(hour = hour,minute = minute))
         }, 0, 0, true
     )
     Box(

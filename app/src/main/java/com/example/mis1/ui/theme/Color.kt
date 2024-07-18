@@ -44,7 +44,10 @@ val Accent08 = Color(0xFFE6F2FF)
 
 val ActionSuccess = Color(0xFF057D35)
 val ActionLightSuccess = Color(0xFFE5FFF1)
+val ActionWarning = Color(0xFFD0A300)
+val ActionLightWarning = Color(0xFFFEFFD2)
 val ActionError = Color(0xFFC90505)
+val ActionLightError = Color(0xFFFFE5E5)
 
 val HighlightingBrandText02 = Color(0xFF003044)
 

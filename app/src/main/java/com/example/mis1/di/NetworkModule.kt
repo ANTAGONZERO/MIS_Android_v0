@@ -7,10 +7,12 @@ import com.example.mis1.repository.TokenRepository
 import com.example.mis1.data.remote.equipment.EquipmentApi
 import com.example.mis1.data.remote.inventory.InventoryApi
 import com.example.mis1.data.remote.machine.MachineApi
+import com.example.mis1.data.remote.project.ProjectApi
 import com.example.mis1.data.remote.user.UserApi
 import com.example.mis1.repository.EquipmentRepository
 import com.example.mis1.repository.InventoryRepository
 import com.example.mis1.repository.MachineRepository
+import com.example.mis1.repository.ProjectRepository
 import com.example.mis1.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -130,5 +132,14 @@ class NetworkModule{
     ): EquipmentRepository {
         val api  = retrofit.create(EquipmentApi::class.java)
         return EquipmentRepository(api)
+    }
+
+    @Provides
+    @Singleton
+    fun provideProjectRepository(
+        retrofit: Retrofit,
+    ):ProjectRepository {
+        val api  = retrofit.create(ProjectApi::class.java)
+        return ProjectRepository(api)
     }
 }

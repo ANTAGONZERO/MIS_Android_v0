@@ -2,6 +2,7 @@ package com.example.mis1.viewmodels
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.example.mis1.model.Date
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -15,8 +16,8 @@ class PurchaseInventoryViewmodel @Inject constructor() : ViewModel() {
     val linksOrDocuments = mutableStateOf("")
     val projectTitle = mutableStateOf("")
     val projectDescription = mutableStateOf("")
-    val startDate = mutableStateOf("")
-    val endDate = mutableStateOf("")
+    val startDate = mutableStateOf<Date?>(null)
+    val endDate = mutableStateOf<Date?>(null)
     val quantity = mutableStateOf("")
     val unit = mutableStateOf("")
 
@@ -48,11 +49,11 @@ class PurchaseInventoryViewmodel @Inject constructor() : ViewModel() {
         projectDescription.value = value
     }
 
-    fun setStartDate(value: String) {
+    fun setStartDate(value: Date) {
         startDate.value = value
     }
 
-    fun setEndDate(value: String) {
+    fun setEndDate(value: Date) {
         endDate.value = value
     }
 

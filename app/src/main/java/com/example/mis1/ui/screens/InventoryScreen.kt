@@ -86,7 +86,7 @@ fun InventoryScreen(
                 LazyColumn {
                     itemsIndexed(viewModel.filteredMachineList) { index, machine ->
                         MachineItem(machine = machine, onClickBookMachine = {
-                            navController.navigate(Screens.BookMachine.path)
+                            navController.navigate(Screens.BookMachine.path+"/${machine.id}")
                         }, onShow = { viewModel.showDetail(index) })
                         Spacer(modifier = Modifier.height(8.dp))
                     }

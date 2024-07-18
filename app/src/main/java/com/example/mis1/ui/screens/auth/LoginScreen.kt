@@ -34,18 +34,23 @@ import com.example.mis1.ui.routes.Screens
 import com.example.mis1.ui.theme.Primary01
 import com.example.mis1.ui.theme.SAccentSource
 import com.example.mis1.ui.theme.SPrimarySource
+import com.example.mis1.viewmodels.AppViewmodel
 import com.example.mis1.viewmodels.LoginScreenViewmodel
 
 @Composable
 fun LoginScreen(
     navController: NavController,
-    viewModel: LoginScreenViewmodel = hiltViewModel()
+    viewModel: LoginScreenViewmodel = hiltViewModel(),
+    appViewModel :AppViewmodel
 ) {
     val email by viewModel.email
     val password by viewModel.password
     val loginState by viewModel.loginState
     LaunchedEffect(key1 = loginState) {
         if (loginState is Resource.Success) {
+            loginState.data?.let {response ->
+                appViewModel.updateUser(response.user)
+            }
             navController.navigate(Screens.ProtectScreen.path) {
                 popUpTo(Screens.LoginScreen.path) { inclusive = true }
                 launchSingleTop = true

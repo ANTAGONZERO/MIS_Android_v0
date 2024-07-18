@@ -40,7 +40,9 @@ import com.example.mis1.viewmodels.AddProjectViewmodel
 @Preview()
 @Composable
 fun AddProjectScreen(viewModel: AddProjectViewmodel = hiltViewModel()) {
-    Column(verticalArrangement = Arrangement.SpaceBetween) {
+    Column(
+        modifier=Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceBetween) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

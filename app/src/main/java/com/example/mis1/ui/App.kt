@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,10 +24,11 @@ import com.example.mis1.ui.screens.auth.RegisterScreen
 import com.example.mis1.ui.screens.auth.ResetPasswordScreen
 import com.example.mis1.ui.screens.auth.WelcomeScreen
 import com.example.mis1.ui.theme.White
+import com.example.mis1.viewmodels.AppViewmodel
 
 @Preview
 @Composable
-fun App(navController: NavHostController = rememberNavController()) {
+fun App(navController: NavHostController = rememberNavController(),viewModel:AppViewmodel = hiltViewModel()) {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -42,10 +44,10 @@ fun App(navController: NavHostController = rememberNavController()) {
                     SplashScreen(navController = navController)
                 }
                 composable(Screens.ProtectScreen.path) {
-                    ProtectedScreens()
+                    ProtectedScreens(appViewModel = viewModel)
                 }
                 composable(Screens.LoginScreen.path) {
-                    LoginScreen(navController = navController)
+                    LoginScreen(navController = navController, appViewModel = viewModel)
                 }
                 composable(Screens.WelcomeScreen.path) {
                     WelcomeScreen(navController = navController)

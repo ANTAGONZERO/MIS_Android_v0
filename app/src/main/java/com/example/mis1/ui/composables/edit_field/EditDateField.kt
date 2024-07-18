@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.common.toTwoDigitString
+import com.example.mis1.model.Date
 import com.example.mis1.ui.theme.Primary01
 import com.example.mis1.ui.theme.Primary03
 import com.example.mis1.ui.theme.RoundedRectangleS
@@ -22,15 +23,16 @@ import com.example.mis1.ui.theme.White
 import java.util.Calendar
 
 @Composable
-fun EditDateField(date: String, onDateChange: (it: String) -> Unit = { }) {
-    val selectedDate = date.ifEmpty { "dd/mm/yy" }
+fun EditDateField(date: Date?, onDateChange: (it: Date) -> Unit = { }) {
+
+    val selectedDate = if (date == null) "dd/mm/yy"
+    else "${date.day.toTwoDigitString()}/${date.month.toTwoDigitString()}/${(date.year % 100).toTwoDigitString()}"
     val calendar = Calendar.getInstance()
 
     val datePickerDialog = DatePickerDialog(
         LocalContext.current,
         { _, year, month, dayOfMonth ->
-            val twoDigitYear = (year % 100).toTwoDigitString()
-            onDateChange("${dayOfMonth.toTwoDigitString()}/${(month + 1).toTwoDigitString()}/$twoDigitYear")
+            onDateChange(Date(day = dayOfMonth, month = month + 1, year = year))
         },
         calendar.get(Calendar.YEAR),
         calendar.get(Calendar.MONTH),

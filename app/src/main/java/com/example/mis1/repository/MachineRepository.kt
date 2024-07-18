@@ -5,6 +5,7 @@ import com.example.mis1.common.Resource
 import com.example.mis1.data.remote.machine.MachineApi
 import com.example.mis1.data.remote.machine.dto.AddMachineRequest
 import com.example.mis1.data.remote.machine.dto.Machine
+import com.example.mis1.data.remote.machine.dto.MachineReservationRequest
 import com.example.mis1.data.remote.machine.dto.Reservation
 import com.example.mis1.data.remote.machine.dto.ResolvedReservation
 import kotlinx.coroutines.flow.flow
@@ -84,5 +85,16 @@ class MachineRepository (
             startTime = reservation.startTime,
             machine = machine
         )
+    }
+
+    suspend fun reserveMachine(request: MachineReservationRequest) = flow<Resource<Unit>> {
+        try {
+            emit(Resource.Loading(null))
+            val response = api.reserveMachine(request)
+            emit(Resource.Success(response))
+        } catch (e: Exception) {
+            Log.d("Exception happened", e.toString())
+            emit(Resource.Error(message = "Failed to create reservation"))
+        }
     }
 }

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -41,7 +42,7 @@ import com.example.mis1.ui.theme.SizeNone
 @Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, widthDp = 312)
 @Composable
 fun ProfileScreen() {
-    Column(modifier = Modifier.verticalScroll(rememberScrollState())){
+    Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())){
         Spacer(modifier = Modifier.height(Size120))
         Column(
             modifier = Modifier
