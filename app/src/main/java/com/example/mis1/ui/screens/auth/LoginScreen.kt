@@ -52,7 +52,7 @@ fun LoginScreen(
                 appViewModel.updateUser(response.user)
             }
             navController.navigate(Screens.Protect.path) {
-                popUpTo(Screens.Login.path) { inclusive = true }
+                popUpTo(Screens.Welcome.path) { inclusive = true }
                 launchSingleTop = true
             }
         }
