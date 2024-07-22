@@ -8,7 +8,7 @@ import retrofit2.http.POST
 
 interface ProjectApi {
     @POST("project/")
-    suspend fun addProject(@Body project: AddProjectRequest)
+    suspend fun addProject(@Body project: AddProjectRequest):Project
     @GET("project/")
     suspend fun listProject():List<Project>
 

@@ -51,8 +51,8 @@ fun LoginScreen(
             loginState.data?.let {response ->
                 appViewModel.updateUser(response.user)
             }
-            navController.navigate(Screens.ProtectScreen.path) {
-                popUpTo(Screens.LoginScreen.path) { inclusive = true }
+            navController.navigate(Screens.Protect.path) {
+                popUpTo(Screens.Login.path) { inclusive = true }
                 launchSingleTop = true
             }
         }
@@ -102,7 +102,7 @@ fun LoginScreen(
                     append("Forgot Password?")
                 }
             }) {
-                navController.navigate(Screens.ResetPasswordScreen.path)
+                navController.navigate(Screens.ResetPassword.path)
         }
         Spacer(modifier = Modifier.weight(224f))
         AuthButton(text = "Login", type = AuthButtonType.Filled, onClick = viewModel::login)
@@ -125,8 +125,8 @@ fun LoginScreen(
                     append("Register")
                 }
             }) {
-                navController.navigate(Screens.RegisterScreen.path){
-                    popUpTo(Screens.WelcomeScreen.path){
+                navController.navigate(Screens.Register.path){
+                    popUpTo(Screens.Welcome.path){
                         inclusive=true
                     }
                 }

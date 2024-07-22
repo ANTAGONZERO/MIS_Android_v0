@@ -36,29 +36,29 @@ fun App(navController: NavHostController = rememberNavController(),viewModel:App
     ) {
         Column (modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally) {
-            NavHost(navController = navController, startDestination = Screens.SplashScreen.path,
+            NavHost(navController = navController, startDestination = Screens.Splash.path,
                 enterTransition = { fadeIn(tween(150)) },
                 exitTransition = { fadeOut(tween(150)) }
             ) {
-                composable(Screens.SplashScreen.path) {
+                composable(Screens.Splash.path) {
                     SplashScreen(navController = navController)
                 }
-                composable(Screens.ProtectScreen.path) {
+                composable(Screens.Protect.path) {
                     ProtectedScreens(appViewModel = viewModel)
                 }
-                composable(Screens.LoginScreen.path) {
+                composable(Screens.Login.path) {
                     LoginScreen(navController = navController, appViewModel = viewModel)
                 }
-                composable(Screens.WelcomeScreen.path) {
+                composable(Screens.Welcome.path) {
                     WelcomeScreen(navController = navController)
                 }
-                composable(Screens.RegisterScreen.path) {
+                composable(Screens.Register.path) {
                     RegisterScreen(navController = navController)
                 }
-                composable(Screens.ResetPasswordScreen.path){
+                composable(Screens.ResetPassword.path){
                     ResetPasswordScreen()
                 }
-                composable(Screens.OnBoardScreen.path){
+                composable(Screens.Onboard.path){
                     OnboardScreen(navController = navController)
                 }
             }

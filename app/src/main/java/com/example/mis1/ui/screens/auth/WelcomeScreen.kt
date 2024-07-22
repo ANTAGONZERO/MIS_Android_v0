@@ -60,13 +60,13 @@ fun WelcomeScreen(navController:NavHostController){
                 Spacer(modifier = Modifier.weight(1.5f))
                 Box(modifier = Modifier.fillMaxWidth(0.9f)){
                     AuthButton(type = AuthButtonType.Filled,text = "Register", onClick = {
-                        navController.navigate(Screens.RegisterScreen.path)
+                        navController.navigate(Screens.Register.path)
                     })
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Box(modifier = Modifier.fillMaxWidth(0.9f)){
                     AuthButton(type = AuthButtonType.Surrounded,text = "Login", onClick = {
-                        navController.navigate(Screens.LoginScreen.path)
+                        navController.navigate(Screens.Login.path)
                     })
                 }
                 Spacer(modifier = Modifier.weight(3f))

@@ -183,8 +183,8 @@ private fun PageIndicator(pageNumber: Int, @Suppress("SameParameterValue") pageC
 
 private fun gotoWelcomeScreen(navController: NavController,viewModel: OnboardScreenViewmodel){
     viewModel.setClientOnboarded()
-    navController.navigate(Screens.WelcomeScreen.path){
-        popUpTo(Screens.OnBoardScreen.path){
+    navController.navigate(Screens.Welcome.path){
+        popUpTo(Screens.Onboard.path){
             inclusive  = true
         }
     }

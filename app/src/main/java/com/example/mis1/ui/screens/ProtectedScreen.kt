@@ -59,7 +59,7 @@ fun ProtectedScreens(
                     TrainingScreen()
                 }
                 composable(Screens.Project.path) {
-                    ProjectScreen(appViewModel = appViewModel)
+                    ProjectScreen(appViewModel = appViewModel, navController = navController)
                 }
                 composable(Screens.Record.path) {
                     RecordScreen()
@@ -75,6 +75,9 @@ fun ProtectedScreens(
                             appViewModel = appViewModel
                         )
                     }
+                }
+                composable(Screens.AddProject.path){
+                    AddProjectScreen(appViewModel = appViewModel, navController = navController)
                 }
             }
         }

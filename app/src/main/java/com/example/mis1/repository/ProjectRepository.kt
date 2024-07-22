@@ -6,11 +6,11 @@ import com.example.mis1.data.remote.project.dto.AddProjectRequest
 import kotlinx.coroutines.flow.flow
 
 class ProjectRepository(private val api: ProjectApi) {
-    suspend fun addProject(request: AddProjectRequest) = flow<Resource<Int>> {
+    suspend fun addProject(request: AddProjectRequest) = flow {
         try {
             emit(Resource.Loading())
-            api.addProject(request)
-            emit(Resource.Success(1))
+            val response = api.addProject(request)
+            emit(Resource.Success(response))
         }catch (e:Exception){
             emit(Resource.Error(message = e.message))
         }

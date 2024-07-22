@@ -79,14 +79,16 @@ fun BookMachineScreen(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image1(id = R.drawable.user_add)
                 Spacer(modifier = Modifier.width(14.dp))
-                Text(
-                    modifier = Modifier.padding(vertical = Size120, horizontal = 16.dp),
-                    text = "Anjali jain",
-                    fontSize = 24.sp,
-                    lineHeight = 20.sp,
-                    fontWeight = FontWeight(400),
-                    color = Primary02
-                )
+                appViewModel.user?.let {
+                    Text(
+                        modifier = Modifier.padding(vertical = Size120, horizontal = 16.dp),
+                        text = it.username,
+                        fontSize = 24.sp,
+                        lineHeight = 20.sp,
+                        fontWeight = FontWeight(400),
+                        color = Primary02
+                    )
+                }
             }
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image1(id = R.drawable.calendar)

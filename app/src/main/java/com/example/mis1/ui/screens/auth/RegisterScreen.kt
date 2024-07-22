@@ -64,8 +64,8 @@ fun RegisterScreen(navController: NavController,viewModel: RegisterScreenViewmod
     val user by viewModel.user.collectAsState()
     LaunchedEffect(key1 = viewModel.registerState.value) {
         if(viewModel.registerState.value is Resource.Success){
-            navController.navigate(Screens.LoginScreen.path){
-                popUpTo(Screens.WelcomeScreen.path){
+            navController.navigate(Screens.Login.path){
+                popUpTo(Screens.Welcome.path){
                     inclusive = false
                 }
             }
@@ -152,8 +152,8 @@ fun RegisterScreen(navController: NavController,viewModel: RegisterScreenViewmod
                     append("Login")
                 }
             }) {
-                navController.navigate(Screens.LoginScreen.path){
-                    popUpTo(Screens.WelcomeScreen.path){
+                navController.navigate(Screens.Login.path){
+                    popUpTo(Screens.Welcome.path){
                         inclusive = false
                     }
                 }

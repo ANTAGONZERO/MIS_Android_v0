@@ -46,8 +46,8 @@ fun SplashScreen(viewModel:SplashScreenViewmodel = hiltViewModel(), navControlle
     }
     LaunchedEffect(key1 = viewModel.clientOnBoard.value) {
         if(viewModel.clientOnBoard.value==SplashScreenViewmodel.NOT_ONBOARDED){
-            navController.navigate(Screens.OnBoardScreen.path){
-                popUpTo(Screens.SplashScreen.path){
+            navController.navigate(Screens.Onboard.path){
+                popUpTo(Screens.Splash.path){
                     inclusive  = true
                 }
             }
@@ -55,15 +55,15 @@ fun SplashScreen(viewModel:SplashScreenViewmodel = hiltViewModel(), navControlle
     }
     LaunchedEffect(key1 = viewModel.authState.value) {
         if(viewModel.authState.value == SplashScreenViewmodel.AUTHENTICATED){
-            navController.navigate(Screens.ProtectScreen.path){
-                popUpTo(Screens.SplashScreen.path){
+            navController.navigate(Screens.Protect.path){
+                popUpTo(Screens.Splash.path){
                     inclusive  = true
                 }
             }
         }
         if(viewModel.authState.value == SplashScreenViewmodel.NOT_AUTHENTICATED){
-            navController.navigate(Screens.WelcomeScreen.path){
-                popUpTo(Screens.SplashScreen.path){
+            navController.navigate(Screens.Welcome.path){
+                popUpTo(Screens.Splash.path){
                     inclusive  = true
                 }
             }

@@ -21,7 +21,7 @@ class ProjectListViewmodel @Inject constructor(private val projectRepository: Pr
     var myProjects by mutableStateOf<List<Project>>(emptyList())
         private set
 
-    var userId by mutableStateOf<Int?>(null)
+    private var userId by mutableStateOf<Int?>(null)
 
     init {
         fetchProjects()
