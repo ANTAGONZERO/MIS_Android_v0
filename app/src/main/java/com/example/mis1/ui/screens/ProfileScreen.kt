@@ -22,11 +22,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mis1.ui.composables.button.EditButton
 import com.example.mis1.ui.composables.Property
+import com.example.mis1.ui.composables.button.EditButton
 import com.example.mis1.ui.composables.enums.PropertyType
 import com.example.mis1.ui.theme.Accent00
 import com.example.mis1.ui.theme.Primary04
@@ -38,11 +37,14 @@ import com.example.mis1.ui.theme.SPrimarySource
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.ui.theme.Size80
 import com.example.mis1.ui.theme.SizeNone
+import com.example.mis1.viewmodels.AppViewmodel
 
-@Preview(backgroundColor = 0xFFFFFFFF, showBackground = true, widthDp = 312)
 @Composable
-fun ProfileScreen() {
-    Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())){
+fun ProfileScreen(appViewModel: AppViewmodel) {
+    val user = appViewModel.user!!
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .verticalScroll(rememberScrollState())){
         Spacer(modifier = Modifier.height(Size120))
         Column(
             modifier = Modifier
@@ -71,14 +73,14 @@ fun ProfileScreen() {
                     modifier = Modifier
                         .size(64.dp)
                         .border(width = 1.2.dp, color = SAccentSource, shape = RoundedRectangleS)
-                        .background(Color.Blue,shape = RoundedRectangleS)
+                        .background(Color.Blue, shape = RoundedRectangleS)
                 )
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(
                     modifier = Modifier.weight(1f)
                 ) {
                     Text(
-                        text = "Ron Wisely",
+                        text = user.username,
                         fontSize = 16.sp,
                         lineHeight = 18.sp,
                         fontWeight = FontWeight(500),
@@ -86,7 +88,7 @@ fun ProfileScreen() {
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Student",
+                        text = if (user.isStudent) "Student" else "Admin",
                         fontSize = 12.sp,
                         lineHeight = 18.sp,
                         fontWeight = FontWeight(400),
@@ -113,30 +115,34 @@ fun ProfileScreen() {
                 Spacer(modifier = Modifier.weight(1f))
                 EditButton()
             }
-            Spacer(modifier = Modifier.height(Size120))
-            Property(
-                name = "First Name",
-                value = "Ron",
-                type = PropertyType.VerticalMedium
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Property(
-                name = "Last Name",
-                value = "Wisely",
-                type = PropertyType.VerticalMedium
-            )
+            user.name?.let {
+                Spacer(modifier = Modifier.height(Size120))
+                Property(
+                    name = "Name",
+                    value = it,
+                    type = PropertyType.VerticalMedium
+                )
+            }
+//            Spacer(modifier = Modifier.height(8.dp))
+//            Property(
+//                name = "Last Name",
+//                value = "Wisely",
+//                type = PropertyType.VerticalMedium
+//            )
             Spacer(modifier = Modifier.height(8.dp))
             Property(
                 name = "Email Address",
-                value = "ron.wisely@iit.gmail.com",
+                value = user.email,
                 type = PropertyType.VerticalMedium
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            Property(
-                name = "Phone no.",
-                value = "02548617500",
-                type = PropertyType.VerticalMedium
-            )
+            user.phoneNumber?.let {
+                Spacer(modifier = Modifier.height(8.dp))
+                Property(
+                    name = "Phone no.",
+                    value = it,
+                    type = PropertyType.VerticalMedium
+                )
+            }
             Spacer(modifier = Modifier.height(8.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -176,34 +182,43 @@ fun ProfileScreen() {
                 Spacer(modifier = Modifier.weight(1f))
                 EditButton()
             }
-            Spacer(modifier = Modifier.height(Size120))
-            Property(
-                name = "Branch",
-                value = "Mechanical",
-                type = PropertyType.VerticalMedium
-            )
+            user.department?.let {
+                Spacer(modifier = Modifier.height(8.dp))
+                Property(
+                    name = "Branch",
+                    value = it,
+                    type = PropertyType.VerticalMedium
+                )
+            }
+
+            user.graduationYear?.let {
+                Spacer(modifier = Modifier.height(8.dp))
+                Property(
+                    name = "Graduation Year",
+                    value = it,
+                    type = PropertyType.VerticalMedium
+                )
+            }
+            user.currentYear?.let {
+                Spacer(modifier = Modifier.height(8.dp))
+                Property(
+                    name = "Current Year",
+                    value = it,
+                    type = PropertyType.VerticalMedium
+                )
+            }
+            user.degree?.let {
+                Spacer(modifier = Modifier.height(8.dp))
+                Property(
+                    name = "Degree",
+                    value = it,
+                    type = PropertyType.VerticalMedium
+                )
+            }
             Spacer(modifier = Modifier.height(8.dp))
             Property(
-                name = "Graduation Year",
-                value = "2021-2024",
-                type = PropertyType.VerticalMedium
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Property(
-                name = "Graduation Year",
-                value = "2021-2024",
-                type = PropertyType.VerticalMedium
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Property(
-                name = "Graduation Year",
-                value = "2021-2024",
-                type = PropertyType.VerticalMedium
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Property(
-                name = "Graduation Year",
-                value = "2021-2024",
+                name = "Hostel Address",
+                value = user.hostelAddress,
                 type = PropertyType.VerticalMedium
             )
         }

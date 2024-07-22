@@ -50,7 +50,7 @@ fun ProtectedScreens(
                     SettingScreen()
                 }
                 composable(Screens.Profile.path) {
-                    ProfileScreen()
+                    ProfileScreen(appViewModel = appViewModel)
                 }
                 composable(Screens.Inventory.path) {
                     InventoryScreen(navController = navController)
