@@ -76,13 +76,13 @@ fun BookMachineScreen(
                 .weight(1f),
             verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
+            Row (verticalAlignment = Alignment.CenterVertically){
                 Image1(id = R.drawable.user_add)
                 Spacer(modifier = Modifier.width(14.dp))
-                appViewModel.user?.let {
+                if(appViewModel.user !=null){
                     Text(
                         modifier = Modifier.padding(vertical = Size120, horizontal = 16.dp),
-                        text = it.username,
+                        text = appViewModel.user!!.username,
                         fontSize = 24.sp,
                         lineHeight = 20.sp,
                         fontWeight = FontWeight(400),
@@ -160,7 +160,7 @@ fun BookMachineScreen(
                 }
             }
             Row {
-                Image1(id = R.drawable.note_text_plus_line)
+                Image2(id = R.drawable.note_text_plus_line)
                 Spacer(modifier = Modifier.width(14.dp))
                 BorderBox {
                     if (viewModel.projectDetails.value.isEmpty()) {
@@ -199,6 +199,17 @@ fun BookMachineScreen(
 
 @Composable
 private fun Image1(id: Int) {
+    Image(
+        modifier = Modifier
+            .width(24.dp)
+            .height(Size120 + 24.dp),
+        painter = painterResource(id = id),
+        contentDescription = "icon"
+    )
+}
+
+@Composable
+private fun Image2(id: Int) {
     Image(
         modifier = Modifier
             .width(24.dp)

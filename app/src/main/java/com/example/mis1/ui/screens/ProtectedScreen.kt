@@ -1,5 +1,8 @@
 package com.example.mis1.ui.screens
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -35,7 +38,9 @@ fun ProtectedScreens(
         ) {
             NavHost(
                 navController = navController,
-                startDestination = Screens.Menu.path
+                startDestination = Screens.Menu.path,
+                enterTransition = { fadeIn(tween(150)) },
+                exitTransition = { fadeOut(tween(150)) }
             ) {
                 composable(Screens.Menu.path) {
                     MenuScreen(navController = navController)

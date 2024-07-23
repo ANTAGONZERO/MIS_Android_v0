@@ -1,6 +1,7 @@
 package com.example.mis1.viewmodels
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -29,7 +30,7 @@ class AddProjectViewmodel @Inject constructor(
     val projectTitle = mutableStateOf("")
     val projectDescription = mutableStateOf("")
 
-    val teammates =  mutableListOf<User>()
+    val teammates =  mutableStateListOf<User>()
     var teammatesSuggestions by  mutableStateOf<List<User>>(emptyList())
         private set
 
@@ -80,6 +81,10 @@ class AddProjectViewmodel @Inject constructor(
         if(teammateSearch.value.isNotEmpty()){
             fetchSuggestions()
         }
+    }
+
+    fun deleteTeammate(){
+        teammates.removeLastOrNull()
     }
 
     private fun fetchSuggestions() {

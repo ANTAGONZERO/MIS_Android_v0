@@ -4,8 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
@@ -29,6 +28,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -74,10 +78,9 @@ fun AddProjectScreen(
             modifier = Modifier
                 .weight(1f)
                 .padding(8.dp)
-                .scrollable(rememberScrollState(), Orientation.Vertical),
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(24.dp),
-
-            ) {
+        ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image1(id = R.drawable.user_add)
                 Spacer(modifier = Modifier.width(16.dp))
@@ -160,7 +163,14 @@ fun AddProjectScreen(
                             }
                         }
                         TextField1(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth().onKeyEvent {
+                                if (it.type == KeyEventType.KeyUp && it.key==Key.Backspace) {
+                                    if (viewModel.teammateSearch.value == "") {
+                                        viewModel.deleteTeammate()
+                                    }
+                                }
+                                true
+                            },
                             value = viewModel.teammateSearch.value,
                             onValueChanged = viewModel::updateTeammateSearch,
                             hint = "Add Teammates"
