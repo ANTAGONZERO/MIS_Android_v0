@@ -95,16 +95,16 @@ fun BookMachineScreen(
                 Spacer(modifier = Modifier.width(14.dp))
                 EditDateField(date = viewModel.date.value, onDateChange = viewModel::updateDate)
             }
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Image1(id = R.drawable.time)
-                Spacer(modifier = Modifier.width(14.dp))
-                BorderBox {
-                    HourInputField(
-                        hours = viewModel.hours.value,
-                        onValueChange = viewModel::updateHours,
-                    )
-                }
-            }
+//            Row(verticalAlignment = Alignment.CenterVertically) {
+//                Image1(id = R.drawable.time)
+//                Spacer(modifier = Modifier.width(14.dp))
+//                BorderBox {
+//                    HourInputField(
+//                        hours = viewModel.hours.value,
+//                        onValueChange = viewModel::updateHours,
+//                    )
+//                }
+//            }
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image1(id = R.drawable.time)
                 Spacer(modifier = Modifier.width(14.dp))

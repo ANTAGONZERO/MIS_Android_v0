@@ -9,5 +9,8 @@ data class AddProjectRequest(
     val progressStatus: Int,
     val student: Int,
     val title: String,
-    val type: Int
+    val type: Int,
+    val links:String,
+//    val documents:List<String>,
+    val teammates:List<Int>
 )

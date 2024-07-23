@@ -4,16 +4,22 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -28,14 +34,17 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.PopupProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.mis1.R
 import com.example.mis1.common.ProjectProgressStatus
 import com.example.mis1.common.ProjectType
 import com.example.mis1.common.Resource
+import com.example.mis1.ui.composables.Tag
 import com.example.mis1.ui.composables.button.AddButton
 import com.example.mis1.ui.composables.button.CancelButton
+import com.example.mis1.ui.composables.enums.TagType
 import com.example.mis1.ui.theme.Primary02
 import com.example.mis1.ui.theme.Primary03
 import com.example.mis1.ui.theme.Primary09
@@ -45,10 +54,15 @@ import com.example.mis1.viewmodels.AddProjectViewmodel
 import com.example.mis1.viewmodels.AppViewmodel
 
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun AddProjectScreen(viewModel: AddProjectViewmodel = hiltViewModel(), appViewModel: AppViewmodel , navController: NavController) {
+fun AddProjectScreen(
+    viewModel: AddProjectViewmodel = hiltViewModel(),
+    appViewModel: AppViewmodel,
+    navController: NavController
+) {
     LaunchedEffect(key1 = viewModel.addStatus) {
-        if(viewModel.addStatus is Resource.Success){
+        if (viewModel.addStatus is Resource.Success) {
             navController.popBackStack()
         }
     }
@@ -59,9 +73,11 @@ fun AddProjectScreen(viewModel: AddProjectViewmodel = hiltViewModel(), appViewMo
         Column(
             modifier = Modifier
                 .weight(1f)
-                .padding(8.dp),
-            verticalArrangement = Arrangement.spacedBy(24.dp)
-        ) {
+                .padding(8.dp)
+                .scrollable(rememberScrollState(), Orientation.Vertical),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
+
+            ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image1(id = R.drawable.user_add)
                 Spacer(modifier = Modifier.width(16.dp))
@@ -77,31 +93,18 @@ fun AddProjectScreen(viewModel: AddProjectViewmodel = hiltViewModel(), appViewMo
                 }
             }
 
-//            Row(verticalAlignment = Alignment.CenterVertically) {
-//                Image1(id = R.drawable.user_identifier_card)
-//                Spacer(modifier = Modifier.width(16.dp))
-//                Container {
-//                    TextField1(
-//                        value = viewModel.studentID.value,
-//                        onValueChanged = viewModel::setStudentID,
-//                        hint = "Student Id"
-//                    )
-//                }
-//            }
-
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image1(id = R.drawable.file_plus_line)
                 Spacer(modifier = Modifier.width(16.dp))
-                Container {
+                Container(modifier = Modifier.clickable(onClick = { viewModel.showProjectTypeDD() })) {
                     Text1(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable(onClick = { viewModel.showProjectTypeDD() }),
+                            .fillMaxWidth(),
                         text = if (viewModel.typeOfProject.value == null) "Type of project"
                         else viewModel.typeOfProject.value!!.displayName
                     )
                 }
-                Box{
+                Box {
                     DropdownMenu(
                         expanded = viewModel.isProjectTypeDDVisible,
                         onDismissRequest = viewModel::hideProjectTypeDD
@@ -109,9 +112,11 @@ fun AddProjectScreen(viewModel: AddProjectViewmodel = hiltViewModel(), appViewMo
                         ProjectType.entries.forEach { projectType ->
                             DropdownMenuItem(
                                 text = { Text1(text = projectType.displayName) },
-                                onClick = { viewModel.setTypeOfProject(projectType)
+                                onClick = {
+                                    viewModel.setTypeOfProject(projectType)
                                     viewModel.hideProjectTypeDD()
-                                })
+                                }
+                            )
                         }
                     }
                 }
@@ -120,16 +125,15 @@ fun AddProjectScreen(viewModel: AddProjectViewmodel = hiltViewModel(), appViewMo
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image1(id = R.drawable.progress)
                 Spacer(modifier = Modifier.width(16.dp))
-                Container {
+                Container(modifier = Modifier.clickable(onClick = { viewModel.showProgressStatusDD() })) {
                     Text1(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable(onClick = { viewModel.showProgressStatusDD() }),
+                            .fillMaxWidth(),
                         text = if (viewModel.projectProgressStatus.value == null) "Project progress status"
                         else viewModel.projectProgressStatus.value!!.displayName
                     )
                 }
-                Box{
+                Box {
                     DropdownMenu(
                         expanded = viewModel.isProgressStatusDDVisible,
                         onDismissRequest = viewModel::hideProgressStatusDD
@@ -137,34 +141,59 @@ fun AddProjectScreen(viewModel: AddProjectViewmodel = hiltViewModel(), appViewMo
                         ProjectProgressStatus.entries.forEach { progressStatus ->
                             DropdownMenuItem(
                                 text = { Text1(text = progressStatus.displayName) },
-                                onClick = { viewModel.setProjectProgressStatus(progressStatus)
+                                onClick = {
+                                    viewModel.setProjectProgressStatus(progressStatus)
                                     viewModel.hideProgressStatusDD()
                                 })
                         }
                     }
                 }
             }
-//            Row(verticalAlignment = Alignment.CenterVertically) {
-//                Image1(id = R.drawable.group_add_light)
-//                Spacer(modifier = Modifier.width(16.dp))
-//                Container {
-//                    TextField1(
-//                        value = viewModel.teammates.value,
-//                        onValueChanged = viewModel::setTeammates, hint = "Add Teammates"
-//                    )
-//                }
-//            }
-//            Row(verticalAlignment = Alignment.CenterVertically) {
-//                Image1(id = R.drawable.link)
-//                Spacer(modifier = Modifier.width(16.dp))
-//                Container {
-//                    TextField1(
-//                        value = viewModel.linksOrDocuments.value,
-//                        onValueChanged = viewModel::setLinksOrDocuments,
-//                        hint = "Add links/documents"
-//                    )
-//                }
-//            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image1(id = R.drawable.group_add_light)
+                Spacer(modifier = Modifier.width(16.dp))
+                Container {
+                    FlowRow {
+                        viewModel.teammates.forEach {
+                            Box(modifier = Modifier.padding(end = 4.dp, bottom = 4.dp)) {
+                                Tag(type = TagType.Small, text = it.username)
+                            }
+                        }
+                        TextField1(
+                            modifier = Modifier.fillMaxWidth(),
+                            value = viewModel.teammateSearch.value,
+                            onValueChanged = viewModel::updateTeammateSearch,
+                            hint = "Add Teammates"
+                        )
+                    }
+                    DropdownMenu(
+                        properties = PopupProperties(focusable = false),
+                        scrollState = rememberScrollState(),
+                        modifier = Modifier.heightIn(max = 200.dp),
+                        expanded = viewModel.isSuggestionVisible,
+                        onDismissRequest = { viewModel.hideSuggestions() }) {
+                        viewModel.teammatesSuggestions.forEach {
+                            DropdownMenuItem(text = { Text1(text = it.username) }, onClick = {
+                                viewModel.addTeammate(it)
+                                viewModel.hideSuggestions()
+                                viewModel.updateTeammateSearch("")
+                            })
+                        }
+                    }
+                }
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image1(id = R.drawable.link)
+                Spacer(modifier = Modifier.width(16.dp))
+                Container {
+                    TextField1(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = viewModel.links.value,
+                        onValueChanged = viewModel::updateLinks,
+                        hint = "Add links/documents"
+                    )
+                }
+            }
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image1(id = R.drawable.edit)
                 Spacer(modifier = Modifier.width(16.dp))
@@ -172,7 +201,7 @@ fun AddProjectScreen(viewModel: AddProjectViewmodel = hiltViewModel(), appViewMo
                     TextField1(
                         modifier = Modifier.fillMaxWidth(),
                         value = viewModel.projectTitle.value,
-                        onValueChanged = viewModel::setProjectTitle,
+                        onValueChanged = viewModel::updateProjectTitle,
                         hint = "Add project title"
                     )
                 }
@@ -188,7 +217,7 @@ fun AddProjectScreen(viewModel: AddProjectViewmodel = hiltViewModel(), appViewMo
                             .height(68.dp)
                             .fillMaxWidth(),
                         value = viewModel.projectDescription.value,
-                        onValueChanged = viewModel::setProjectDescription,
+                        onValueChanged = viewModel::updateProjectDescription,
                         hint = "Add project description"
                     )
                 }
@@ -199,12 +228,6 @@ fun AddProjectScreen(viewModel: AddProjectViewmodel = hiltViewModel(), appViewMo
                 Box(modifier = Modifier.weight(1f)) {
                     CancelButton(onClick = {
                         navController.popBackStack()
-//                        navController.navigate(Screens.AddProject.path){
-//                            popUpTo(Screens.AddProject.path){
-//                                inclusive = false
-//                            }
-//                            launchSingleTop = true
-//                        }
                     })
                 }
                 Spacer(modifier = Modifier.width(16.dp))
@@ -220,9 +243,9 @@ fun AddProjectScreen(viewModel: AddProjectViewmodel = hiltViewModel(), appViewMo
 }
 
 @Composable
-private fun Container(content: @Composable () -> Unit) {
+private fun Container(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .border(width = 1.dp, color = Primary09, shape = RoundedRectangleS)
             .background(color = Color(0xFFF8F8F8), shape = RoundedRectangleS)

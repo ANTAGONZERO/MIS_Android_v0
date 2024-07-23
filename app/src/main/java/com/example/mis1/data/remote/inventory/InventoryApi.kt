@@ -6,7 +6,9 @@ import com.example.mis1.data.remote.inventory.dto.InventoryGroup
 import com.example.mis1.data.remote.inventory.dto.Inventory
 import com.example.mis1.data.remote.inventory.dto.InventoryLocation
 import com.example.mis1.data.remote.inventory.dto.InventoryPurchase
+import com.example.mis1.data.remote.inventory.dto.IssueInventoryRequest
 import com.example.mis1.data.remote.inventory.dto.IssuedInventory
+import com.example.mis1.data.remote.inventory.dto.PurchaseInventoryRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -45,4 +47,10 @@ interface InventoryApi {
 
     @GET("inventory_purchase_list/")
     suspend fun purchasedInventoryList():List<InventoryPurchase>
+
+    @POST("inventory_issue_list/")
+    suspend fun issueInventory(@Body request: IssueInventoryRequest):IssuedInventory
+
+    @POST("inventory_purchase_list/")
+    suspend fun purchaseInventory(@Body request: PurchaseInventoryRequest):InventoryPurchase
 }

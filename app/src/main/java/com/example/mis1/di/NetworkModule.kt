@@ -8,11 +8,14 @@ import com.example.mis1.data.remote.equipment.EquipmentApi
 import com.example.mis1.data.remote.inventory.InventoryApi
 import com.example.mis1.data.remote.machine.MachineApi
 import com.example.mis1.data.remote.project.ProjectApi
+import com.example.mis1.data.remote.training.TrainingApi
 import com.example.mis1.data.remote.user.UserApi
+import com.example.mis1.repository.ApiCallRepository
 import com.example.mis1.repository.EquipmentRepository
 import com.example.mis1.repository.InventoryRepository
 import com.example.mis1.repository.MachineRepository
 import com.example.mis1.repository.ProjectRepository
+import com.example.mis1.repository.TrainingRepository
 import com.example.mis1.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -111,9 +114,10 @@ class NetworkModule{
     @Singleton
     fun provideInventoryRepository(
         retrofit: Retrofit,
+        apiCallRepository: ApiCallRepository
     ): InventoryRepository {
         val api  = retrofit.create(InventoryApi::class.java)
-        return InventoryRepository(api)
+        return InventoryRepository(api = api,apiCallRepository = apiCallRepository)
     }
 
     @Provides
@@ -141,5 +145,23 @@ class NetworkModule{
     ):ProjectRepository {
         val api  = retrofit.create(ProjectApi::class.java)
         return ProjectRepository(api)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTrainingRepository(
+        retrofit: Retrofit,
+        apiCallRepository: ApiCallRepository
+    ):TrainingRepository {
+        val api  = retrofit.create(TrainingApi::class.java)
+        return TrainingRepository(api = api,apiCallRepository = apiCallRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiCallRepository(
+        tokenRepository: TokenRepository,
+    ):ApiCallRepository {
+        return ApiCallRepository(tokenRepository = tokenRepository)
     }
 }

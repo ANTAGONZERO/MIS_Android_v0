@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import com.example.mis1.common.Constants
 import com.example.mis1.repository.OnboardingRepository
 import com.example.mis1.repository.SettingsRepository
-import com.example.mis1.repository.StorageRepository
+import com.example.mis1.repository.LocalUserRepository
 import com.example.mis1.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
@@ -39,7 +39,7 @@ class StorageModule {
     }
     @Provides
     @Singleton
-    fun providesStorageRepository(sharedPreferences: SharedPreferences):StorageRepository{
-        return StorageRepository(sharedPreferences)
+    fun providesLocalUserRepository(sharedPreferences: SharedPreferences):LocalUserRepository{
+        return LocalUserRepository(sharedPreferences)
     }
 }

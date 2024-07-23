@@ -5,7 +5,7 @@ import androidx.core.content.edit
 import com.example.mis1.data.remote.user.dto.User
 import com.google.gson.Gson
 
-class StorageRepository(private val sharedPreferences: SharedPreferences) {
+class LocalUserRepository(private val sharedPreferences: SharedPreferences) {
     val gson  = Gson()
     var user: User?
         get(){

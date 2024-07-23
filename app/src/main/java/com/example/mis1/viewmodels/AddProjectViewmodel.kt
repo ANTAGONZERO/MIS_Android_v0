@@ -10,28 +10,36 @@ import com.example.mis1.common.ProjectType
 import com.example.mis1.common.Resource
 import com.example.mis1.data.remote.project.dto.AddProjectRequest
 import com.example.mis1.data.remote.project.dto.Project
+import com.example.mis1.data.remote.user.dto.User
 import com.example.mis1.repository.ProjectRepository
+import com.example.mis1.repository.TrainingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AddProjectViewmodel @Inject constructor(
-    private val projectRepository: ProjectRepository
+    private val projectRepository: ProjectRepository,
+    private val trainingRepository: TrainingRepository
 ) : ViewModel() {
-    val studentID = mutableStateOf("")
     val typeOfProject = mutableStateOf<ProjectType?>(null)
     val projectProgressStatus = mutableStateOf<ProjectProgressStatus?>(null)
-    val teammates = mutableStateOf("")
-    val linksOrDocuments = mutableStateOf("")
+    val teammateSearch = mutableStateOf("")
+    val links = mutableStateOf("")
     val projectTitle = mutableStateOf("")
     val projectDescription = mutableStateOf("")
+
+    val teammates =  mutableListOf<User>()
+    var teammatesSuggestions by  mutableStateOf<List<User>>(emptyList())
+        private set
 
     var isProjectTypeDDVisible by mutableStateOf(false)
         private set
     var isProgressStatusDDVisible by mutableStateOf(false)
         private set
     var addStatus by mutableStateOf<Resource<Project>>(Resource.Error(""))
+        private set
+    var isSuggestionVisible by mutableStateOf(false)
         private set
 
     fun showProjectTypeDD() {
@@ -49,9 +57,14 @@ class AddProjectViewmodel @Inject constructor(
     fun hideProgressStatusDD() {
         isProgressStatusDDVisible = false
     }
-
-    fun setStudentID(value: String) {
-        studentID.value = value
+    private fun showSuggestions(){
+        isSuggestionVisible = true
+    }
+    fun hideSuggestions() {
+        isSuggestionVisible = false
+    }
+    fun addTeammate(user: User){
+        teammates.add(user)
     }
 
     fun setTypeOfProject(value: ProjectType) {
@@ -62,19 +75,34 @@ class AddProjectViewmodel @Inject constructor(
         projectProgressStatus.value = value
     }
 
-    fun setTeammates(value: String) {
-        teammates.value = value
+    fun updateTeammateSearch(value: String) {
+        teammateSearch.value = value
+        if(teammateSearch.value.isNotEmpty()){
+            fetchSuggestions()
+        }
     }
 
-    fun setLinksOrDocuments(value: String) {
-        linksOrDocuments.value = value
+    private fun fetchSuggestions() {
+        viewModelScope.launch {
+            trainingRepository.searchUser(query = teammateSearch.value).collect{
+                it.data?.let { users ->
+                    teammatesSuggestions = users
+                    if (users.isNotEmpty())
+                        showSuggestions()
+                }
+            }
+        }
     }
 
-    fun setProjectTitle(value: String) {
+    fun updateLinks(value: String) {
+        links.value = value
+    }
+
+    fun updateProjectTitle(value: String) {
         projectTitle.value = value
     }
 
-    fun setProjectDescription(value: String) {
+    fun updateProjectDescription(value: String) {
         projectDescription.value = value
     }
 
@@ -88,7 +116,10 @@ class AddProjectViewmodel @Inject constructor(
                     progressStatus = projectProgressStatus.value!!.id.toInt(),
                     title = projectTitle.value,
                     description = projectDescription.value,
-                    student = student
+                    student = student,
+                    links = links.value,
+//                    documents = emptyList(),
+                    teammates = teammates.map { user -> user.id }
                 )
             ).collect {
                 addStatus = it

@@ -1,4 +1,4 @@
-package com.example.mis1.ui.composables
+package com.example.mis1.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mis1.R
+import com.example.mis1.ui.composables.BorderBox
 import com.example.mis1.ui.composables.button.AddButton
 import com.example.mis1.ui.composables.button.CancelButton
 import com.example.mis1.ui.composables.edit_field.EditDateField
@@ -34,7 +35,7 @@ import com.example.mis1.viewmodels.PurchaseInventoryViewmodel
 
 @Preview(widthDp = 312, showBackground = true)
 @Composable
-fun PurchaseInventory(viewModel: PurchaseInventoryViewmodel = hiltViewModel()) {
+fun GetInventoryScreen(viewModel: PurchaseInventoryViewmodel = hiltViewModel()) {
     Column (
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween) {

@@ -8,13 +8,16 @@ import com.example.mis1.data.remote.inventory.dto.InventoryCategory
 import com.example.mis1.data.remote.inventory.dto.InventoryGroup
 import com.example.mis1.data.remote.inventory.dto.InventoryLocation
 import com.example.mis1.data.remote.inventory.dto.InventoryPurchase
+import com.example.mis1.data.remote.inventory.dto.IssueInventoryRequest
 import com.example.mis1.data.remote.inventory.dto.IssuedInventory
+import com.example.mis1.data.remote.inventory.dto.PurchaseInventoryRequest
 import com.example.mis1.data.remote.inventory.dto.ResolvedInventoryPurchase
 import com.example.mis1.data.remote.inventory.dto.ResolvedIssuedInventory
 import kotlinx.coroutines.flow.flow
 
-class InventoryRepository (
-    private val api: InventoryApi
+class InventoryRepository(
+    private val api: InventoryApi,
+    private val apiCallRepository: ApiCallRepository
 ) {
 
     fun addInventory(addInventoryRequest: AddInventoryRequest) = flow<Resource<Inventory>> {
@@ -107,29 +110,29 @@ class InventoryRepository (
         }
     }
 
-    fun issuedInventoryList() = flow<Resource<List<ResolvedIssuedInventory>>>{
+    fun issuedInventoryList() = flow<Resource<List<ResolvedIssuedInventory>>> {
         try {
             emit(Resource.Loading(null))
-            val response =  api.issuedInventoryList()
+            val response = api.issuedInventoryList()
             val result = response.map { resolveIssuedInventory(it) }
             emit(Resource.Success(result))
-        }catch (_:Exception){
+        } catch (_: Exception) {
             emit(Resource.Error(message = "Failed to fetch issued inventory list"))
         }
     }
 
-    fun purchasedInventoryList() = flow<Resource<List<ResolvedInventoryPurchase>>>{
+    fun purchasedInventoryList() = flow<Resource<List<ResolvedInventoryPurchase>>> {
         try {
             emit(Resource.Loading(null))
-            val response =  api.purchasedInventoryList()
+            val response = api.purchasedInventoryList()
             val result = response.map { resolveInventoryPurchase(it) }
             emit(Resource.Success(result))
-        }catch (_:Exception){
+        } catch (_: Exception) {
             emit(Resource.Error(message = "Failed to fetch issued inventory list"))
         }
     }
 
-    private suspend fun resolveIssuedInventory(issuedInventory: IssuedInventory) : ResolvedIssuedInventory{
+    private suspend fun resolveIssuedInventory(issuedInventory: IssuedInventory): ResolvedIssuedInventory {
         val inventory = api.inventoryDetail(id = issuedInventory.inventory)
         return ResolvedIssuedInventory(
             createdAt = issuedInventory.createdAt,
@@ -148,7 +151,7 @@ class InventoryRepository (
         )
     }
 
-    private suspend fun resolveInventoryPurchase(inventoryPurchase: InventoryPurchase) : ResolvedInventoryPurchase {
+    private suspend fun resolveInventoryPurchase(inventoryPurchase: InventoryPurchase): ResolvedInventoryPurchase {
         val inventory = api.inventoryDetail(id = inventoryPurchase.inventory)
         return ResolvedInventoryPurchase(
             createdAt = inventoryPurchase.createdAt,
@@ -166,5 +169,13 @@ class InventoryRepository (
             returned = inventoryPurchase.returned,
             returnedOn = inventoryPurchase.returnedOn
         )
+    }
+
+    fun issueInventory(request: IssueInventoryRequest) = apiCallRepository.protectedApiCall("Couldn't issue inventory"){
+        api.issueInventory(request)
+    }
+
+    fun purchaseInventory(request: PurchaseInventoryRequest) = apiCallRepository.protectedApiCall("Couldn't purchase inventory"){
+        api.purchaseInventory(request)
     }
 }
