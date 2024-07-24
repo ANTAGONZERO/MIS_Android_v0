@@ -21,7 +21,7 @@ interface InventoryApi {
     @GET("admin_inventory_list/")
     suspend fun inventoryList(): List<Inventory>
 
-    @GET("admin_inventory_detail/{id}")
+    @GET("admin_inventory_detail/{id}/")
     suspend fun inventoryDetail(@Path("id") id: Int) : Inventory
 
     @GET("admin_location_list/")

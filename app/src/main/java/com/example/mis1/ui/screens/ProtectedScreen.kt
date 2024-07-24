@@ -16,10 +16,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.mis1.data.remote.inventory.dto.Inventory
 import com.example.mis1.ui.composables.bar.ActionBar
 import com.example.mis1.ui.composables.bar.NavigationBar
 import com.example.mis1.ui.routes.Screens
 import com.example.mis1.viewmodels.AppViewmodel
+import com.google.gson.Gson
+import java.net.URLDecoder
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun ProtectedScreens(
@@ -83,6 +87,16 @@ fun ProtectedScreens(
                 }
                 composable(Screens.AddProject.path){
                     AddProjectScreen(appViewModel = appViewModel, navController = navController)
+                }
+                composable(route = Screens.IssueInventory.path +"/{inventory}",
+                    arguments = listOf(navArgument("inventory") { type = NavType.StringType })
+                ){
+                    it.arguments?.getString("inventory")?.let { encodedJsonString ->
+                        val gson = Gson()
+                        val jsonString = URLDecoder.decode(encodedJsonString, StandardCharsets.UTF_8.toString())
+                        val inventory = gson.fromJson(jsonString,Inventory::class.java)
+                        IssueInventoryScreen(appViewModel = appViewModel, navController = navController, inventory = inventory)
+                    }
                 }
             }
         }

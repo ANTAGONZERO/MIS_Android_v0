@@ -12,5 +12,6 @@ data class IssueInventoryRequest(
     @SerializedName("issued_till")
     val issuedTill: String,
     val pickup: Int,
-    val quantity: Int
+    val quantity: Int,
+    val project: Int
 )

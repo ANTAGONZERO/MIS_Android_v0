@@ -1,10 +1,11 @@
 package com.example.mis1.repository
 
 import com.example.mis1.common.Resource
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class ApiCallRepository(tokenRepository: TokenRepository) {
-    fun <T> protectedApiCall(errorMessage:String, endpoint:suspend ()->T) = flow {
+    fun <T> protectedApiCall(errorMessage:String, endpoint:suspend ()->T):Flow<Resource<T>> = flow {
         try {
             emit(Resource.Loading(null))
             val response = endpoint()

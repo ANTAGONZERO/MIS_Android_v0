@@ -77,7 +77,7 @@ val sampleInventory = Inventory(
 @OptIn(ExperimentalLayoutApi::class)
 @Preview(widthDp = 312)
 @Composable
-fun InventoryItem(inventory: Inventory = sampleInventory,onShow :()->Unit ={}) {
+fun InventoryItem(inventory: Inventory = sampleInventory,onShow :()->Unit ={},onClickGet:()->Unit={}) {
 
     Column(
         modifier = Modifier
@@ -167,6 +167,7 @@ fun InventoryItem(inventory: Inventory = sampleInventory,onShow :()->Unit ={}) {
             Column(
                 modifier = Modifier
                     .background(color = PageBgColor, shape = RoundedRectangleS)
+                    .clickable { onClickGet() }
                     .border(width = SizeNone, color = SAccentSource, shape = RoundedRectangleS)
                     .height(38.dp)
                     .width(137.dp)

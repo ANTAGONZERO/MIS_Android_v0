@@ -35,7 +35,10 @@ import com.example.mis1.ui.routes.Screens
 import com.example.mis1.ui.theme.RoundedTopRectangleXXL
 import com.example.mis1.ui.theme.White
 import com.example.mis1.viewmodels.InventoryScreenViewmodel
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -98,7 +101,14 @@ fun InventoryScreen(
                     itemsIndexed(viewModel.filteredInventoryList) { index, inventory ->
                         InventoryItem(
                             inventory = inventory,
-                            onShow = { viewModel.showDetail(index) })
+                            onShow = { viewModel.showDetail(index) },
+                            onClickGet = {
+                                val gson = Gson()
+                                val jsonString  = gson.toJson(inventory)
+                                val encodedJsonString = URLEncoder.encode(jsonString, StandardCharsets.UTF_8.toString())
+                                navController.navigate(Screens.IssueInventory.path+"/$encodedJsonString")
+                            }
+                        )
                         Spacer(modifier = Modifier.height(8.dp))
                     }
                 }
