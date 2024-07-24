@@ -76,7 +76,7 @@ fun InventoryDetail(inventory:Inventory = sampleInventory , onHide : ()->Unit = 
             Row {
                 Property(type= PropertyType.HorizontalMedium,name = "Tag",value = "")
                 FlowRow {
-                    if (inventory.tag1 != null) {
+                    if (!inventory.tag1.isNullOrBlank()) {
                         Column {
                             Row {
                                 Tag(
@@ -89,7 +89,7 @@ fun InventoryDetail(inventory:Inventory = sampleInventory , onHide : ()->Unit = 
                             Spacer(modifier = Modifier.height(Size80))
                         }
                     }
-                    if (inventory.tag2 != null) {
+                    if (!inventory.tag2.isNullOrBlank()) {
                         Column {
                             Row {
                                 Tag(
@@ -102,7 +102,7 @@ fun InventoryDetail(inventory:Inventory = sampleInventory , onHide : ()->Unit = 
                             Spacer(modifier = Modifier.height(Size80))
                         }
                     }
-                    if (inventory.tag3 != null) {
+                    if (!inventory.tag3.isNullOrBlank()) {
                         Column {
                             Row {
                                 Tag(text = inventory.tag3, color = Accent00, backgroundColor = Accent08)
@@ -111,7 +111,7 @@ fun InventoryDetail(inventory:Inventory = sampleInventory , onHide : ()->Unit = 
                             Spacer(modifier = Modifier.height(Size80))
                         }
                     }
-                    if (inventory.tag4 != null) {
+                    if (!inventory.tag4.isNullOrBlank()) {
                         Column {
                             Tag(
                                 text = inventory.tag4,

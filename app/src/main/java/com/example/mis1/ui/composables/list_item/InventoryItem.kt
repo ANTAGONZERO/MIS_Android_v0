@@ -112,7 +112,7 @@ fun InventoryItem(inventory: Inventory = sampleInventory,onShow :()->Unit ={},on
             maxItemsInEachRow = 2,
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            if (inventory.tag1 != null) {
+            if (!inventory.tag1.isNullOrBlank()) {
                 Column {
                     Row {
                         Tag(
@@ -125,7 +125,7 @@ fun InventoryItem(inventory: Inventory = sampleInventory,onShow :()->Unit ={},on
                     Spacer(modifier = Modifier.height(8.dp))
                 }
             }
-            if (inventory.tag2 != null) {
+            if (!inventory.tag2.isNullOrBlank()) {
                 Column {
                     Row {
                         Tag(
@@ -138,7 +138,7 @@ fun InventoryItem(inventory: Inventory = sampleInventory,onShow :()->Unit ={},on
                     Spacer(modifier = Modifier.height(8.dp))
                 }
             }
-            if (inventory.tag3 != null) {
+            if (!inventory.tag3.isNullOrBlank()) {
                 Column {
                     Row {
                         Tag(text = inventory.tag3, color = Accent00, backgroundColor = Accent08)
@@ -147,7 +147,7 @@ fun InventoryItem(inventory: Inventory = sampleInventory,onShow :()->Unit ={},on
                     Spacer(modifier = Modifier.height(8.dp))
                 }
             }
-            if (inventory.tag4 != null) {
+            if (!inventory.tag4.isNullOrBlank()) {
                 Column {
                     Tag(
                         text = inventory.tag4,
@@ -186,7 +186,6 @@ fun InventoryItem(inventory: Inventory = sampleInventory,onShow :()->Unit ={},on
             Row {
                 Column(
                     modifier = Modifier
-                        .background(color = PageBgColor, shape = RoundedRectangleS)
                         .width(Size480)
                         .height(Size400)
                         .padding(horizontal = Size120, vertical = Size80),
