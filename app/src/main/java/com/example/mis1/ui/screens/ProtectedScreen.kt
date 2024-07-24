@@ -98,6 +98,17 @@ fun ProtectedScreens(
                         IssueInventoryScreen(appViewModel = appViewModel, navController = navController, inventory = inventory)
                     }
                 }
+
+                composable(route = Screens.PurchaseInventory.path +"/{inventory}",
+                    arguments = listOf(navArgument("inventory") { type = NavType.StringType })
+                ){
+                    it.arguments?.getString("inventory")?.let { encodedJsonString ->
+                        val gson = Gson()
+                        val jsonString = URLDecoder.decode(encodedJsonString, StandardCharsets.UTF_8.toString())
+                        val inventory = gson.fromJson(jsonString,Inventory::class.java)
+                        PurchaseInventoryScreen(appViewModel = appViewModel, navController = navController, inventory = inventory)
+                    }
+                }
             }
         }
         NavigationBar(navController = navController)

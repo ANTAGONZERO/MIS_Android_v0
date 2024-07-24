@@ -34,6 +34,7 @@ import com.example.mis1.ui.theme.ActionSuccess
 import com.example.mis1.ui.theme.InputFieldBorderColor
 import com.example.mis1.ui.theme.PageBgColor
 import com.example.mis1.ui.theme.Primary01
+import com.example.mis1.ui.theme.Primary09
 import com.example.mis1.ui.theme.RoundedRectangleL
 import com.example.mis1.ui.theme.RoundedRectangleS
 import com.example.mis1.ui.theme.S
@@ -164,25 +165,47 @@ fun InventoryItem(inventory: Inventory = sampleInventory,onShow :()->Unit ={},on
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(
-                modifier = Modifier
-                    .background(color = PageBgColor, shape = RoundedRectangleS)
-                    .clickable { onClickGet() }
-                    .border(width = SizeNone, color = SAccentSource, shape = RoundedRectangleS)
-                    .height(38.dp)
-                    .width(137.dp)
-                    .padding(horizontal = Size120, vertical = Size80),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "Get",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight(500),
-                    color = SAccentSource,
-                    maxLines = 1,
-                )
-            }
+            val tags = listOf(inventory.tag1,inventory.tag2,inventory.tag3,inventory.tag4)
+            if(tags.contains("Purchase") || tags.contains("Issue"))
+                Column(
+                    modifier = Modifier
+                        .background(color = PageBgColor, shape = RoundedRectangleS)
+                        .clickable { onClickGet() }
+                        .border(width = SizeNone, color = SAccentSource, shape = RoundedRectangleS)
+                        .height(38.dp)
+                        .width(137.dp)
+                        .padding(horizontal = Size120, vertical = Size80),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Get",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight(500),
+                        color = SAccentSource,
+                        maxLines = 1,
+                    )
+                }
+            else
+                Column(
+                    modifier = Modifier
+                        .background(color = PageBgColor, shape = RoundedRectangleS)
+                        .border(width = SizeNone, shape = RoundedRectangleS,color = Primary09)
+                        .height(38.dp)
+                        .width(137.dp)
+                        .padding(horizontal = Size120, vertical = Size80),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Free to Use",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight(500),
+                        color = SAccentSource,
+                        maxLines = 1,
+                    )
+                }
+
             Row {
                 Column(
                     modifier = Modifier

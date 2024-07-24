@@ -106,7 +106,11 @@ fun InventoryScreen(
                                 val gson = Gson()
                                 val jsonString  = gson.toJson(inventory)
                                 val encodedJsonString = URLEncoder.encode(jsonString, StandardCharsets.UTF_8.toString())
-                                navController.navigate(Screens.IssueInventory.path+"/$encodedJsonString")
+                                val tags = listOf(inventory.tag1,inventory.tag2,inventory.tag3,inventory.tag4)
+                                if (tags.contains("Purchase"))
+                                    navController.navigate(Screens.PurchaseInventory.path+"/$encodedJsonString")
+                                else
+                                    navController.navigate(Screens.IssueInventory.path+"/$encodedJsonString")
                             }
                         )
                         Spacer(modifier = Modifier.height(8.dp))

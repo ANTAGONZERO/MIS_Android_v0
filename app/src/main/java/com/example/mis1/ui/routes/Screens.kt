@@ -19,5 +19,6 @@ sealed class Screens(val path: String) {
     data object ResetPassword : Screens("reset_password")
     data object Onboard : Screens("onboard")
     data object AddProject : Screens("add_project")
-    data object IssueInventory : Screens("purchase_inventory")
+    data object IssueInventory : Screens("issue_inventory")
+    data object PurchaseInventory : Screens("purchase_inventory")
 }
