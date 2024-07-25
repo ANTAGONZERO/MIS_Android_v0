@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.ui.composables.enums.TagType
 import com.example.mis1.ui.theme.CircularEdge
+import com.example.mis1.ui.theme.RoundedRectangleXS
 import com.example.mis1.ui.theme.SPrimary50
 import com.example.mis1.ui.theme.SPrimarySource
 import com.example.mis1.ui.theme.Size20
@@ -23,6 +24,18 @@ import com.example.mis1.ui.theme.Size20
 @Composable
 fun Tag(type:TagType = TagType.Small, text:String = "Cutting", color:Color = SPrimarySource, backgroundColor:Color =  SPrimary50){
     when(type){
+        TagType.VerySmall -> Row (modifier = Modifier
+            .background(color = backgroundColor, shape = RoundedRectangleXS)
+            .padding(start = 8.dp, top = Size20, end = 8.dp, bottom = Size20),
+            verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                text = text,
+                color = color,
+                fontSize = 8.sp,
+                lineHeight = 12.sp,
+                fontWeight = FontWeight(500),
+            )
+        }
         TagType.Small -> Row (modifier = Modifier
             .height(22.dp)
             .background(color = backgroundColor, shape = CircularEdge)
@@ -49,6 +62,7 @@ fun Tag(type:TagType = TagType.Small, text:String = "Cutting", color:Color = SPr
                 fontWeight = FontWeight(400),
             )
         }
+
     }
 
 }

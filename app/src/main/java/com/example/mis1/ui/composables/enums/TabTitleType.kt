@@ -4,4 +4,5 @@ enum class TabTitleType {
     Record,
     Inventory,
     Setting,
+    Training
 }

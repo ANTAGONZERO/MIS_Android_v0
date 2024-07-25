@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -125,6 +124,26 @@ fun TabTitle(
                     color = color1
                 )
             }
+        }
+
+        TabTitleType.Training -> Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable(onClick = onClick),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Column {
+                Text(
+                    text = text,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight(500),
+                    color = if (isActive) SAccentSource else Primary03
+                )
+            }
+            HorizontalDivider(
+                thickness = Size20,
+                color = if (isActive) SAccentSource else Color.Transparent
+            )
         }
     }
 
