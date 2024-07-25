@@ -105,9 +105,10 @@ class NetworkModule{
     @Singleton
     fun provideUserRepository(
         retrofit: Retrofit,
+        apiCallRepository: ApiCallRepository
     ): UserRepository {
         val api  = retrofit.create(UserApi::class.java)
-        return UserRepository(api)
+        return UserRepository(api=api,apiCallRepository=apiCallRepository)
     }
 
     @Provides
@@ -124,27 +125,30 @@ class NetworkModule{
     @Singleton
     fun provideMachineRepository(
         retrofit: Retrofit,
+        apiCallRepository: ApiCallRepository
     ): MachineRepository {
         val api  = retrofit.create(MachineApi::class.java)
-        return MachineRepository(api)
+        return MachineRepository(api = api,apiCallRepository = apiCallRepository)
     }
 
     @Provides
     @Singleton
     fun provideEquipmentRepository(
         retrofit: Retrofit,
+        apiCallRepository: ApiCallRepository
     ): EquipmentRepository {
         val api  = retrofit.create(EquipmentApi::class.java)
-        return EquipmentRepository(api)
+        return EquipmentRepository(api = api,apiCallRepository = apiCallRepository)
     }
 
     @Provides
     @Singleton
     fun provideProjectRepository(
         retrofit: Retrofit,
+        apiCallRepository: ApiCallRepository
     ):ProjectRepository {
         val api  = retrofit.create(ProjectApi::class.java)
-        return ProjectRepository(api)
+        return ProjectRepository(api = api,apiCallRepository = apiCallRepository)
     }
 
     @Provides
@@ -160,8 +164,10 @@ class NetworkModule{
     @Provides
     @Singleton
     fun provideApiCallRepository(
+        retrofit: Retrofit,
         tokenRepository: TokenRepository,
     ):ApiCallRepository {
-        return ApiCallRepository(tokenRepository = tokenRepository)
+        val api  = retrofit.create(UserApi::class.java)
+        return ApiCallRepository(api =api,tokenRepository = tokenRepository)
     }
 }

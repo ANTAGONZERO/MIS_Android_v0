@@ -1,6 +1,5 @@
 package com.example.mis1.repository
 
-import android.util.Log
 import com.example.mis1.common.Resource
 import com.example.mis1.data.remote.machine.MachineApi
 import com.example.mis1.data.remote.machine.dto.AddMachineRequest
@@ -8,67 +7,38 @@ import com.example.mis1.data.remote.machine.dto.Machine
 import com.example.mis1.data.remote.machine.dto.MachineReservationRequest
 import com.example.mis1.data.remote.machine.dto.Reservation
 import com.example.mis1.data.remote.machine.dto.ResolvedReservation
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.Flow
 
-class MachineRepository (
-    private val api: MachineApi
+class MachineRepository(
+    private val api: MachineApi,
+    private val apiCallRepository: ApiCallRepository
 ) {
 
-    fun machineList() = flow<Resource<List<Machine>>> {
-        try {
-            emit(Resource.Loading(null))
-            val response = api.machineList()
-            emit(Resource.Success(response))
-        } catch (e: Exception) {
-            Log.d("Exception happened",e.toString())
-            emit(Resource.Error(message = "Failed to fetch machine list"))
+    fun machineList(): Flow<Resource<List<Machine>>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to fetch machine list") {
+            api.machineList()
         }
-    }
 
-    fun addMachine(request: AddMachineRequest) = flow<Resource<Machine>> {
-        try {
-            emit(Resource.Loading(null))
-            val response = api.addMachine(request)
-            emit(Resource.Success(response))
-        } catch (e: Exception) {
-            emit(Resource.Error(message = "Failed to add machine"))
+    fun addMachine(request: AddMachineRequest): Flow<Resource<Machine>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to add machine") {
+            api.addMachine(request)
         }
-    }
 
-    fun machineDetail(id: Int) = flow<Resource<Machine>> {
-        try {
-            emit(Resource.Loading(null))
-            val response = api.machineDetail(id)
-            emit(Resource.Success(response))
-        } catch (e: Exception) {
-            Log.d("Exception happened", e.toString())
-            emit(Resource.Error(message = "Failed to fetch machine detail"))
+    fun machineDetail(id: Int): Flow<Resource<Machine>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to fetch machine detail") {
+            api.machineDetail(id)
         }
-    }
 
-    fun reservationList() = flow<Resource<List<ResolvedReservation>>> {
-        try {
-            emit(Resource.Loading(null))
+    fun reservationList(): Flow<Resource<List<ResolvedReservation>>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to fetch reservation list") {
             val response = api.reservationList()
-            val resolvedReservationList: List<ResolvedReservation> =
-                response.map { resolveReservation(it) }
-            emit(Resource.Success(resolvedReservationList))
-        } catch (e: Exception) {
-            Log.d("Exception happened", e.toString())
-            emit(Resource.Error(message = "Failed to fetch reservation list"))
+            response.map { resolveReservation(it) }
         }
-    }
 
-    fun reservationDetail(id: Int) = flow<Resource<Reservation>> {
-        try {
-            emit(Resource.Loading(null))
-            val response = api.reservationDetail(id)
-            emit(Resource.Success(response))
-        } catch (e: Exception) {
-            Log.d("Exception happened", e.toString())
-            emit(Resource.Error(message = "Failed to fetch reservation detail"))
+    fun reservationDetail(id: Int): Flow<Resource<Reservation>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to fetch reservation detail") {
+            api.reservationDetail(id)
         }
-    }
 
     private suspend fun resolveReservation(reservation: Reservation): ResolvedReservation {
         val machine: Machine = api.machineDetail(reservation.machine)
@@ -87,14 +57,9 @@ class MachineRepository (
         )
     }
 
-    suspend fun reserveMachine(request: MachineReservationRequest) = flow<Resource<Unit>> {
-        try {
-            emit(Resource.Loading(null))
-            val response = api.reserveMachine(request)
-            emit(Resource.Success(response))
-        } catch (e: Exception) {
-            Log.d("Exception happened", e.toString())
-            emit(Resource.Error(message = "Failed to create reservation"))
+    fun reserveMachine(request: MachineReservationRequest): Flow<Resource<Unit>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to create reservation") {
+            api.reserveMachine(request)
         }
-    }
 }
+

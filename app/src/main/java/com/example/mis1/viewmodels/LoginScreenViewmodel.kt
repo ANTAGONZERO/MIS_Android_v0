@@ -32,9 +32,8 @@ class LoginScreenViewmodel @Inject constructor(
                     loginState.value = it
                     if (it.data!=null){
                         tokenRepository.token = it.data.access
-                    }
-                    if(it is Resource.Success){
-                        localUserRepository.user = it.data?.user
+                        tokenRepository.refresh = it.data.refresh
+                        localUserRepository.user = it.data.user
                     }
                 }
         }

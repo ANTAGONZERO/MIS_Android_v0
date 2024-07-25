@@ -3,26 +3,21 @@ package com.example.mis1.repository
 import com.example.mis1.common.Resource
 import com.example.mis1.data.remote.project.ProjectApi
 import com.example.mis1.data.remote.project.dto.AddProjectRequest
-import kotlinx.coroutines.flow.flow
+import com.example.mis1.data.remote.project.dto.Project
+import kotlinx.coroutines.flow.Flow
 
-class ProjectRepository(private val api: ProjectApi) {
-    suspend fun addProject(request: AddProjectRequest) = flow {
-        try {
-            emit(Resource.Loading())
-            val response = api.addProject(request)
-            emit(Resource.Success(response))
-        }catch (e:Exception){
-            emit(Resource.Error(message = e.message))
-        }
-    }
+class ProjectRepository(
+    private val api: ProjectApi,
+    private val apiCallRepository: ApiCallRepository
+) {
 
-    suspend fun listProject() = flow {
-        try {
-            emit(Resource.Loading())
-            val list  = api.listProject()
-            emit(Resource.Success(list))
-        } catch (e: Exception) {
-            emit(Resource.Error(message = e.message))
+    fun addProject(request: AddProjectRequest): Flow<Resource<Project>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to add project") {
+            api.addProject(request)
         }
-    }
+
+    fun listProject(): Flow<Resource<List<Project>>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to fetch project list") {
+            api.listProject()
+        }
 }

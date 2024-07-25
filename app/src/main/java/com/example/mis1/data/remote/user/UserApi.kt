@@ -2,6 +2,8 @@ package com.example.mis1.data.remote.user
 
 import com.example.mis1.data.remote.user.dto.AddUserGroupRequest
 import com.example.mis1.data.remote.user.dto.LoginUserResponse
+import com.example.mis1.data.remote.user.dto.NewAccessTokenRequest
+import com.example.mis1.data.remote.user.dto.NewAccessTokenResponse
 import com.example.mis1.data.remote.user.dto.RegisterUserRequest
 import com.example.mis1.data.remote.user.dto.RegisterUserResponse
 import com.example.mis1.data.remote.user.dto.User
@@ -31,4 +33,6 @@ interface UserApi {
     @GET("auth/admin_user_group_list/{id}")
     suspend fun getUserGroupDetail(@Path("id") id: Int):UserGroup
 
+    @POST("auth/refresh/")
+    suspend fun getNewAccessToken(@Body request:NewAccessTokenRequest):NewAccessTokenResponse
 }

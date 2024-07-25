@@ -3,69 +3,40 @@ package com.example.mis1.repository
 import com.example.mis1.common.Resource
 import com.example.mis1.data.remote.user.UserApi
 import com.example.mis1.data.remote.user.dto.*
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.Flow
 
-class UserRepository (
-    private val api: UserApi
+class UserRepository(
+    private val api: UserApi,
+    private val apiCallRepository: ApiCallRepository
 ) {
 
-    fun login(credentials: UserCredentials) = flow<Resource<LoginUserResponse>> {
-        try {
-            emit(Resource.Loading(null))
-            val response = api.login(credentials)
-            emit(Resource.Success(response))
-        } catch (e: Exception) {
-            emit(Resource.Error(message = "Failed to login"))
+    fun login(credentials: UserCredentials): Flow<Resource<LoginUserResponse>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to login") {
+            api.login(credentials)
         }
-    }
 
-    fun register(request: RegisterUserRequest) = flow<Resource<RegisterUserResponse>> {
-        try {
-            emit(Resource.Loading(null))
-            val response = api.register(request)
-            emit(Resource.Success(response))
-        } catch (e: Exception) {
-            emit(Resource.Error(message = "Failed to register"))
+    fun register(request: RegisterUserRequest): Flow<Resource<RegisterUserResponse>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to register") {
+            api.register(request)
         }
-    }
 
-    fun userList() = flow<Resource<List<User>>> {
-        try {
-            emit(Resource.Loading(null))
-            val response = api.getUserList()
-            emit(Resource.Success(response))
-        } catch (e: Exception) {
-            emit(Resource.Error(message = "Failed to fetch user list"))
+    fun userList(): Flow<Resource<List<User>>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to fetch user list") {
+            api.getUserList()
         }
-    }
 
-    fun addUserGroup(request: AddUserGroupRequest) = flow<Resource<UserGroup>> {
-        try {
-            emit(Resource.Loading(null))
-            val response = api.addUserGroup(request)
-            emit(Resource.Success(response))
-        } catch (e: Exception) {
-            emit(Resource.Error(message = "Failed to add user group"))
+    fun addUserGroup(request: AddUserGroupRequest): Flow<Resource<UserGroup>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to add user group") {
+            api.addUserGroup(request)
         }
-    }
 
-    fun userGroupList() = flow<Resource<List<UserGroup>>> {
-        try {
-            emit(Resource.Loading(null))
-            val response = api.getUserGroupList()
-            emit(Resource.Success(response))
-        } catch (e: Exception) {
-            emit(Resource.Error(message = "Failed to fetch user group list"))
+    fun userGroupList(): Flow<Resource<List<UserGroup>>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to fetch user group list") {
+            api.getUserGroupList()
         }
-    }
 
-    fun userGroupDetail(id: Int) = flow<Resource<UserGroup>> {
-        try {
-            emit(Resource.Loading(null))
-            val response = api.getUserGroupDetail(id)
-            emit(Resource.Success(response))
-        } catch (e: Exception) {
-            emit(Resource.Error(message = "Failed to fetch user group detail"))
+    fun userGroupDetail(id: Int): Flow<Resource<UserGroup>> =
+        apiCallRepository.protectedApiCall(errorMessage = "Failed to fetch user group detail") {
+            api.getUserGroupDetail(id)
         }
-    }
 }

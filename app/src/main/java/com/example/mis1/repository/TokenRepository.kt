@@ -1,23 +1,31 @@
 package com.example.mis1.repository
 
 import android.content.SharedPreferences
-import android.util.Log
+import androidx.core.content.edit
 
 
 class TokenRepository(private val sharedPreferences: SharedPreferences) {
     var token: String?
         get() {
-            val token =  sharedPreferences.getString(TOKEN_KEY, null)
-            Log.d("getToken",token.toString())
-            return token
+            return sharedPreferences.getString(TOKEN_KEY, null)
         }
         set(token) {
-            val editor = sharedPreferences.edit()
-            editor.putString(TOKEN_KEY, token)
-            editor.apply()
+            sharedPreferences.edit {
+                putString(TOKEN_KEY, token)
+            }
+        }
+    var refresh: String?
+        get(){
+            return sharedPreferences.getString(REFRESH_KEY, null)
+        }
+        set(token) {
+            sharedPreferences.edit {
+                putString(REFRESH_KEY, token)
+            }
         }
     companion object {
         private const val TOKEN_KEY = "auth_token"
+        private const val REFRESH_KEY = "refresh_token"
     }
 }
 
