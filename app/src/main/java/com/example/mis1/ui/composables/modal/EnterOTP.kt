@@ -22,7 +22,7 @@ import com.example.mis1.ui.composables.edit_field.OTPInputField
 import com.example.mis1.ui.theme.Primary01
 import com.example.mis1.ui.theme.Primary02
 import com.example.mis1.ui.theme.Primary05
-import com.example.mis1.ui.theme.RoundedTopRectangleXL
+import com.example.mis1.ui.theme.RoundedTopRectangleXXL
 import com.example.mis1.ui.theme.SPrimarySource
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.ui.theme.Size40
@@ -34,7 +34,7 @@ fun EnterOTP(viewmodel: ResetPasswordViewmodel) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = Color(0xFFFFFFFF), shape = RoundedTopRectangleXL)
+            .background(color = Color(0xFFFFFFFF), shape = RoundedTopRectangleXXL)
             .padding(start = 24.dp, top = 24.dp, end = 24.dp, bottom = 24.dp),
     ) {
         Text(

@@ -34,7 +34,7 @@ import com.example.mis1.ui.theme.Accent08
 import com.example.mis1.ui.theme.ActionLightSuccess
 import com.example.mis1.ui.theme.ActionSuccess
 import com.example.mis1.ui.theme.PageBgColor
-import com.example.mis1.ui.theme.RoundedTopRectangleXXL
+import com.example.mis1.ui.theme.RoundedTopRectangleXXXL
 import com.example.mis1.ui.theme.SAccent50
 import com.example.mis1.ui.theme.SAccentSource
 import com.example.mis1.ui.theme.SPrimary200
@@ -50,9 +50,9 @@ import com.example.mis1.ui.theme.SizeNone
 fun InventoryDetail(inventory:Inventory = sampleInventory , onHide : ()->Unit = {}){
     Box(modifier = Modifier){
         Column (modifier = Modifier
-            .border(color = SPrimary200, width = SizeNone, shape = RoundedTopRectangleXXL)
+            .border(color = SPrimary200, width = SizeNone, shape = RoundedTopRectangleXXXL)
             .width(360.dp)
-            .background(color = PageBgColor, shape = RoundedTopRectangleXXL)
+            .background(color = PageBgColor, shape = RoundedTopRectangleXXXL)
             .padding(start = 24.dp, top = 16.dp, end = 24.dp, bottom = 16.dp),
             verticalArrangement = Arrangement.SpaceBetween){
             Text(

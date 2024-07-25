@@ -38,6 +38,7 @@ val SPrimary50 = Color(0xFFF2F3FC)
 val SAccentSource =  Color(0xFFE79A2B)
 val SAccent50 = Color(0xFFFFF1E4)
 val SAccent500 = Color(0xFFBC7700)
+val SAccent700 = Color(0xFF8C5000)
 
 val Accent00 = Color(0xFF007BFF)
 val Accent08 = Color(0xFFE6F2FF)

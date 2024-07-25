@@ -32,7 +32,7 @@ import com.example.mis1.ui.composables.modal.InventoryDetail
 import com.example.mis1.ui.composables.modal.MachineDetail
 import com.example.mis1.ui.routes.InventoryTabs
 import com.example.mis1.ui.routes.Screens
-import com.example.mis1.ui.theme.RoundedTopRectangleXXL
+import com.example.mis1.ui.theme.RoundedTopRectangleXXXL
 import com.example.mis1.ui.theme.White
 import com.example.mis1.viewmodels.inventory.InventoryScreenViewmodel
 import com.google.gson.Gson
@@ -141,7 +141,7 @@ fun InventoryScreen(
             ModalBottomSheet(
                 onDismissRequest = viewModel::hideDetail,
                 dragHandle = { Box{} },
-                shape = RoundedTopRectangleXXL,
+                shape = RoundedTopRectangleXXXL,
                 sheetState = sheetState,
                 containerColor = White
             ) {

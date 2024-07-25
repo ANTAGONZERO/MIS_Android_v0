@@ -25,7 +25,7 @@ import com.example.mis1.ui.composables.edit_field.LabeledTextField
 import com.example.mis1.ui.composables.enums.AuthButtonType
 import com.example.mis1.ui.theme.Primary01
 import com.example.mis1.ui.theme.Primary05
-import com.example.mis1.ui.theme.RoundedTopRectangleXL
+import com.example.mis1.ui.theme.RoundedTopRectangleXXL
 import com.example.mis1.viewmodels.auth.ResetPasswordViewmodel
 
 @Composable
@@ -33,7 +33,7 @@ fun EnterNewPassword(viewModel: ResetPasswordViewmodel) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .background(color = Color(0xFFFFFFFF), shape = RoundedTopRectangleXL)
+            .background(color = Color(0xFFFFFFFF), shape = RoundedTopRectangleXXL)
             .padding(start = 24.dp, top = 24.dp, end = 24.dp, bottom = 24.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
