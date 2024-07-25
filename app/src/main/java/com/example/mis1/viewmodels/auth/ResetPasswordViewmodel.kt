@@ -1,4 +1,4 @@
-package com.example.mis1.viewmodels
+package com.example.mis1.viewmodels.auth
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

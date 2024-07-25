@@ -1,4 +1,4 @@
-package com.example.mis1.ui.screens
+package com.example.mis1.ui.screens.inventory
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -39,15 +39,17 @@ import com.example.mis1.data.remote.inventory.dto.Inventory
 import com.example.mis1.ui.composables.BorderBox
 import com.example.mis1.ui.composables.button.AddButton
 import com.example.mis1.ui.composables.button.CancelButton
+import com.example.mis1.ui.composables.edit_field.EditDateField
 import com.example.mis1.ui.theme.Primary02
 import com.example.mis1.ui.theme.Primary03
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.viewmodels.AppViewmodel
-import com.example.mis1.viewmodels.PurchaseInventoryViewmodel
+import com.example.mis1.viewmodels.inventory.IssueInventoryViewmodel
+
 
 @Composable
-fun PurchaseInventoryScreen(
-    viewModel: PurchaseInventoryViewmodel = hiltViewModel(),
+fun IssueInventoryScreen(
+    viewModel: IssueInventoryViewmodel = hiltViewModel(),
     appViewModel: AppViewmodel,
     navController: NavController,
     inventory: Inventory
@@ -60,8 +62,8 @@ fun PurchaseInventoryScreen(
     LaunchedEffect(key1 =inventory) {
         viewModel.setInventory(inventory)
     }
-    LaunchedEffect(key1 = viewModel.purchaseStatus) {
-        if (viewModel.purchaseStatus is Resource.Success) {
+    LaunchedEffect(key1 = viewModel.issueStatus) {
+        if (viewModel.issueStatus is Resource.Success) {
             navController.popBackStack()
         }
     }
@@ -89,6 +91,12 @@ fun PurchaseInventoryScreen(
                 }
             }
             Spacer(modifier = Modifier.height(24.dp))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image1(id = R.drawable.calendar)
+                Spacer(modifier = Modifier.width(16.dp))
+                DateRangePicker(viewModel)
+            }
+            Spacer(modifier = Modifier.height(20.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image1(id = R.drawable.quantity_limits)
                 Spacer(modifier = Modifier.width(16.dp))
@@ -123,7 +131,7 @@ fun PurchaseInventoryScreen(
                 }
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(20.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Image1(id = R.drawable.award_line)
                 Spacer(modifier = Modifier.width(16.dp))
@@ -163,7 +171,7 @@ fun PurchaseInventoryScreen(
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 Box(modifier = Modifier.weight(1f)) {
-                    AddButton(text = "Purchase", onClick = viewModel::purchase)
+                    AddButton(text = "Issue", onClick = viewModel::issue)
                 }
             }
             Spacer(modifier = Modifier.height(24.dp))
@@ -222,4 +230,13 @@ private fun Image1(id: Int) {
         painter = painterResource(id = id),
         contentDescription = "icon"
     )
+}
+
+@Composable
+private fun DateRangePicker(viewModel: IssueInventoryViewmodel) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        EditDateField(date = viewModel.startDate.value, onDateChange = viewModel::setStartDate)
+        Text(modifier = Modifier.padding(8.dp), text = "To")
+        EditDateField(date = viewModel.endDate.value, onDateChange = viewModel::setEndDate)
+    }
 }

@@ -24,7 +24,7 @@ import com.example.mis1.ui.composables.edit_field.LabeledTextField
 import com.example.mis1.ui.composables.enums.AuthButtonType
 import com.example.mis1.ui.theme.Primary05
 import com.example.mis1.ui.theme.SPrimarySource
-import com.example.mis1.viewmodels.ResetPasswordViewmodel
+import com.example.mis1.viewmodels.auth.ResetPasswordViewmodel
 
 @Composable
 fun ResetPasswordScreen(viewModel: ResetPasswordViewmodel = hiltViewModel()) {

@@ -1,4 +1,4 @@
-package com.example.mis1.viewmodels
+package com.example.mis1.viewmodels.inventory
 
 import android.util.Log
 import androidx.compose.runtime.mutableIntStateOf

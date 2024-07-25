@@ -35,7 +35,7 @@ import com.example.mis1.ui.theme.Primary01
 import com.example.mis1.ui.theme.SAccentSource
 import com.example.mis1.ui.theme.SPrimarySource
 import com.example.mis1.viewmodels.AppViewmodel
-import com.example.mis1.viewmodels.LoginScreenViewmodel
+import com.example.mis1.viewmodels.auth.LoginScreenViewmodel
 
 @Composable
 fun LoginScreen(

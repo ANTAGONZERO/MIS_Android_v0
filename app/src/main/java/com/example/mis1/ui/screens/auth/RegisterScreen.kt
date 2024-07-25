@@ -57,7 +57,7 @@ import com.example.mis1.ui.theme.SAccentSource
 import com.example.mis1.ui.theme.SPrimary50
 import com.example.mis1.ui.theme.SPrimarySource
 import com.example.mis1.ui.theme.SizeNone
-import com.example.mis1.viewmodels.RegisterScreenViewmodel
+import com.example.mis1.viewmodels.auth.RegisterScreenViewmodel
 
 @Composable
 fun RegisterScreen(navController: NavController,viewModel: RegisterScreenViewmodel = hiltViewModel()) {

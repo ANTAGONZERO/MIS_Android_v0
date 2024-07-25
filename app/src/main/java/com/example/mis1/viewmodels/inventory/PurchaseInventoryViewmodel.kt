@@ -1,4 +1,4 @@
-package com.example.mis1.viewmodels
+package com.example.mis1.viewmodels.inventory
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
@@ -8,12 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mis1.common.ProjectType
 import com.example.mis1.common.Resource
-import com.example.mis1.common.toTwoDigitString
 import com.example.mis1.data.remote.inventory.dto.Inventory
 import com.example.mis1.data.remote.inventory.dto.InventoryPurchase
 import com.example.mis1.data.remote.inventory.dto.PurchaseInventoryRequest
 import com.example.mis1.data.remote.project.dto.Project
-import com.example.mis1.model.Date
 import com.example.mis1.repository.InventoryRepository
 import com.example.mis1.repository.ProjectRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

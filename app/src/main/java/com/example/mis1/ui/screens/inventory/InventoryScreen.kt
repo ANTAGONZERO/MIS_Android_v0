@@ -1,4 +1,4 @@
-package com.example.mis1.ui.screens
+package com.example.mis1.ui.screens.inventory
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -34,7 +34,7 @@ import com.example.mis1.ui.routes.InventoryTabs
 import com.example.mis1.ui.routes.Screens
 import com.example.mis1.ui.theme.RoundedTopRectangleXXL
 import com.example.mis1.ui.theme.White
-import com.example.mis1.viewmodels.InventoryScreenViewmodel
+import com.example.mis1.viewmodels.inventory.InventoryScreenViewmodel
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import java.net.URLEncoder

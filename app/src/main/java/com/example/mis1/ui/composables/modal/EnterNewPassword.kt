@@ -26,7 +26,7 @@ import com.example.mis1.ui.composables.enums.AuthButtonType
 import com.example.mis1.ui.theme.Primary01
 import com.example.mis1.ui.theme.Primary05
 import com.example.mis1.ui.theme.RoundedTopRectangleXL
-import com.example.mis1.viewmodels.ResetPasswordViewmodel
+import com.example.mis1.viewmodels.auth.ResetPasswordViewmodel
 
 @Composable
 fun EnterNewPassword(viewModel: ResetPasswordViewmodel) {

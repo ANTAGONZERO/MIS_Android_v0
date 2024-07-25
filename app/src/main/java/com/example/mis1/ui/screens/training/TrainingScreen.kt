@@ -1,4 +1,4 @@
-package com.example.mis1.ui.screens
+package com.example.mis1.ui.screens.training
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

@@ -1,4 +1,4 @@
-package com.example.mis1.viewmodels
+package com.example.mis1.viewmodels.inventory
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue

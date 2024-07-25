@@ -1,4 +1,4 @@
-package com.example.mis1.ui.screens
+package com.example.mis1.ui.screens.project
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -34,7 +34,7 @@ import com.example.mis1.ui.theme.M
 import com.example.mis1.ui.theme.SAccentSource
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.viewmodels.AppViewmodel
-import com.example.mis1.viewmodels.ProjectListViewmodel
+import com.example.mis1.viewmodels.project.ProjectListViewmodel
 
 @Composable
 fun ProjectScreen(

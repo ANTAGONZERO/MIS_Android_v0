@@ -26,7 +26,7 @@ import com.example.mis1.ui.theme.RoundedTopRectangleXL
 import com.example.mis1.ui.theme.SPrimarySource
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.ui.theme.Size40
-import com.example.mis1.viewmodels.ResetPasswordViewmodel
+import com.example.mis1.viewmodels.auth.ResetPasswordViewmodel
 
 @Composable
 fun EnterOTP(viewmodel: ResetPasswordViewmodel) {

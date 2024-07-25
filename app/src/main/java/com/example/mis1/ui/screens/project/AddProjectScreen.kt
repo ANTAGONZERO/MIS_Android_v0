@@ -1,4 +1,4 @@
-package com.example.mis1.ui.screens
+package com.example.mis1.ui.screens.project
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -54,7 +54,7 @@ import com.example.mis1.ui.theme.Primary03
 import com.example.mis1.ui.theme.Primary09
 import com.example.mis1.ui.theme.RoundedRectangleS
 import com.example.mis1.ui.theme.Size120
-import com.example.mis1.viewmodels.AddProjectViewmodel
+import com.example.mis1.viewmodels.project.AddProjectViewmodel
 import com.example.mis1.viewmodels.AppViewmodel
 
 

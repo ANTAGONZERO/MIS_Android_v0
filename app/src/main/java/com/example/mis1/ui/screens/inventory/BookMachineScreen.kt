@@ -1,4 +1,4 @@
-package com.example.mis1.ui.screens
+package com.example.mis1.ui.screens.inventory
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -45,7 +45,7 @@ import com.example.mis1.ui.theme.Primary02
 import com.example.mis1.ui.theme.Primary03
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.viewmodels.AppViewmodel
-import com.example.mis1.viewmodels.BookMachineViewmodel
+import com.example.mis1.viewmodels.inventory.BookMachineViewmodel
 
 
 @Composable

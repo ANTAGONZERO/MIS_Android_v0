@@ -20,6 +20,13 @@ import com.example.mis1.data.remote.inventory.dto.Inventory
 import com.example.mis1.ui.composables.bar.ActionBar
 import com.example.mis1.ui.composables.bar.NavigationBar
 import com.example.mis1.ui.routes.Screens
+import com.example.mis1.ui.screens.inventory.BookMachineScreen
+import com.example.mis1.ui.screens.inventory.InventoryScreen
+import com.example.mis1.ui.screens.inventory.IssueInventoryScreen
+import com.example.mis1.ui.screens.inventory.PurchaseInventoryScreen
+import com.example.mis1.ui.screens.project.AddProjectScreen
+import com.example.mis1.ui.screens.project.ProjectScreen
+import com.example.mis1.ui.screens.training.TrainingScreen
 import com.example.mis1.viewmodels.AppViewmodel
 import com.google.gson.Gson
 import java.net.URLDecoder
