@@ -72,8 +72,9 @@ class InventoryRepository(
             response.forEach {
                 try {
                     result.add(resolveIssuedInventory(it))
+                    emit(Resource.Success(result.toList()))
                 } catch (_: Exception) {
-                    // Handle the exception if necessary
+
                 }
             }
             result.toList()
@@ -86,8 +87,9 @@ class InventoryRepository(
             response.forEach {
                 try {
                     result.add(resolveInventoryPurchase(it))
+                    emit(Resource.Success(result.toList()))
                 } catch (_: Exception) {
-                    // Handle the exception if necessary
+
                 }
             }
             result.toList()

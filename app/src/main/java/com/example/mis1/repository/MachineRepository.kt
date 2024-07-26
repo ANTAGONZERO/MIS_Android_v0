@@ -32,7 +32,17 @@ class MachineRepository(
     fun reservationList(): Flow<Resource<List<ResolvedReservation>>> =
         apiCallRepository.protectedApiCall(errorMessage = "Failed to fetch reservation list") {
             val response = api.reservationList()
-            response.map { resolveReservation(it) }
+            val result = mutableListOf<ResolvedReservation>()
+            response.forEach {
+                try {
+                    result.add(resolveReservation(it))
+                    emit(Resource.Success(result))
+                }
+                catch (_:Exception){
+
+                }
+            }
+            result
         }
 
     fun reservationDetail(id: Int): Flow<Resource<Reservation>> =

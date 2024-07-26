@@ -8,10 +8,21 @@ import kotlinx.coroutines.flow.flow
 import  retrofit2.HttpException
 
 class ApiCallRepository(private val api: UserApi, private val tokenRepository: TokenRepository) {
-    fun <T> protectedApiCall(errorMessage: String, endpoint: suspend () -> T): Flow<Resource<T>> = flow {
+    /**
+     * Executes a protected API call that handles loading, success, and error states.
+     * If the API call returns a 401 Unauthorized error, it attempts to refresh the access token
+     * and retries the request.
+     *
+     * @param errorMessage The error message to emit if the request fails.
+     * @param endpoint The suspend function that performs the API call. This function can
+     * emit intermediate values between a success and a failure using the FlowCollector.
+     * @return A Flow that emits Resource<T> indicating the loading, success, or error state.
+     *
+     */
+    fun <T> protectedApiCall(errorMessage: String, endpoint: suspend FlowCollector<Resource<T>>.() -> T): Flow<Resource<T>> = flow {
         try {
             emit(Resource.Loading(null))
-            val response = endpoint()
+            val response = this.endpoint()
             emit(Resource.Success(response))
         } catch (e: HttpException) {
             if (e.code() == 401) {
@@ -24,7 +35,7 @@ class ApiCallRepository(private val api: UserApi, private val tokenRepository: T
         }
     }
 
-    private suspend fun <T> FlowCollector<Resource<T>>.handleUnauthorized(endpoint: suspend () -> T, errorMessage: String) {
+    private suspend fun <T> FlowCollector<Resource<T>>.handleUnauthorized(endpoint: suspend FlowCollector<Resource<T>>.() -> T, errorMessage: String) {
         val accessToken = getAccessToken()
         tokenRepository.token = accessToken
         try {
