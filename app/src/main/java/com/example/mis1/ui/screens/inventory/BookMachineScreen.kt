@@ -61,7 +61,7 @@ fun BookMachineScreen(
     LaunchedEffect(key1 = appViewModel.user) {
         appViewModel.user?.let { user -> viewModel.updateReservedBy(user.id) }
     }
-    LaunchedEffect(key1 = viewModel.reservationStatus) {
+    LaunchedEffect(key1 = viewModel.reservationStatus.value) {
         if (viewModel.reservationStatus.value is Resource.Success) {
             navController.popBackStack()
         }

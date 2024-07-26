@@ -137,13 +137,13 @@ fun ProjectItem(project: Project = sampleProject) {
         Spacer(modifier = Modifier.height(8.dp))
         HorizontalDivider()
         Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = "12/12/23",
-            fontSize = 14.sp,
-            lineHeight = 21.sp,
-            fontWeight = FontWeight(500),
-            color = Primary07
-        )
+//        Text(
+//            text = "12/12/23",
+//            fontSize = 14.sp,
+//            lineHeight = 21.sp,
+//            fontWeight = FontWeight(500),
+//            color = Primary07
+//        )
 
     }
 }

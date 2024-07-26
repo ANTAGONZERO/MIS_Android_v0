@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mis1.common.Resource
 import com.example.mis1.common.toTwoDigitString
 import com.example.mis1.data.remote.machine.dto.MachineReservationRequest
+import com.example.mis1.data.remote.machine.dto.ReservationDto
 import com.example.mis1.data.remote.project.dto.Project
 import com.example.mis1.model.Date
 import com.example.mis1.model.Time
@@ -36,7 +37,7 @@ class BookMachineViewmodel @Inject constructor(
     val project: MutableState<Project?> = mutableStateOf(null)
     private val reservedBy: MutableState<Int> = mutableStateOf(0)
 
-    val reservationStatus = mutableStateOf<Resource<Unit>>(Resource.Error(""))
+    val reservationStatus = mutableStateOf<Resource<ReservationDto>>(Resource.Error(""))
     var projectList by mutableStateOf(emptyList<Project>())
         private set
 

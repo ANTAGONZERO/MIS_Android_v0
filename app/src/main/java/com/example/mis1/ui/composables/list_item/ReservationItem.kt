@@ -42,17 +42,26 @@ import com.example.mis1.ui.theme.White
 
 
 val sampleReservation = MachineReservation(
+    id = 3,
     approved = "Pending",
-    approvedBy = null,
-    approvedStatus = "0",
-    createdAt = "2024-06-12T12:21:38.963514+05:30",
-    endTime = "2024-06-12T12:21:25+05:30",
-    id = 1,
-    lastUpdatedAt = "2024-06-12T12:21:38.963526+05:30",
+    name = "Laser Cutter",
+    instances = 2,
+    location = "Energy Building",
+    status = "0",
+    reserver = "Demo",
+    reservedDate = "2024-05-27",
+    startTime = "2024-05-28T22:18:00+05:30",
+    endTime = "2024-05-28T23:00:00+05:30",
+    duration = 0.0,
+    approvedStatus = "Pending",
+    createdAt = "2024-07-02T13:55:55.719290+05:30",
+    lastUpdatedAt = "2024-07-02T13:55:55.719303+05:30",
     machine = sampleMachine,
-    reservedBy = 6,
-    reservedDate = "2024-06-12",
-    startTime = "2024-06-12T12:21:25+05:30"
+    reservedBy = 5,
+    approvedBy = 5,
+    project = 3,
+    college = 3,
+    projectName = "Cleaning Robot"
 )
 
 @Preview(widthDp = 312)
