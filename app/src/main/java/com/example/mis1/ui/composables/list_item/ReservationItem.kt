@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.R
-import com.example.mis1.data.remote.machine.dto.ResolvedReservation
+import com.example.mis1.model.MachineReservation
 import com.example.mis1.ui.composables.Property
 import com.example.mis1.ui.theme.M
 import com.example.mis1.ui.theme.Primary01
@@ -41,7 +41,7 @@ import com.example.mis1.ui.theme.SizeNone
 import com.example.mis1.ui.theme.White
 
 
-val sampleReservation = ResolvedReservation(
+val sampleReservation = MachineReservation(
     approved = "Pending",
     approvedBy = null,
     approvedStatus = "0",
@@ -57,7 +57,7 @@ val sampleReservation = ResolvedReservation(
 
 @Preview(widthDp = 312)
 @Composable
-fun ReservationItem(resolvedReservation: ResolvedReservation = sampleReservation) {
+fun ReservationItem(machineReservation: MachineReservation = sampleReservation) {
     Column(
         modifier = Modifier
             .background(color = White, shape = RoundedRectangleM)
@@ -76,7 +76,7 @@ fun ReservationItem(resolvedReservation: ResolvedReservation = sampleReservation
                     modifier = Modifier
                         .weight(1f)
                         .defaultMinSize(minHeight = 27.dp),
-                    text = resolvedReservation.machine.name,
+                    text = machineReservation.machine.name,
                     fontSize = 20.sp,
                     fontWeight = FontWeight(500),
                     color = Primary01,
@@ -115,13 +115,13 @@ fun ReservationItem(resolvedReservation: ResolvedReservation = sampleReservation
                 )
         ){
             Box(modifier=Modifier.weight(1f)){
-                Property(name = "Category",value =resolvedReservation.machine.category ?:"Unknown")
+                Property(name = "Category",value =machineReservation.machine.category ?:"Unknown")
             }
             VerticalDivider()
-            Property(name = "Date",value =resolvedReservation.reservedDate)
+            Property(name = "Date",value =machineReservation.reservedDate)
             VerticalDivider()
-            val startTime = resolvedReservation.startTime.substring(11, 16)
-            val endTime = resolvedReservation.endTime.substring(11,16)
+            val startTime = machineReservation.startTime.substring(11, 16)
+            val endTime = machineReservation.endTime.substring(11,16)
             Property(
                 name = "Time Range",
                 value = "$startTime to $endTime"

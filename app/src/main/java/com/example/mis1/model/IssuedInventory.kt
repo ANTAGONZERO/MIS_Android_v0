@@ -1,7 +1,9 @@
-package com.example.mis1.data.remote.inventory.dto
+package com.example.mis1.model
+
+import com.example.mis1.data.remote.inventory.dto.Inventory
 
 
-data class ResolvedIssuedInventory(
+data class IssuedInventory(
     val createdAt: String,
     val id: Int,
     val inventory: Inventory,

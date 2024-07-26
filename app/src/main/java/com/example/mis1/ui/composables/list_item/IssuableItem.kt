@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.R
-import com.example.mis1.data.remote.inventory.dto.ResolvedIssuedInventory
+import com.example.mis1.model.IssuedInventory
 import com.example.mis1.ui.composables.Property
 import com.example.mis1.ui.theme.M
 import com.example.mis1.ui.theme.Primary01
@@ -40,7 +40,7 @@ import com.example.mis1.ui.theme.Size80
 import com.example.mis1.ui.theme.SizeNone
 import com.example.mis1.ui.theme.White
 
-val sampleIssuedInventory = ResolvedIssuedInventory(
+val sampleIssuedInventory = IssuedInventory(
     createdAt = "2024-06-19T11:22:43.319137+05:30",
     id = 1,
     inventory = sampleInventory,
@@ -58,7 +58,7 @@ val sampleIssuedInventory = ResolvedIssuedInventory(
 
 @Preview(widthDp = 312)
 @Composable
-fun IssuableItem(issuedInventory: ResolvedIssuedInventory = sampleIssuedInventory) {
+fun IssuableItem(issuedInventory: IssuedInventory = sampleIssuedInventory) {
     Column(
         modifier = Modifier
             .background(color = White, shape = RoundedRectangleM)

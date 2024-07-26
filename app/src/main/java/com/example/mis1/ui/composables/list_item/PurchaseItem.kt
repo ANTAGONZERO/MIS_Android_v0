@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.R
-import com.example.mis1.data.remote.inventory.dto.ResolvedInventoryPurchase
+import com.example.mis1.model.InventoryPurchase
 import com.example.mis1.ui.composables.Property
 import com.example.mis1.ui.theme.M
 import com.example.mis1.ui.theme.Primary01
@@ -40,7 +40,7 @@ import com.example.mis1.ui.theme.Size80
 import com.example.mis1.ui.theme.SizeNone
 import com.example.mis1.ui.theme.White
 
-val sampleInventoryPurchase = ResolvedInventoryPurchase(
+val sampleInventoryPurchase = InventoryPurchase(
     createdAt = "2024-06-18T18:06:56.733157+05:30",
     id = 1,
     inventory = sampleInventory,
@@ -59,7 +59,7 @@ val sampleInventoryPurchase = ResolvedInventoryPurchase(
 
 @Preview(widthDp = 312)
 @Composable
-fun PurchaseItem(inventoryPurchase: ResolvedInventoryPurchase = sampleInventoryPurchase) {
+fun PurchaseItem(inventoryPurchase: InventoryPurchase = sampleInventoryPurchase) {
     Column(
         modifier = Modifier
             .background(color = White, shape = RoundedRectangleM)

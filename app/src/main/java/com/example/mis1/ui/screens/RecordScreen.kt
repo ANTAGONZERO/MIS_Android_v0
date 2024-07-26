@@ -80,7 +80,7 @@ fun RecordScreen(
             RecordTabs.Reservation -> {
                 LazyColumn {
                     items(viewModel.filteredReservationList) {
-                        ReservationItem(resolvedReservation = it)
+                        ReservationItem(machineReservation = it)
                         Spacer(modifier = Modifier.height(8.dp))
                     }
                 }

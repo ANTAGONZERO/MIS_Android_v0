@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -28,12 +29,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mis1.R
 import com.example.mis1.common.toTwoDigitString
+import com.example.mis1.model.Tutorial
 import com.example.mis1.ui.composables.Filters
 import com.example.mis1.ui.composables.bar.SearchBar
 import com.example.mis1.ui.composables.button.TabTitle
@@ -53,7 +54,7 @@ import com.example.mis1.viewmodels.training.TrainingViewModel
 fun TrainingScreen(
     viewModel: TrainingViewModel = hiltViewModel()
 ) {
-    Column {
+    Column(modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(Size120))
         val value = remember { mutableStateOf("") }
         Row {
@@ -96,18 +97,18 @@ fun TrainingScreen(
 
         Spacer(modifier = Modifier.height(Size120))
         when (viewModel.visibleTab) {
-            TrainingTabs.TUTORIALS -> Tutorials()
+            TrainingTabs.TUTORIALS -> Tutorials(viewModel.tutorials)
             TrainingTabs.WORKSHOPS -> Workshops()
-            TrainingTabs.MY_LEARNING -> MyLearning()
+            TrainingTabs.MY_LEARNING -> MyLearning(viewModel)
         }
     }
 }
 
 @Composable
-private fun Tutorials() {
+private fun Tutorials(tutorials:List<Tutorial>) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(Size120)) {
-        items(count = 5) {
-            TutorialItem()
+        items(tutorials) {tutorial ->
+            TutorialItem(tutorial = tutorial)
         }
     }
 }
@@ -121,9 +122,8 @@ private fun Workshops() {
     }
 }
 
-@Preview(widthDp = 312)
 @Composable
-private fun MyLearning() {
+private fun MyLearning(viewModel: TrainingViewModel) {
     Column {
         LazyColumn(verticalArrangement = Arrangement.spacedBy(Size120)) {
             item {
@@ -160,8 +160,8 @@ private fun MyLearning() {
                     color = Color(0xFF5C5C5C),
                 )
             }
-            items(count = 5) {
-                TutorialItem(alreadyStarted = true, percentage = 45)
+            items(viewModel.tutorials) {tutorial->
+                TutorialItem(alreadyStarted = true, percentage = 45, tutorial = tutorial)
             }
         }
     }
@@ -176,23 +176,23 @@ private fun StatusCardRow() {
         StatusCard(
             count = 4,
             label = "Course\nCompleted",
-            backgroundColor = Color(0xFFF3FFF1), // Light green background
-            contentColor = Color(0xFF4E9B45),    // Green text color
+            backgroundColor = Color(0xFFF3FFF1),
+            contentColor = Color(0xFF4E9B45),
             borderColor = Color(0xFF4E9B45)
         )
         StatusCard(
             count = 5,
             label = "Workshop\nCompleted",
-            backgroundColor = Color(0xFFF6E7ED), // Light red/pink background
-            contentColor = Color(0xFFED2E7D),    // Red/pink text color
-            borderColor = Color(0xFFED2E7D)     // Red/pink border color
+            backgroundColor = Color(0xFFF6E7ED),
+            contentColor = Color(0xFFED2E7D),
+            borderColor = Color(0xFFED2E7D)
         )
         StatusCard(
             count = 2,
             label = "Course In\nProgress",
-            backgroundColor = Color(0xFFE6F1FE), // Light blue background
-            contentColor = Color(0xFF007BFF),    // Blue text color
-            borderColor = Color(0xFF007BFF)    // Blue border color
+            backgroundColor = Color(0xFFE6F1FE),
+            contentColor = Color(0xFF007BFF),
+            borderColor = Color(0xFF007BFF)
         )
 
     }

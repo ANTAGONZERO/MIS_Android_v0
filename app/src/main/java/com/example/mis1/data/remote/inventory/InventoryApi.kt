@@ -5,9 +5,9 @@ import com.example.mis1.data.remote.inventory.dto.InventoryCategory
 import com.example.mis1.data.remote.inventory.dto.InventoryGroup
 import com.example.mis1.data.remote.inventory.dto.Inventory
 import com.example.mis1.data.remote.inventory.dto.InventoryLocation
-import com.example.mis1.data.remote.inventory.dto.InventoryPurchase
+import com.example.mis1.data.remote.inventory.dto.InventoryPurchaseDto
 import com.example.mis1.data.remote.inventory.dto.IssueInventoryRequest
-import com.example.mis1.data.remote.inventory.dto.IssuedInventory
+import com.example.mis1.data.remote.inventory.dto.IssuedInventoryDto
 import com.example.mis1.data.remote.inventory.dto.PurchaseInventoryRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -43,14 +43,14 @@ interface InventoryApi {
     suspend fun categoryDetail(@Path("id") id: Int):InventoryCategory
 
     @GET("inventory_issue_list/")
-    suspend fun issuedInventoryList():List<IssuedInventory>
+    suspend fun issuedInventoryList():List<IssuedInventoryDto>
 
     @GET("inventory_purchase_list/")
-    suspend fun purchasedInventoryList():List<InventoryPurchase>
+    suspend fun purchasedInventoryList():List<InventoryPurchaseDto>
 
     @POST("inventory_issue_list/")
-    suspend fun issueInventory(@Body request: IssueInventoryRequest):IssuedInventory
+    suspend fun issueInventory(@Body request: IssueInventoryRequest):IssuedInventoryDto
 
     @POST("inventory_purchase_list/")
-    suspend fun purchaseInventory(@Body request: PurchaseInventoryRequest):InventoryPurchase
+    suspend fun purchaseInventory(@Body request: PurchaseInventoryRequest):InventoryPurchaseDto
 }

@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mis1.common.Resource
 import com.example.mis1.common.searchInProperties
-import com.example.mis1.data.remote.inventory.dto.ResolvedInventoryPurchase
-import com.example.mis1.data.remote.inventory.dto.ResolvedIssuedInventory
-import com.example.mis1.data.remote.machine.dto.ResolvedReservation
+import com.example.mis1.model.InventoryPurchase
+import com.example.mis1.model.IssuedInventory
+import com.example.mis1.model.MachineReservation
 import com.example.mis1.repository.InventoryRepository
 import com.example.mis1.repository.MachineRepository
 import com.example.mis1.ui.routes.RecordTabs
@@ -22,13 +22,13 @@ class RecordScreenViewmodel @Inject constructor(
     private val inventoryRepository: InventoryRepository
 ) : ViewModel() {
 
-    private val reservationList = mutableStateListOf<ResolvedReservation>()
-    private val issuableList = mutableStateListOf<ResolvedIssuedInventory>()
-    private val purchasesList = mutableStateListOf<ResolvedInventoryPurchase>()
+    private val reservationList = mutableStateListOf<MachineReservation>()
+    private val issuableList = mutableStateListOf<IssuedInventory>()
+    private val purchasesList = mutableStateListOf<InventoryPurchase>()
 
-    val filteredReservationList = mutableStateListOf<ResolvedReservation>()
-    val filteredIssuableList = mutableStateListOf<ResolvedIssuedInventory>()
-    val filteredPurchasesList = mutableStateListOf<ResolvedInventoryPurchase>()
+    val filteredReservationList = mutableStateListOf<MachineReservation>()
+    val filteredIssuableList = mutableStateListOf<IssuedInventory>()
+    val filteredPurchasesList = mutableStateListOf<InventoryPurchase>()
 
     val searchText = mutableStateOf("")
 
@@ -53,21 +53,21 @@ class RecordScreenViewmodel @Inject constructor(
     fun showPurchaseTab(){
         visibleTab.value = RecordTabs.Purchase
     }
-    private fun populateReservations(list: List<ResolvedReservation>) {
+    private fun populateReservations(list: List<MachineReservation>) {
         reservationList.clear()
         reservationList.addAll(list)
         filteredReservationList.clear()
         filteredReservationList.addAll(list)
     }
 
-    private fun populateIssuable(list: List<ResolvedIssuedInventory>) {
+    private fun populateIssuable(list: List<IssuedInventory>) {
         issuableList.clear()
         issuableList.addAll(list)
         filteredIssuableList.clear()
         filteredIssuableList.addAll(list)
     }
 
-    private fun populatePurchases(list: List<ResolvedInventoryPurchase>) {
+    private fun populatePurchases(list: List<InventoryPurchase>) {
         purchasesList.clear()
         purchasesList.addAll(list)
         filteredPurchasesList.clear()

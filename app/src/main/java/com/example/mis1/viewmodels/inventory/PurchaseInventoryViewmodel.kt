@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mis1.common.ProjectType
 import com.example.mis1.common.Resource
 import com.example.mis1.data.remote.inventory.dto.Inventory
-import com.example.mis1.data.remote.inventory.dto.InventoryPurchase
+import com.example.mis1.data.remote.inventory.dto.InventoryPurchaseDto
 import com.example.mis1.data.remote.inventory.dto.PurchaseInventoryRequest
 import com.example.mis1.data.remote.project.dto.Project
 import com.example.mis1.repository.InventoryRepository
@@ -34,7 +34,7 @@ class PurchaseInventoryViewmodel @Inject constructor(
 
     val project: MutableState<Project?> = mutableStateOf(null)
 
-    var purchaseStatus by mutableStateOf<Resource<InventoryPurchase>>(Resource.Error(""))
+    var purchaseStatus by mutableStateOf<Resource<InventoryPurchaseDto>>(Resource.Error(""))
         private set
 
     var projectList by mutableStateOf(emptyList<Project>())

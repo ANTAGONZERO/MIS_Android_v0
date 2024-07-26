@@ -3,7 +3,7 @@ package com.example.mis1.data.remote.inventory.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class IssuedInventory(
+data class IssuedInventoryDto(
     val college: Int,
     @SerializedName("created_at")
     val createdAt: String,

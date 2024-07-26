@@ -6,7 +6,7 @@ import com.example.mis1.data.remote.machine.dto.AddMachineRequest
 import com.example.mis1.data.remote.machine.dto.Machine
 import com.example.mis1.data.remote.machine.dto.MachineReservationRequest
 import com.example.mis1.data.remote.machine.dto.Reservation
-import com.example.mis1.data.remote.machine.dto.ResolvedReservation
+import com.example.mis1.model.MachineReservation
 import kotlinx.coroutines.flow.Flow
 
 class MachineRepository(
@@ -29,10 +29,10 @@ class MachineRepository(
             api.machineDetail(id)
         }
 
-    fun reservationList(): Flow<Resource<List<ResolvedReservation>>> =
+    fun reservationList(): Flow<Resource<List<MachineReservation>>> =
         apiCallRepository.protectedApiCall(errorMessage = "Failed to fetch reservation list") {
             val response = api.reservationList()
-            val result = mutableListOf<ResolvedReservation>()
+            val result = mutableListOf<MachineReservation>()
             response.forEach {
                 try {
                     result.add(resolveReservation(it))
@@ -50,9 +50,9 @@ class MachineRepository(
             api.reservationDetail(id)
         }
 
-    private suspend fun resolveReservation(reservation: Reservation): ResolvedReservation {
+    private suspend fun resolveReservation(reservation: Reservation): MachineReservation {
         val machine: Machine = api.machineDetail(reservation.machine)
-        return ResolvedReservation(
+        return MachineReservation(
             id = reservation.id,
             approved = reservation.approved,
             reservedBy = reservation.reservedBy,

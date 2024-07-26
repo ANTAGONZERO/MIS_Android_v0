@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -29,10 +31,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.R
+import com.example.mis1.model.Tutorial
 import com.example.mis1.ui.composables.Tag
 import com.example.mis1.ui.composables.enums.TagType
 import com.example.mis1.ui.theme.CircularEdge
@@ -49,9 +51,9 @@ import com.example.mis1.ui.theme.Size40
 import com.example.mis1.ui.theme.SizeNone
 import com.example.mis1.ui.theme.White
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-@Preview
-fun TutorialItem(alreadyStarted: Boolean = false, percentage: Int = 0) {
+fun TutorialItem(alreadyStarted: Boolean = false, percentage: Int = 0, tutorial: Tutorial) {
     Column(
         modifier = Modifier
             .background(color = White, shape = RoundedRectangleXXL)
@@ -67,14 +69,33 @@ fun TutorialItem(alreadyStarted: Boolean = false, percentage: Int = 0) {
                         .fillMaxHeight(),
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Tag(
-                        type = TagType.VerySmall,
-                        text = "Equipment",
-                        color = Color(0xFFE85D5D),
-                        backgroundColor = Color(0xFFFBE2E2)
-                    )
+                    FlowRow {
+                        tutorial.tags.forEach {
+                            val color =
+                                when (it) {
+                                    "Machine" -> Color(0xFF007BFF)
+                                    "Inventory" -> Color(0xFFED2E7D)
+                                    else -> Color(0xFFE85D5D)
+                                }
+
+                            val backgroundColor =
+                                when (it) {
+                                    "Machine" -> Color(0xFFCCE5FF)
+                                    "Inventory" -> Color(0xFFF6E7ED)
+                                    else -> Color(0xFFFBE2E2)
+                                }
+                            Box(modifier = Modifier.padding(bottom = 4.dp, end = 4.dp)){
+                                Tag(
+                                    type = TagType.VerySmall,
+                                    text = it,
+                                    color = color,
+                                    backgroundColor = backgroundColor
+                                )
+                            }
+                        }
+                    }
                     Text(
-                        text = "Advanced Laser Cutting Techniques",
+                        text = tutorial.name,
                         fontSize = 16.sp,
                         fontWeight = FontWeight(500),
                         color = Primary02,
@@ -83,7 +104,7 @@ fun TutorialItem(alreadyStarted: Boolean = false, percentage: Int = 0) {
 
                     )
                     Text(
-                        text = "4 Videos · 2 Hours",
+                        text = "${tutorial.videos.size} Videos · ${tutorial.totalLength} Hours",
                         fontSize = 12.sp,
                         color = Primary05,
                     )
@@ -130,7 +151,7 @@ fun TutorialItem(alreadyStarted: Boolean = false, percentage: Int = 0) {
             }
         }
         val correctedPercentage = remember {
-            if (percentage<1)
+            if (percentage < 1)
                 1
             else if (percentage > 100)
                 100

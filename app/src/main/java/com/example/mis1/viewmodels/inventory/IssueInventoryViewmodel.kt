@@ -11,7 +11,7 @@ import com.example.mis1.common.Resource
 import com.example.mis1.common.toTwoDigitString
 import com.example.mis1.data.remote.inventory.dto.Inventory
 import com.example.mis1.data.remote.inventory.dto.IssueInventoryRequest
-import com.example.mis1.data.remote.inventory.dto.IssuedInventory
+import com.example.mis1.data.remote.inventory.dto.IssuedInventoryDto
 import com.example.mis1.data.remote.project.dto.Project
 import com.example.mis1.model.Date
 import com.example.mis1.repository.InventoryRepository
@@ -39,7 +39,7 @@ class IssueInventoryViewmodel @Inject constructor(
 
     val project: MutableState<Project?> = mutableStateOf(null)
 
-    var issueStatus by mutableStateOf<Resource<IssuedInventory>>(Resource.Error(""))
+    var issueStatus by mutableStateOf<Resource<IssuedInventoryDto>>(Resource.Error(""))
         private set
 
     var projectList by mutableStateOf(emptyList<Project>())

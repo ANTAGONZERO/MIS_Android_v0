@@ -1,7 +1,9 @@
-package com.example.mis1.data.remote.machine.dto
+package com.example.mis1.model
+
+import com.example.mis1.data.remote.machine.dto.Machine
 
 
-data class ResolvedReservation (
+data class MachineReservation (
     val approved: String,
     val approvedBy: String?,
     val approvedStatus: String,
