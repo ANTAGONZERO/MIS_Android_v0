@@ -10,8 +10,8 @@ import com.example.mis1.common.Resource
 import com.example.mis1.common.toTwoDigitString
 import com.example.mis1.data.remote.machine.dto.MachineReservationRequest
 import com.example.mis1.data.remote.machine.dto.ReservationDto
-import com.example.mis1.data.remote.project.dto.Project
 import com.example.mis1.model.Date
+import com.example.mis1.model.Project
 import com.example.mis1.model.Time
 import com.example.mis1.repository.MachineRepository
 import com.example.mis1.repository.ProjectRepository
@@ -30,7 +30,7 @@ class BookMachineViewmodel @Inject constructor(
     val startTime: MutableState<Time?> = mutableStateOf(null)
     val endTime: MutableState<Time?> = mutableStateOf(null)
 
-    val projectTitle: MutableState<String> = mutableStateOf("")
+    val projectType: MutableState<String> = mutableStateOf("")
     val projectDetails: MutableState<String> = mutableStateOf("")
 
     val machine: MutableState<Int> = mutableStateOf(0)
@@ -59,7 +59,7 @@ class BookMachineViewmodel @Inject constructor(
 
     fun updateProject(newProject: Project) {
         project.value = newProject
-        projectTitle.value = newProject.title
+        projectType.value = newProject.type?.displayName?:"Unknown"
         projectDetails.value = newProject.description
     }
 

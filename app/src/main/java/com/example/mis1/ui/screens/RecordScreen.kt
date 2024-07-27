@@ -71,7 +71,7 @@ fun RecordScreen(
         }
         Spacer(modifier = Modifier.height(M))
         Row {
-            SearchBar(value = viewModel.searchText, onSearchTextChanged = viewModel::setSearchText,modifier = Modifier.weight(1f))
+            SearchBar(value = viewModel.searchText.value, onSearchTextChanged = viewModel::setSearchText,modifier = Modifier.weight(1f))
             Spacer(modifier = Modifier.width(8.dp))
             Filters()
         }

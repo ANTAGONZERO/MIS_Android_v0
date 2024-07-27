@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.example.mis1.R
 import com.example.mis1.common.ProjectProgressStatus
 import com.example.mis1.common.ProjectType
-import com.example.mis1.data.remote.project.dto.Project
+import com.example.mis1.model.Project
 import com.example.mis1.ui.composables.Tag
 import com.example.mis1.ui.theme.ActionError
 import com.example.mis1.ui.theme.ActionLightError
@@ -35,7 +35,6 @@ import com.example.mis1.ui.theme.ActionSuccess
 import com.example.mis1.ui.theme.ActionWarning
 import com.example.mis1.ui.theme.Primary01
 import com.example.mis1.ui.theme.Primary03
-import com.example.mis1.ui.theme.Primary07
 import com.example.mis1.ui.theme.RoundedRectangleL
 import com.example.mis1.ui.theme.SAccentSource
 import com.example.mis1.ui.theme.SPrimary100
@@ -48,11 +47,11 @@ val sampleProject = Project(
     documents = null,
     id = 12,
     links = null,
-    progressStatus = "2",
+    progressStatus = ProjectProgressStatus.IN_PROGRESS,
     student = 7,
     teammates = listOf(1),
     title = "Drona",
-    type = "1"
+    type = ProjectType.ACADEMIC
 )
 
 @Preview(widthDp = 312, showBackground = true, backgroundColor = 0xFFFFFF)
@@ -74,7 +73,7 @@ fun ProjectItem(project: Project = sampleProject) {
         ) {
 
 
-            val progressStatus = ProjectProgressStatus.fromId(project.progressStatus)
+            val progressStatus =project.progressStatus
                 ?: ProjectProgressStatus.NOT_STARTED
             val statusColor = getStatusColor(progressStatus)
             val statusBackgroundColor = getStatusBackgroundColor(progressStatus)
@@ -127,7 +126,7 @@ fun ProjectItem(project: Project = sampleProject) {
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = ProjectType.fromId(project.type)?.displayName ?: "Unknown",
+                text = project.type?.displayName ?: "Unknown",
                 fontSize = 14.sp,
                 lineHeight = 21.sp,
                 fontWeight = FontWeight(500),

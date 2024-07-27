@@ -6,12 +6,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mis1.common.ProjectType
 import com.example.mis1.common.Resource
 import com.example.mis1.data.remote.inventory.dto.Inventory
 import com.example.mis1.data.remote.inventory.dto.InventoryPurchaseDto
 import com.example.mis1.data.remote.inventory.dto.PurchaseInventoryRequest
-import com.example.mis1.data.remote.project.dto.Project
+import com.example.mis1.model.Project
 import com.example.mis1.repository.InventoryRepository
 import com.example.mis1.repository.ProjectRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -42,7 +41,7 @@ class PurchaseInventoryViewmodel @Inject constructor(
 
     fun updateProject(newProject: Project) {
         project.value = newProject
-        typeOfProject.value = ProjectType.fromId(newProject.type)!!.displayName
+        typeOfProject.value = newProject.type?.displayName?:"Unknown"
         projectDescription.value = newProject.description
     }
 

@@ -13,9 +13,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -36,12 +33,8 @@ import com.example.mis1.ui.theme.Size80
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier,
-    value: MutableState<String> = remember {
-        mutableStateOf("")
-    },
-    onSearchTextChanged: (String) -> Unit = { searchText ->
-        value.value = searchText
-    }
+    value: String  = "",
+    onSearchTextChanged: (String) -> Unit = {}
 ) {
     Row(
         modifier = modifier
@@ -59,7 +52,7 @@ fun SearchBar(
         )
         Spacer(modifier = Modifier.width(8.dp))
         Box(modifier = Modifier.fillMaxWidth()) {
-            if (value.value.isEmpty()) {
+            if (value.isEmpty()) {
                 Text(
                     text = "Search",
                     style = TextStyle(
@@ -72,7 +65,7 @@ fun SearchBar(
             }
             BasicTextField(
                 modifier = Modifier.fillMaxWidth(),
-                value = value.value,
+                value = value,
                 onValueChange = onSearchTextChanged,
                 singleLine = true,
                 textStyle = TextStyle(

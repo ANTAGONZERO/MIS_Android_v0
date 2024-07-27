@@ -67,25 +67,32 @@ fun ProjectScreen(
             }
             Spacer(modifier = Modifier.height(M))
             Row {
-                SearchBar(modifier = Modifier.weight(1f))
+                SearchBar(
+                    modifier = Modifier.weight(1f),
+                    value = viewModel.searchQuery,
+                    onSearchTextChanged = viewModel::updateSearchQuery
+                )
                 Spacer(modifier = Modifier.width(8.dp))
                 Filters()
             }
             Spacer(modifier = Modifier.height(8.dp))
             LazyColumn(verticalArrangement = Arrangement.spacedBy(M)) {
                 when (viewModel.visibleTabs) {
-                    ProjectTabs.EXPLORE_PROJECTS -> items(viewModel.projects) { item ->
+                    ProjectTabs.EXPLORE_PROJECTS -> items(viewModel.filteredProjects) { item ->
                         ProjectItem(item)
                     }
-                    ProjectTabs.MY_PROJECTS -> items(viewModel.myProjects) { item ->
+
+                    ProjectTabs.MY_PROJECTS -> items(viewModel.filteredMyProjects) { item ->
                         ProjectItem(item)
                     }
                 }
             }
         }
-        Box(modifier = Modifier
-            .align(Alignment.BottomEnd)
-            .padding(10.dp)){
+        Box(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(10.dp)
+        ) {
             FloatingActionButton(
                 modifier = Modifier.padding(Size120),
                 onClick = {
@@ -97,8 +104,11 @@ fun ProjectScreen(
                 containerColor = SAccentSource
             ) {
                 Image(
-                    modifier = Modifier.height(20.dp).width(20.dp),
-                    painter = painterResource(id = R.drawable.add), contentDescription = "add")
+                    modifier = Modifier
+                        .height(20.dp)
+                        .width(20.dp),
+                    painter = painterResource(id = R.drawable.add), contentDescription = "add"
+                )
             }
         }
 

@@ -1,7 +1,7 @@
-package com.example.mis1.data.remote.project.dto
+package com.example.mis1.model
 
-
-import com.google.gson.annotations.SerializedName
+import com.example.mis1.common.ProjectProgressStatus
+import com.example.mis1.common.ProjectType
 
 data class Project(
     val college: Int,
@@ -9,10 +9,9 @@ data class Project(
     val documents: Any?,
     val id: Int,
     val links: String?,
-    @SerializedName("progress_status")
-    val progressStatus: String,
+    val progressStatus: ProjectProgressStatus?,
     val student: Int,
     val teammates: List<Int>,
     val title: String,
-    val type: String
+    val type: ProjectType?
 )

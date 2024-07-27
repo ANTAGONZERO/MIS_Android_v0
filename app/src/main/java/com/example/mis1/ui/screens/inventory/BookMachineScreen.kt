@@ -30,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -139,45 +140,31 @@ fun BookMachineScreen(
                     }
                 }
             }
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Image1(id = R.drawable.edit)
+            Row {
+                Image2(id = R.drawable.award_line)
                 Spacer(modifier = Modifier.width(14.dp))
                 BorderBox {
-                    if (viewModel.projectTitle.value.isEmpty()) {
-                        Text1(text = "Add Project Title")
+                    if (viewModel.projectType.value.isEmpty()) {
+                        Text1(text = "Project Type")
                     }
-                    BasicTextField(
-                        value = viewModel.projectTitle.value,
-                        onValueChange = {},
-                        textStyle = TextStyle(
-                            fontSize = 16.sp,
-                            lineHeight = 20.sp,
-                            fontWeight = FontWeight(400),
-                            color = Primary03
-                        ),
-                        maxLines = 1
+                    Text1(
+                        text = viewModel.projectType.value
                     )
                 }
             }
+
             Row {
                 Image2(id = R.drawable.note_text_plus_line)
                 Spacer(modifier = Modifier.width(14.dp))
                 BorderBox {
                     if (viewModel.projectDetails.value.isEmpty()) {
-                        Text1(text = "Add Project Details")
+                        Text1(text = "Project Type")
                     }
-                    BasicTextField(
-                        value = viewModel.projectDetails.value,
-                        onValueChange = {},
-                        textStyle = TextStyle(
-                            fontSize = 16.sp,
-                            lineHeight = 20.sp,
-                            fontWeight = FontWeight(400),
-                            color = Primary03
-                        ),
+                    Text1(
+                        text = viewModel.projectDetails.value,
                         modifier = Modifier
                             .height(100.dp)
-                            .fillMaxWidth()
+                            .fillMaxWidth(),
                     )
                 }
             }
@@ -221,13 +208,15 @@ private fun Image2(id: Int) {
 }
 
 @Composable
-private fun Text1(text: String) {
+private fun Text1(modifier: Modifier = Modifier,text: String) {
     Text(
+        modifier = modifier,
         text = text,
         fontSize = 16.sp,
         lineHeight = 20.sp,
         fontWeight = FontWeight(400),
         color = Primary03,
+        overflow = TextOverflow.Ellipsis
     )
 }
 
@@ -236,7 +225,6 @@ private fun Text1(text: String) {
 private fun HourInputField(
     hours: String,
     onValueChange: (String) -> Unit,
-
     ) {
     val hint = "Enter the no. of hours"
     Box(modifier = Modifier.width(IntrinsicSize.Max)) {

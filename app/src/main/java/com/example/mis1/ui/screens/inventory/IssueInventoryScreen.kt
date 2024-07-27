@@ -137,6 +137,7 @@ fun IssueInventoryScreen(
                 Spacer(modifier = Modifier.width(16.dp))
                 BorderBox {
                     TextField1(
+                        enabled = false,
                         value = viewModel.typeOfProject.value,
                         onValueChanged = {},
                         hint = "Type of Project"
@@ -152,6 +153,7 @@ fun IssueInventoryScreen(
                 Spacer(modifier = Modifier.width(16.dp))
                 BorderBox {
                     TextField1(
+                        enabled = false,
                         modifier = Modifier
                             .height(68.dp)
                             .fillMaxWidth(),
@@ -194,6 +196,7 @@ private fun Text1(modifier: Modifier = Modifier, text: String) {
 @Composable
 private fun TextField1(
     modifier: Modifier = Modifier,
+    enabled:Boolean = true,
     value: String,
     onValueChanged: (value: String) -> Unit,
     hint: String? = null,
@@ -207,6 +210,7 @@ private fun TextField1(
             )
         }
         BasicTextField(
+            enabled = enabled ,
             modifier = modifier,
             value = value, onValueChange = onValueChanged,
             textStyle = TextStyle(

@@ -20,8 +20,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -56,11 +54,8 @@ fun TrainingScreen(
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(Size120))
-        val value = remember { mutableStateOf("") }
         Row {
-            SearchBar(
-                value = value, onSearchTextChanged = { }, modifier = Modifier.weight(1f)
-            )
+            SearchBar(modifier = Modifier.weight(1f))
             Spacer(modifier = Modifier.width(8.dp))
             Filters()
         }

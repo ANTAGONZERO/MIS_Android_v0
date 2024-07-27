@@ -76,7 +76,7 @@ fun InventoryScreen(
         Spacer(modifier = Modifier.height(8.dp))
         Row {
             SearchBar(
-                value = viewModel.searchText,
+                value = viewModel.searchText.value,
                 onSearchTextChanged = viewModel::setSearchText,
                 modifier = Modifier.weight(1f)
             )

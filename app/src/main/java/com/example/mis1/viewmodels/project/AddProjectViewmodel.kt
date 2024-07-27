@@ -10,7 +10,7 @@ import com.example.mis1.common.ProjectProgressStatus
 import com.example.mis1.common.ProjectType
 import com.example.mis1.common.Resource
 import com.example.mis1.data.remote.project.dto.AddProjectRequest
-import com.example.mis1.data.remote.project.dto.Project
+import com.example.mis1.data.remote.project.dto.ProjectDto
 import com.example.mis1.data.remote.user.dto.User
 import com.example.mis1.repository.ProjectRepository
 import com.example.mis1.repository.TrainingRepository
@@ -38,7 +38,7 @@ class AddProjectViewmodel @Inject constructor(
         private set
     var isProgressStatusDDVisible by mutableStateOf(false)
         private set
-    var addStatus by mutableStateOf<Resource<Project>>(Resource.Error(""))
+    var addStatus by mutableStateOf<Resource<ProjectDto>>(Resource.Error(""))
         private set
     var isSuggestionVisible by mutableStateOf(false)
         private set
