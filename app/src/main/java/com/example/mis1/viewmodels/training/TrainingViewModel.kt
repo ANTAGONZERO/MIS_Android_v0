@@ -1,6 +1,7 @@
 package com.example.mis1.viewmodels.training
 
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -27,6 +28,10 @@ class TrainingViewModel @Inject constructor(
         private set
     var user by mutableStateOf<User?>(null)
         private set
+    var workshopDetailVisible by mutableStateOf(false)
+        private set
+
+    var workshopDetailIndex by mutableIntStateOf(-1)
 
     fun goto(tab: TrainingTabs) {
         visibleTab = tab
@@ -36,6 +41,14 @@ class TrainingViewModel @Inject constructor(
         fetchTutorials()
     }
 
+    fun showWorkshopDetailModal(index:Int){
+        workshopDetailIndex = index
+        workshopDetailVisible = true
+    }
+
+    fun hideWorkshopDetail(){
+        workshopDetailVisible = false
+    }
     private fun fetchTutorials() {
         viewModelScope.launch {
             trainingRepository.tutorialList().collect {

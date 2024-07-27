@@ -18,9 +18,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,16 +44,21 @@ import com.example.mis1.ui.composables.button.TabTitle
 import com.example.mis1.ui.composables.enums.TabTitleType
 import com.example.mis1.ui.composables.list_item.TutorialItem
 import com.example.mis1.ui.composables.list_item.WorkshopItem
+import com.example.mis1.ui.composables.modal.WorkshopDetail
 import com.example.mis1.ui.routes.TrainingTabs
 import com.example.mis1.ui.theme.Primary02
 import com.example.mis1.ui.theme.Primary03
 import com.example.mis1.ui.theme.RoundedRectangleM
+import com.example.mis1.ui.theme.RoundedTopRectangleXXXL
 import com.example.mis1.ui.theme.SPrimary50
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.ui.theme.SizeNone
+import com.example.mis1.ui.theme.White
 import com.example.mis1.viewmodels.AppViewmodel
 import com.example.mis1.viewmodels.training.TrainingViewModel
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TrainingScreen(
     viewModel: TrainingViewModel = hiltViewModel(),
@@ -101,13 +111,36 @@ fun TrainingScreen(
             TrainingTabs.WORKSHOPS -> Workshops(viewModel)
             TrainingTabs.MY_LEARNING -> MyLearning(viewModel)
         }
+
+        val scope = rememberCoroutineScope()
+        val sheetState = rememberModalBottomSheetState()
+        val onHide = {
+            scope.launch {
+                sheetState.hide()
+                viewModel.hideWorkshopDetail()
+            }
+        }
+
+        if (viewModel.workshopDetailVisible)
+            ModalBottomSheet(
+                onDismissRequest = viewModel::hideWorkshopDetail,
+                dragHandle = { Box {} },
+                shape = RoundedTopRectangleXXXL,
+                sheetState = sheetState,
+                containerColor = White
+            ) {
+                WorkshopDetail(
+                    workshop = viewModel.workshops[viewModel.workshopDetailIndex],
+                    onHide = {onHide()}
+                )
+            }
     }
 }
 
 @Composable
 private fun Tutorials(viewModel: TrainingViewModel) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(Size120)) {
-        items(viewModel.tutorials) {tutorial ->
+        items(viewModel.tutorials) { tutorial ->
             TutorialItem(tutorial = tutorial)
         }
     }
@@ -116,8 +149,10 @@ private fun Tutorials(viewModel: TrainingViewModel) {
 @Composable
 private fun Workshops(viewModel: TrainingViewModel) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(Size120)) {
-        items(viewModel.workshops) {
-            WorkshopItem(it)
+        itemsIndexed(viewModel.workshops) {index,item ->
+            WorkshopItem(workshop = item, onClickView = {
+                viewModel.showWorkshopDetailModal(index)
+            })
         }
     }
 }
@@ -160,7 +195,7 @@ private fun MyLearning(viewModel: TrainingViewModel) {
                     color = Color(0xFF5C5C5C),
                 )
             }
-            items(viewModel.tutorials) {tutorial->
+            items(viewModel.tutorials) { tutorial ->
                 TutorialItem(alreadyStarted = true, percentage = 45, tutorial = tutorial)
             }
         }

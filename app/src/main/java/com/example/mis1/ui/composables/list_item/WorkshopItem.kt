@@ -30,7 +30,7 @@ import com.example.mis1.ui.theme.SizeNone
 
 @Composable
 //@Preview(widthDp = 312, showBackground = true)
-fun WorkshopItem(workshop: Workshop) {
+fun WorkshopItem(workshop: Workshop, onClickView: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -86,7 +86,7 @@ fun WorkshopItem(workshop: Workshop) {
                         color = Color(0xFF273F77)
                     )
                 ),
-                onClick = {}
+                onClick = {onClickView()}
             )
         }
         Spacer(modifier = Modifier.height(Size40))
