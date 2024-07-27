@@ -6,8 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mis1.common.ProjectProgressStatus
-import com.example.mis1.common.ProjectType
+import com.example.mis1.model.ProjectProgressStatus
+import com.example.mis1.model.ProjectType
 import com.example.mis1.common.Resource
 import com.example.mis1.data.remote.project.dto.AddProjectRequest
 import com.example.mis1.data.remote.project.dto.ProjectDto

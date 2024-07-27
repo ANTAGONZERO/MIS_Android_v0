@@ -17,9 +17,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TrainingViewModel @Inject constructor(
+class TrainingViewmodel @Inject constructor(
     private val trainingRepository: TrainingRepository
 ) : ViewModel() {
+    var registeredWorkshops = mutableStateListOf<Int>()
+        private set
     var visibleTab by mutableStateOf(TrainingTabs.TUTORIALS)
         private set
     var tutorials = mutableStateListOf<Tutorial>()
@@ -81,6 +83,14 @@ class TrainingViewModel @Inject constructor(
                 } ?: run {
                     workshops.clear()
                 }
+            }
+        }
+    }
+
+    fun registerForWorkshop(index:Int){
+        viewModelScope.launch {
+            trainingRepository.registerForWorkshop(workshops[index].id).collect{
+                it.data?.let { registeredWorkshops.add(index) }
             }
         }
     }

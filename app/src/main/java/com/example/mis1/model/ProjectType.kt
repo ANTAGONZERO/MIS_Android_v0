@@ -1,4 +1,4 @@
-package com.example.mis1.common
+package com.example.mis1.model
 
 enum class ProjectType(val id: String, val displayName: String) {
     ACADEMIC("1", "Academic"),

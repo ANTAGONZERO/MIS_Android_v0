@@ -1,4 +1,4 @@
-package com.example.mis1.common
+package com.example.mis1.model
 
 enum class Settings(val key: String) {
     EMAIL("Email"),

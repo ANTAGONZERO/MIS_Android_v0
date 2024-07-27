@@ -23,8 +23,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.R
-import com.example.mis1.common.ProjectProgressStatus
-import com.example.mis1.common.ProjectType
+import com.example.mis1.model.ProjectProgressStatus
+import com.example.mis1.model.ProjectType
 import com.example.mis1.model.Project
 import com.example.mis1.ui.composables.Tag
 import com.example.mis1.ui.theme.ActionError

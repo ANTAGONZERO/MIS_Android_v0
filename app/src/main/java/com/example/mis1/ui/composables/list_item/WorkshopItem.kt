@@ -30,7 +30,12 @@ import com.example.mis1.ui.theme.SizeNone
 
 @Composable
 //@Preview(widthDp = 312, showBackground = true)
-fun WorkshopItem(workshop: Workshop, onClickView: () -> Unit) {
+fun WorkshopItem(
+    workshop: Workshop,
+    onClickView: () -> Unit,
+    enrolled: Boolean,
+    onClickEnroll: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -90,6 +95,6 @@ fun WorkshopItem(workshop: Workshop, onClickView: () -> Unit) {
             )
         }
         Spacer(modifier = Modifier.height(Size40))
-        EnrollButton()
+        EnrollButton(enrolled = enrolled, onClickEnroll = onClickEnroll)
     }
 }

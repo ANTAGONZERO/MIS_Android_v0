@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mis1.R
-import com.example.mis1.common.Settings
+import com.example.mis1.model.Settings
 import com.example.mis1.ui.composables.button.TabTitle
 import com.example.mis1.ui.composables.button.Toggle
 import com.example.mis1.ui.composables.enums.SettingItemType

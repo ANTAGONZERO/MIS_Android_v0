@@ -2,6 +2,7 @@ package com.example.mis1.ui.composables.button
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mis1.ui.theme.RoundedRectangleS
+import com.example.mis1.ui.theme.SAccent200
 import com.example.mis1.ui.theme.SAccent700
 import com.example.mis1.ui.theme.SAccentSource
 import com.example.mis1.ui.theme.SizeNone
@@ -22,22 +24,23 @@ import com.example.mis1.ui.theme.White
 
 @Composable
 @Preview
-fun EnrollButton() {
+fun EnrollButton(enrolled: Boolean = false, onClickEnroll: () -> Unit = {}) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedRectangleS)
             .border(shape = RoundedRectangleS, color = SAccent700, width = SizeNone)
-            .background(color = SAccentSource)
+            .background(color = if(enrolled) SAccent200 else SAccentSource)
+            .clickable(onClick = {if(!enrolled) onClickEnroll()})
             .padding(8.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "Enrol Now",
+            text = if(enrolled) "Enrolled" else "Enrol Now",
             fontSize = 20.sp,
             lineHeight = 20.sp,
             fontWeight = FontWeight(500),
-            color = White
+            color = if(enrolled) SAccent700 else White
         )
     }
 }

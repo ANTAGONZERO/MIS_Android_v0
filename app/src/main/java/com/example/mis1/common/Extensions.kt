@@ -1,5 +1,6 @@
 package com.example.mis1.common
 
+import com.example.mis1.data.remote.training.dto.Workshop
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlin.reflect.full.memberProperties
@@ -46,3 +47,9 @@ fun Int.toTwoDigitString(): String =
     } else {
         "0$this"
     }
+
+fun Workshop.isUserRegistered(userId:Int):Boolean{
+    return this.attendees.any{
+        attendee -> attendee.user == userId
+    }
+}

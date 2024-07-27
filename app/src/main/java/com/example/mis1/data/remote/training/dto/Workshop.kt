@@ -4,7 +4,7 @@ package com.example.mis1.data.remote.training.dto
 import com.google.gson.annotations.SerializedName
 
 data class Workshop(
-    val attendees: List<Attendee>,
+    val attendees: MutableList<Attendee>,
     val college: Int,
     val description: String,
     @SerializedName("eligible_branches")

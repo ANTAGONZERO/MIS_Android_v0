@@ -68,4 +68,8 @@ class TrainingRepository(
     suspend fun workshopList() = apiCallRepository.protectedApiCall(errorMessage = "Unable to fetch workshop list"){
         api.workshopList()
     }
+
+    suspend fun registerForWorkshop(id:Int) = apiCallRepository.protectedApiCall(errorMessage = "Unable to register"){
+        api.registerForWorkshop(id)
+    }
 }

@@ -1,7 +1,7 @@
 package com.example.mis1.repository
 
 import android.content.SharedPreferences
-import com.example.mis1.common.Settings
+import com.example.mis1.model.Settings
 
 
 class SettingsRepository(private val sharedPreferences: SharedPreferences) {

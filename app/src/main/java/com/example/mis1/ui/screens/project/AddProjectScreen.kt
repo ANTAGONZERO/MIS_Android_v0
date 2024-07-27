@@ -42,8 +42,8 @@ import androidx.compose.ui.window.PopupProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.mis1.R
-import com.example.mis1.common.ProjectProgressStatus
-import com.example.mis1.common.ProjectType
+import com.example.mis1.model.ProjectProgressStatus
+import com.example.mis1.model.ProjectType
 import com.example.mis1.common.Resource
 import com.example.mis1.ui.composables.Tag
 import com.example.mis1.ui.composables.button.AddButton

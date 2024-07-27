@@ -31,7 +31,12 @@ import com.example.mis1.ui.theme.Size80
 import com.example.mis1.ui.theme.SizeNone
 
 @Composable
-fun WorkshopDetail(workshop: Workshop, onHide: () -> Unit) {
+fun WorkshopDetail(
+    workshop: Workshop,
+    onHide: () -> Unit,
+    enrolled: Boolean,
+    onClickEnroll: () -> Unit
+) {
     Box (modifier = Modifier.clip(RoundedTopRectangleXXXL).fillMaxWidth()
         .border(color = SPrimary100, width = SizeNone, shape = RoundedTopRectangleXXXL),
         contentAlignment = Alignment.Center
@@ -73,7 +78,7 @@ fun WorkshopDetail(workshop: Workshop, onHide: () -> Unit) {
                 color = Color(0xFF5C5C5C),
             )
             Spacer(modifier = Modifier.height(Size80))
-            EnrollButton()
+            EnrollButton(enrolled = enrolled,onClickEnroll = onClickEnroll)
             Spacer(modifier = Modifier.height(60.dp))
         }
         Column(

@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mis1.R
+import com.example.mis1.common.isUserRegistered
 import com.example.mis1.common.toTwoDigitString
 import com.example.mis1.ui.composables.Filters
 import com.example.mis1.ui.composables.bar.SearchBar
@@ -55,13 +56,13 @@ import com.example.mis1.ui.theme.Size120
 import com.example.mis1.ui.theme.SizeNone
 import com.example.mis1.ui.theme.White
 import com.example.mis1.viewmodels.AppViewmodel
-import com.example.mis1.viewmodels.training.TrainingViewModel
+import com.example.mis1.viewmodels.training.TrainingViewmodel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TrainingScreen(
-    viewModel: TrainingViewModel = hiltViewModel(),
+    viewModel: TrainingViewmodel = hiltViewModel(),
     appViewModel: AppViewmodel
 ) {
     LaunchedEffect(key1 = appViewModel.user) {
@@ -108,7 +109,7 @@ fun TrainingScreen(
         Spacer(modifier = Modifier.height(Size120))
         when (viewModel.visibleTab) {
             TrainingTabs.TUTORIALS -> Tutorials(viewModel)
-            TrainingTabs.WORKSHOPS -> Workshops(viewModel)
+            TrainingTabs.WORKSHOPS -> Workshops(viewModel,appViewModel)
             TrainingTabs.MY_LEARNING -> MyLearning(viewModel)
         }
 
@@ -131,14 +132,17 @@ fun TrainingScreen(
             ) {
                 WorkshopDetail(
                     workshop = viewModel.workshops[viewModel.workshopDetailIndex],
-                    onHide = {onHide()}
+                    onHide = {onHide()},
+                    enrolled = viewModel.workshops[viewModel.workshopDetailIndex].isUserRegistered(appViewModel.user!!.id)
+                            || viewModel.registeredWorkshops.contains(viewModel.workshopDetailIndex),
+                    onClickEnroll = { viewModel.registerForWorkshop(viewModel.workshopDetailIndex) }
                 )
             }
     }
 }
 
 @Composable
-private fun Tutorials(viewModel: TrainingViewModel) {
+private fun Tutorials(viewModel: TrainingViewmodel) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(Size120)) {
         items(viewModel.tutorials) { tutorial ->
             TutorialItem(tutorial = tutorial)
@@ -147,18 +151,22 @@ private fun Tutorials(viewModel: TrainingViewModel) {
 }
 
 @Composable
-private fun Workshops(viewModel: TrainingViewModel) {
+private fun Workshops(viewModel: TrainingViewmodel,appViewModel: AppViewmodel) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(Size120)) {
         itemsIndexed(viewModel.workshops) {index,item ->
-            WorkshopItem(workshop = item, onClickView = {
-                viewModel.showWorkshopDetailModal(index)
-            })
+            WorkshopItem(
+                workshop = item,
+                onClickView = { viewModel.showWorkshopDetailModal(index) },
+                enrolled = item.isUserRegistered(appViewModel.user!!.id)
+                        || viewModel.registeredWorkshops.contains(index),
+                onClickEnroll = { viewModel.registerForWorkshop(index) }
+            )
         }
     }
 }
 
 @Composable
-private fun MyLearning(viewModel: TrainingViewModel) {
+private fun MyLearning(viewModel: TrainingViewmodel) {
     Column {
         LazyColumn(verticalArrangement = Arrangement.spacedBy(Size120)) {
             item {

@@ -1,4 +1,4 @@
-package com.example.mis1.common
+package com.example.mis1.model
 
 enum class ProjectProgressStatus(val id: String, val displayName: String) {
     NOT_STARTED("1", "Not Started"),
