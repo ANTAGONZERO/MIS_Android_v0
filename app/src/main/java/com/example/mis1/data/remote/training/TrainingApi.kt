@@ -2,6 +2,7 @@ package com.example.mis1.data.remote.training
 
 import com.example.mis1.data.remote.training.dto.TutorialDto
 import com.example.mis1.data.remote.training.dto.VideoDto2
+import com.example.mis1.data.remote.training.dto.Workshop
 import com.example.mis1.data.remote.user.dto.User
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,7 +12,9 @@ interface TrainingApi {
     @GET("training/search_user/")
     suspend fun searchUser(@Query("q") q: String):List<User>
     @GET("training/tutorials/modules/")
-    suspend fun getTutorials(): List<TutorialDto>
+    suspend fun tutorialList(): List<TutorialDto>
     @GET("training/tutorials/videos/{id}/")
-    suspend fun getVideo(@Path("id") id:Int):VideoDto2
+    suspend fun videoDetail(@Path("id") id:Int):VideoDto2
+    @GET("training/workshops/")
+    suspend fun workshopList(): List<Workshop>
 }

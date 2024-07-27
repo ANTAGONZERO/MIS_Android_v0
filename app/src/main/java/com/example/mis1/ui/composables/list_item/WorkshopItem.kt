@@ -18,9 +18,9 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mis1.data.remote.training.dto.Workshop
 import com.example.mis1.ui.composables.button.EnrollButton
 import com.example.mis1.ui.theme.RoundedRectangleXL
 import com.example.mis1.ui.theme.SPrimary100
@@ -29,8 +29,8 @@ import com.example.mis1.ui.theme.Size40
 import com.example.mis1.ui.theme.SizeNone
 
 @Composable
-@Preview(widthDp = 312, showBackground = true)
-fun WorkshopItem() {
+//@Preview(widthDp = 312, showBackground = true)
+fun WorkshopItem(workshop: Workshop) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -39,17 +39,24 @@ fun WorkshopItem() {
             .padding(Size120)
     ) {
         Text(
-            text = "FRI, July 26, 8:00AM to 12:00 Noon",
+            text = "From:  ${workshop.fromDate}  ${workshop.fromTime.substring(0,5)}\n" +
+                    "To:  ${workshop.toDate}  ${workshop.toTime.substring(0,5)}",
             fontSize = 12.sp,
+            lineHeight = 18.sp,
             fontWeight = FontWeight(500),
             color = Color(0xFF12A594)
         )
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "Advanced Laser Cutting Techniques\n",
+            text = workshop.title,
             fontSize = 16.sp,
+            lineHeight = 20.sp,
             fontWeight = FontWeight(700),
-            color = Color(0xFF3F3F3F)
+            color = Color(0xFF3F3F3F),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
         )
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "Description",
             fontSize = 14.sp,
@@ -57,7 +64,7 @@ fun WorkshopItem() {
             color = Color(0xFF3F3F3F),
         )
         Text(
-            text = "Instructor's Name and Credentials: Dr. Priya Mehta, PhD in Mechanical Engineering, Certified Laser Cutting Specialist",
+            text = workshop.description,
             fontSize = 12.sp,
             lineHeight = 20.sp,
             fontWeight = FontWeight(500),

@@ -20,6 +20,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,7 +33,6 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mis1.R
 import com.example.mis1.common.toTwoDigitString
-import com.example.mis1.model.Tutorial
 import com.example.mis1.ui.composables.Filters
 import com.example.mis1.ui.composables.bar.SearchBar
 import com.example.mis1.ui.composables.button.TabTitle
@@ -46,12 +46,17 @@ import com.example.mis1.ui.theme.RoundedRectangleM
 import com.example.mis1.ui.theme.SPrimary50
 import com.example.mis1.ui.theme.Size120
 import com.example.mis1.ui.theme.SizeNone
+import com.example.mis1.viewmodels.AppViewmodel
 import com.example.mis1.viewmodels.training.TrainingViewModel
 
 @Composable
 fun TrainingScreen(
-    viewModel: TrainingViewModel = hiltViewModel()
+    viewModel: TrainingViewModel = hiltViewModel(),
+    appViewModel: AppViewmodel
 ) {
+    LaunchedEffect(key1 = appViewModel.user) {
+        appViewModel.user?.let { viewModel.updateUser(it) }
+    }
     Column(modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(Size120))
         Row {
@@ -92,27 +97,27 @@ fun TrainingScreen(
 
         Spacer(modifier = Modifier.height(Size120))
         when (viewModel.visibleTab) {
-            TrainingTabs.TUTORIALS -> Tutorials(viewModel.tutorials)
-            TrainingTabs.WORKSHOPS -> Workshops()
+            TrainingTabs.TUTORIALS -> Tutorials(viewModel)
+            TrainingTabs.WORKSHOPS -> Workshops(viewModel)
             TrainingTabs.MY_LEARNING -> MyLearning(viewModel)
         }
     }
 }
 
 @Composable
-private fun Tutorials(tutorials:List<Tutorial>) {
+private fun Tutorials(viewModel: TrainingViewModel) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(Size120)) {
-        items(tutorials) {tutorial ->
+        items(viewModel.tutorials) {tutorial ->
             TutorialItem(tutorial = tutorial)
         }
     }
 }
 
 @Composable
-private fun Workshops() {
+private fun Workshops(viewModel: TrainingViewModel) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(Size120)) {
-        items(count = 5) {
-            WorkshopItem()
+        items(viewModel.workshops) {
+            WorkshopItem(it)
         }
     }
 }

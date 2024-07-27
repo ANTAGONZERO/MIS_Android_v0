@@ -72,7 +72,7 @@ fun ProtectedScreens(
                     InventoryScreen(navController = navController)
                 }
                 composable(Screens.Training.path) {
-                    TrainingScreen()
+                    TrainingScreen(appViewModel=appViewModel)
                 }
                 composable(Screens.Project.path) {
                     ProjectScreen(appViewModel = appViewModel, navController = navController)

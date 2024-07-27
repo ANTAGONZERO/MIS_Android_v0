@@ -16,7 +16,7 @@ class TrainingRepository(
     }
 
     suspend fun tutorialList(): Flow<Resource<List<Tutorial>>> = apiCallRepository.protectedApiCall(errorMessage = "Unable to fetch tutorial list"){
-        val response = api.getTutorials()
+        val response = api.tutorialList()
         val result = mutableListOf<Tutorial>()
         response.forEach {
             try {
@@ -30,7 +30,7 @@ class TrainingRepository(
     private suspend fun resolveTutorial(tutorialDto: TutorialDto):Tutorial{
         val videos=mutableListOf<Video>()
         videos.addAll(tutorialDto.videos.map {
-            val response = api.getVideo(it.video)
+            val response = api.videoDetail(it.video)
             val result = Video(
                 college = response.college,
                 description = response.description,
@@ -63,5 +63,9 @@ class TrainingRepository(
             totalLength = totalLength,
             tags = tags
         )
+    }
+
+    suspend fun workshopList() = apiCallRepository.protectedApiCall(errorMessage = "Unable to fetch workshop list"){
+        api.workshopList()
     }
 }
