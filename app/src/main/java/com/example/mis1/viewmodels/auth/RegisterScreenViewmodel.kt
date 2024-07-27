@@ -38,9 +38,7 @@ class RegisterScreenViewmodel @Inject constructor(
 
     val graduationYearList = mutableListOf("2024","2025","2026","2027","2028")
     val collegeList = mutableListOf(
-        "IIT Jammu", "IIT Bombay", "IIT Gandhinagar", "IIT Delhi", "IIT Kanpur", "IIT Kharagpur",
-        "IIT Madras", "IIT Roorkee", "IIT Guwahati", "IIT Hyderabad", "IIT Bhubaneswar", "IIT Patna",
-        "IIT Ropar", "IIT Indore", "IIT Mandi", "IIT Jodhpur", "IIT Palakkad", "IIT Tirupati"
+        "IIT Jammu", "IIT Bombay", "IIT Gandhinagar"
     )
 
     val departmentList = mutableListOf(

@@ -127,7 +127,7 @@ fun LoginScreen(
             }) {
                 navController.navigate(Screens.Register.path){
                     popUpTo(Screens.Welcome.path){
-                        inclusive=true
+                        inclusive= false
                     }
                 }
             }
